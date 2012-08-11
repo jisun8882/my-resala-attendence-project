@@ -23,6 +23,7 @@
 	background:-moz-linear-gradient( center top, #ffffff 5%, #55afeb 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#55afeb');
 	background-color:#ffffff;
+	box-shadow: 5px 5px 5px #888888;
 }.attend:active {
 	position:relative;
 	top:1px;
