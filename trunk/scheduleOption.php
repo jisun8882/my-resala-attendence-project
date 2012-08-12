@@ -1,14 +1,14 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html><!-- InstanceBegin template="/Templates/Template.dwt.php" codeOutsideHTMLIsLocked="false" -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1256">
-<!-- TemplateBeginEditable name="doctitle" -->
+<!-- InstanceBeginEditable name="doctitle" -->
 <title>Welcome to Resala</title>
-<!-- TemplateEndEditable -->
-<link rel="stylesheet" type="text/css" href="../assets/stylesheet/navButton.css" />
-<link rel="stylesheet" type="text/css" href="../assets/stylesheet/main.css" />
-<!-- TemplateBeginEditable name="head" -->
-<!-- TemplateEndEditable -->
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" type="text/css" href="assets/stylesheet/navButton.css" />
+<link rel="stylesheet" type="text/css" href="assets/stylesheet/main.css" />
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
 </head>
 
 <body>
@@ -16,8 +16,8 @@
 	<div class="mainWrapper">
 		
         <div class="bannerDiv">
-        	<a href="../index.php">
-            	<img src="../assets/images/banner" class="bannerImage" alt="دروس تقويه ادي" />
+        	<a href="index.php">
+            	<img src="assets/images/banner" class="bannerImage" alt="دروس تقويه ادي" />
             </a>
         </div>
         
@@ -32,14 +32,14 @@
         
         <div class="contentDiv">
         	
-            <!-- TemplateBeginEditable name="contentRegion" -->
+            <!-- InstanceBeginEditable name="contentRegion" -->
         		Content goes here <br />
             Sample content
-        	<!-- TemplateEndEditable -->
+        	<!-- InstanceEndEditable -->
         	
         </div>
         
 	</div>
     
 </body>
-</html>
+<!-- InstanceEnd --></html>
