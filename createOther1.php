@@ -1,5 +1,5 @@
 <?php
-session_start();
+session_start(); 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html><!-- InstanceBegin template="/Templates/Template.dwt.php" codeOutsideHTMLIsLocked="false" -->
@@ -39,9 +39,51 @@ session_start();
         		<?php
                 include 'assets/modules/unauthorized.php';
                 ?>
-                
-                Content goes here <br />
-            Sample content
+				
+				<?php
+					$month = mysql_real_escape_string( $_POST['month'] );
+					$year =  date('Y');
+					
+					$server = "localhost";
+					$username = "root";
+					$password = "";
+					$database = "resalaother";
+					
+					$conn = mysql_connect($server, $username, $password);
+					if (!$conn) {die('Could not connect due to: ' . mysql_error());}
+					
+					mysql_query("SET NAMES cp1256");
+					mysql_query("set characer set cp1256");
+					
+					mysql_select_db($database, $conn);
+					
+					$createQuery = mysql_query("CREATE TABLE `$database`.`$month $year` (
+						`date` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
+						`day` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL ,
+						`body` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
+						`other_id` INT( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY
+						) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_unicode_ci;",$conn);
+					
+					if($createQuery){
+						?>
+						<script>
+							alert(" „ √‰‘«¡ ﬁ«∆„… √‰‘ÿ… ‘Â—Ì… ÃœÌœ… ›«—€… »‰Ã«Õ ·‘Â— <?php echo $month." ".$year ?>");
+							location.href = "otherOption.php";
+						</script>
+						<?php
+					}
+					else{
+						?>
+						<script>
+							alert("·ﬁœ √‰‘«¡  ﬁ«∆„… √‰‘ÿ… ‘Â—Ì… ·‘Â— <?php echo $month." ".$year ?> „”»ﬁ«");
+							location.href = "otherOption.php";
+						</script>
+						<?php
+					
+					}
+					
+					mysql_close();
+				?>
         	<!-- InstanceEndEditable -->
         	
         </div>

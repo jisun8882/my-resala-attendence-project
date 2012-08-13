@@ -1,5 +1,5 @@
 <?php
-session_start();
+session_start(); 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html><!-- InstanceBegin template="/Templates/Template.dwt.php" codeOutsideHTMLIsLocked="false" -->
@@ -39,18 +39,24 @@ session_start();
         		<?php
                 include 'assets/modules/unauthorized.php';
                 ?>
-                
-                <div class="back">
-                	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>  &nbsp;
-                	<a href="studentOption.php"><img src="assets/images/back.png" /></a>
-                </div>
-                
-                <hr />
-                
-                <div class="addStudentDataDiv">
-                	<h4>√»ÕÀ ⁄‰ ÿ«·»</h4>
-                    
-                    <?php
+				
+				<?php
+
+					$stuffID = $_SESSION['currentStuffID'];
+					
+					$f_name = mysql_real_escape_string( $_POST['f_name'] );
+					$m_name = mysql_real_escape_string( $_POST['m_name'] );
+					$l_name = mysql_real_escape_string( $_POST['l_name'] );
+					
+					$mobile = mysql_real_escape_string( $_POST['mobile'] );
+					$subject = mysql_real_escape_string( $_POST['subject'] );
+					
+					$date1 = mysql_real_escape_string( $_POST['date1'] );
+					$day1 = mysql_real_escape_string( $_POST['day1'] );
+					
+					$date2 = mysql_real_escape_string( $_POST['date2'] );
+					$day2 = mysql_real_escape_string( $_POST['day2'] );
+					
 					$server = "localhost";
 					$username = "root";
 					$password = "";
@@ -64,40 +70,32 @@ session_start();
 					
 					mysql_select_db($database, $conn);
 					
-					$getStudentquery = mysql_query("SELECT * FROM student ORDER BY f_name ASC",$conn);
-		
-					echo "<table border='1' class='volunteerTable'>";
-					echo "<tr>";
-					echo "<th> ⁄œÌ·</th><th>«·„Ê»Ì·</th> <th>«·«”„</th>";
-					echo "</tr>";
+					$editQuery = mysql_query("UPDATE `$database`.`stuff` 
+					SET  work = 0, date2= '".$date2."', day2= '".$day2."', date1= '".$date1."', day1= '".$day1."', mobile = '".$mobile."', l_name = '".$l_name."', m_name = '".$m_name."', f_name = '".$f_name."', subject= '".$subject."' 
+					WHERE stuff_id = '$stuffID' ",$conn);
 					
-					while($row = mysql_fetch_array($getStudentquery)  ){
+					if($editQuery){
 						
-						echo "<tr>";
-						
-						echo "<td>";
-						echo "<form action='editStudent2.php' method='post' name='submitStudID'> ";
-						echo "<input name='studID' type='hidden' value='".$row['student_id']."' /><input type='submit' value='⁄œ·' />";
-						echo "</td>";
-						
-						echo "<td>";
-						echo $row['mobile'];
-						echo "</td>";
-						
-						echo "<td>";
-						echo $row['f_name'] . " " . $row['m_name'] . " " .$row['l_name'];
-						echo "</td>";
-						
-						echo "</tr>";
-						echo "</form>";
-						
+						?>
+						<script>
+							alert(" „  ⁄œÌ· »Ì«‰«  «·„ ÿÊ⁄ »‰Ã«Õ");
+							location.href = "volunteerOption.php";
+						</script>
+						<?php
 					}
-					echo "</table>";
+					else{
+						?>
+						<script>
+							alert("Õ’· Œÿ√ «·—Ã«¡ √⁄œ «·⁄„·Ì…");
+							location.href = "volunteerOption.php";
+						</script>
+						<?php
+					
+					}
+					
 					mysql_close();
-				
-				?>
-                </div>
-                
+					
+					?>
         	<!-- InstanceEndEditable -->
         	
         </div>

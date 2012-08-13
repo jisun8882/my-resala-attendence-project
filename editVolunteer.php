@@ -42,13 +42,13 @@ session_start();
                 
                 <div class="back">
                 	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>  &nbsp;
-                	<a href="studentOption.php"><img src="assets/images/back.png" /></a>
+                	<a href="volunteerOption.php"><img src="assets/images/back.png" /></a>
                 </div>
                 
                 <hr />
                 
-                <div class="addStudentDataDiv">
-                	<h4>√»ÕÀ ⁄‰ ÿ«·»</h4>
+                <div class="VoloptionsDivS">
+                	<h4>≈»ÕÀ ⁄‰ „ ÿÊ⁄</h4>
                     
                     <?php
 					$server = "localhost";
@@ -64,11 +64,11 @@ session_start();
 					
 					mysql_select_db($database, $conn);
 					
-					$getStudentquery = mysql_query("SELECT * FROM student ORDER BY f_name ASC",$conn);
+					$getStudentquery = mysql_query("SELECT * FROM stuff ORDER BY subject ASC",$conn);
 		
 					echo "<table border='1' class='volunteerTable'>";
 					echo "<tr>";
-					echo "<th> ⁄œÌ·</th><th>«·„Ê»Ì·</th> <th>«·«”„</th>";
+					echo "<th> ⁄œÌ·</th> <th>«·„⁄«œ «·À«‰Ï</th> <th>«·„⁄«œ «·«Ê·</th> <th>«·„Ê»Ì·</th> <th>«·«”„</th> <th>«·„«œ…</th>";
 					echo "</tr>";
 					
 					while($row = mysql_fetch_array($getStudentquery)  ){
@@ -76,8 +76,16 @@ session_start();
 						echo "<tr>";
 						
 						echo "<td>";
-						echo "<form action='editStudent2.php' method='post' name='submitStudID'> ";
-						echo "<input name='studID' type='hidden' value='".$row['student_id']."' /><input type='submit' value='⁄œ·' />";
+						echo "<form action='editVolunteer2.php' method='post' name='submitStudID'> ";
+						echo "<input name='stuffID' type='hidden' value='".$row['stuff_id']."' /><input type='submit' value='⁄œ·' />";
+						echo "</td>";
+						
+						echo "<td>";
+						echo $row['date2'] . " " . $row['day2'];
+						echo "</td>";
+						
+						echo "<td>";
+						echo $row['date1'] . " " . $row['day1'];
 						echo "</td>";
 						
 						echo "<td>";
@@ -86,6 +94,10 @@ session_start();
 						
 						echo "<td>";
 						echo $row['f_name'] . " " . $row['m_name'] . " " .$row['l_name'];
+						echo "</td>";
+						
+						echo "<td>";
+						echo $row['subject'];
 						echo "</td>";
 						
 						echo "</tr>";

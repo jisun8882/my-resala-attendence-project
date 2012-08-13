@@ -1,5 +1,5 @@
 <?php
-session_start();
+session_start(); 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html><!-- InstanceBegin template="/Templates/Template.dwt.php" codeOutsideHTMLIsLocked="false" -->
@@ -47,10 +47,14 @@ session_start();
                 
                 <hr />
                 
-                <div class="addStudentDataDiv">
-                	<h4>√»ÕÀ ⁄‰ ÿ«·»</h4>
-                    
-                    <?php
+                <div class="optionsDiv">
+                <h4> ⁄œÌ· »Ì«‰« </h4>
+                <hr />
+				
+				<?php
+					$studID = $_POST['studID'];
+					$_SESSION['currentStudentID'] = $_POST['studID'];
+					
 					$server = "localhost";
 					$username = "root";
 					$password = "";
@@ -64,38 +68,71 @@ session_start();
 					
 					mysql_select_db($database, $conn);
 					
-					$getStudentquery = mysql_query("SELECT * FROM student ORDER BY f_name ASC",$conn);
-		
-					echo "<table border='1' class='volunteerTable'>";
-					echo "<tr>";
-					echo "<th> ⁄œÌ·</th><th>«·„Ê»Ì·</th> <th>«·«”„</th>";
-					echo "</tr>";
+					$getStudQuery = mysql_query("SELECT * FROM student WHERE student_id = '$studID' ",$conn);
 					
-					while($row = mysql_fetch_array($getStudentquery)  ){
+					echo "<form name='studentData' action='editStudent3.php' method='POST'>";
+					echo "<table width='auto' border='0'>";
+					
+					while($row = mysql_fetch_array($getStudQuery)  ){
+			
+						echo "<tr>";
+						echo "<td>";
+						echo "<input name='f_name' type='text' size='10' style='text-align:right' autocomplete='off' value='".$row['f_name']."' />";
+						echo ": «·«”„ «·«Ê·</td>";
+						echo "</tr>";
 						
 						echo "<tr>";
-						
-						echo "<td>";
-						echo "<form action='editStudent2.php' method='post' name='submitStudID'> ";
-						echo "<input name='studID' type='hidden' value='".$row['student_id']."' /><input type='submit' value='⁄œ·' />";
-						echo "</td>";
-						
-						echo "<td>";
-						echo $row['mobile'];
-						echo "</td>";
-						
-						echo "<td>";
-						echo $row['f_name'] . " " . $row['m_name'] . " " .$row['l_name'];
-						echo "</td>";
-						
+						echo "<td>&nbsp;</td>";
 						echo "</tr>";
-						echo "</form>";
 						
+						echo "<tr>";
+						echo "<td>";
+						echo "<input name='m_name' type='text' size='10' style='text-align:right' autocomplete='off' value='".$row['m_name']."' />";
+						echo ": «·«”„ «·«Ê”ÿ</td>";
+						echo "</tr>";
+						
+						echo "<tr>";
+						echo "<td>&nbsp;</td>";
+						echo "</tr>";
+						
+						echo "<tr>";
+						echo "<td>";
+						echo "<input name='l_name' type='text' size='10' style='text-align:right' autocomplete='off' value='".$row['l_name']."' />";
+						echo ": «·«”„ «·«ŒÌ—</td>";
+						echo "</tr>";
+						
+						echo "<tr>";
+						echo "<td>&nbsp;</td>";
+						echo "</tr>";
+						
+						echo "<tr>";
+						echo "<td>";
+						echo "<input name='mobile' type='text' size='15' style='text-align:right' autocomplete='off' value='".$row['mobile']."' /> ";
+						echo ": «·„Ê»Ì·</td>";
+						echo "</tr>";
+						
+						echo "<tr>";
+						echo "<td>&nbsp;</td>";
+						echo "</tr>";
+						
+						echo "<tr>";
+						echo "<td>&nbsp;</td>";
+						echo "</tr>";
+						
+						echo "<tr>";
+						echo "<td>";
+						echo "<input name='submit' type='submit' value='⁄œ·' />";
+						echo "</td>";
+						echo "</tr>";
+						
+						
+							
 					}
-					echo "</table>";
-					mysql_close();
-				
+					echo "</table";
+					echo "</form>";
+					mysql_close($conn);
 				?>
+
                 </div>
                 
         	<!-- InstanceEndEditable -->

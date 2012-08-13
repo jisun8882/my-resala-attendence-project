@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html><!-- InstanceBegin template="/Templates/Template.dwt.php" codeOutsideHTMLIsLocked="false" -->
 <head>
@@ -33,35 +36,45 @@
         <div class="contentDiv">
         	
             <!-- InstanceBeginEditable name="contentRegion" -->
-            	<div class="addStudentDataDiv">
-                	<h4>ÿ«·» ÃœÌœ</h4>
+            	<?php
+                include 'assets/modules/unauthorized.php';
+                ?>
+                <div class="back">
+                	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>  &nbsp;
+                	<a href="studentOption.php"><img src="assets/images/back.png" /></a>
+                </div>
+                
+                <hr />
+                
+                <div class="optionsDiv">
+                	<h4>≈÷«›… ÿ«·» ÃœÌœ</h4>
                     <h5>⁄·«„… (*)  ⁄‰Ï »Ì«‰«  „ÿ·Ê»… Ê „Â„Â</h5>
                         
 					<hr />
                     <p>
                         
-                        <form action="" method="post">
+                        <form action="addStudentSuccess.php" method="post">
                             <table width="auto" border="0">
                                 <tr>
-                                    <td>(*)<input name="f_name" type="text" size="20">: «·«”„ «·«Ê·</td>
+                                    <td>(*)<input name="f_name" type="text" size="20" autocomplete="off">: «·«”„ «·«Ê·</td>
                                 </tr>
                                 <tr>
                                     <td>&nbsp;</td>
                                 </tr>
                                 <tr>
-                                    <td><input name="m_name" type="text" size="20">: «·«”„ «·«Ê”ÿ</td>
+                                    <td><input name="m_name" type="text" size="20" autocomplete="off">: «·«”„ «·«Ê”ÿ</td>
                                 </tr>
                                 <tr>
                                     <td>&nbsp;</td>
                                 </tr>
                                 <tr>
-                                    <td>(*)<input name="f_name" type="text" size="20">: «·«”„ «·«ŒÌ—</td>
+                                    <td>(*)<input name="l_name" type="text" size="20" autocomplete="off">: «·«”„ «·«ŒÌ—</td>
                                 </tr>
                                 <tr>
                                     <td>&nbsp;</td>
                                 </tr>
                                 <tr>
-                                    <td>(*)<input name="mobile" type="text" size="25">: «·„Ê»Ì·</td>
+                                    <td>(*)<input name="mobile" type="text" size="25" autocomplete="off">: «·„Ê»Ì·</td>
                                 </tr>
                                 <tr>
                                     <td>&nbsp;</td>
@@ -75,13 +88,9 @@
                                 </table>
                         </form>
 					</p>
-                    <hr />
+                   
                 </div>
             	
-        		<div class="back">
-                	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>  &nbsp;
-                	<a href="studentOption.php"><img src="assets/images/back.png" /></a>
-                </div>
         	<!-- InstanceEndEditable -->
         	
         </div>

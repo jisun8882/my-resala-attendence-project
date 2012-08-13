@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXISTS `activities` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CREATE DATABASE IF NOT EXISTS `resalaother` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 CREATE DATABASE IF NOT EXISTS `strategy` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS `resala`.`studentReport` (
 ) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS `resala`.`stuff` (
-`work` INT( 1 ) ,
+`work` VARCHAR( 3 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
 `date2` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
 `day2` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
 `date1` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,

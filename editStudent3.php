@@ -1,5 +1,5 @@
 <?php
-session_start();
+session_start(); 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html><!-- InstanceBegin template="/Templates/Template.dwt.php" codeOutsideHTMLIsLocked="false" -->
@@ -39,9 +39,56 @@ session_start();
         		<?php
                 include 'assets/modules/unauthorized.php';
                 ?>
-                
-                Content goes here <br />
-            Sample content
+				
+				<?php
+
+					$studID = $_SESSION['currentStudentID'];
+					
+					$f_name = mysql_real_escape_string( $_POST['f_name'] );
+					$m_name = mysql_real_escape_string( $_POST['m_name'] );
+					$l_name = mysql_real_escape_string( $_POST['l_name'] );
+					
+					$mobile = mysql_real_escape_string( $_POST['mobile'] );
+					
+					$server = "localhost";
+					$username = "root";
+					$password = "";
+					$database = "resala";
+					
+					$conn = mysql_connect($server, $username, $password);
+					if (!$conn) {die('Could not connect due to: ' . mysql_error());}
+					
+					mysql_query("SET NAMES cp1256");
+					mysql_query("set characer set cp1256");
+					
+					mysql_select_db($database, $conn);
+					
+					$editQuery = mysql_query("UPDATE `$database`.`student` 
+					SET  mobile = '".$mobile."', l_name = '".$l_name."', m_name = '".$m_name."', f_name = '".$f_name."' 
+					WHERE student_id = '$studID' ",$conn);
+					
+					if($editQuery){
+						
+						?>
+						<script>
+							alert("Êã ÊÚÏíá ÈíÇäÇÊ ÇáØÇáÈ");
+							location.href = "studentOption.php";
+						</script>
+						<?php
+					}
+					else{
+						?>
+						<script>
+							alert("ÍÕá ÎØÃ ÇáÑÌÇÁ ÃÚÏ ÇáÚãáíÉ");
+							location.href = "studentOption.php";
+						</script>
+						<?php
+					
+					}
+					
+					mysql_close();
+					
+					?>
         	<!-- InstanceEndEditable -->
         	
         </div>

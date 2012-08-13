@@ -1,8 +1,6 @@
 <?php
 session_start();
-if(isset($_SESSION['username']))
-  unset($_SESSION['username']);
-?> 
+?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html><!-- InstanceBegin template="/Templates/Template.dwt.php" codeOutsideHTMLIsLocked="false" -->
 <head>
@@ -38,31 +36,18 @@ if(isset($_SESSION['username']))
         <div class="contentDiv">
         	
             <!-- InstanceBeginEditable name="contentRegion" -->
-        		<h2>«·€Ì«»</h2>
-				<h3>√Œ «— «·ÌÊ„</h3>
-                <form action="getDate.php" method="get" name="day">
-               	  <p class="getDayP">
-                	  <label>«·”»  <input type="radio" name="days" value="«·”» " id="days_0"></label>
-                	  <br>
-                	  <label>  «·«Õœ <input type="radio" name="days" value="«·«Õœ" id="days_1"></label>
-                	  <br>
-                      <label>«·«À‰Ì‰ <input type="radio" name="days" value="«·«À‰Ì‰" id="days_2"></label>
-                	  <br>
-                	  <label>«·À·«À«¡ <input type="radio" name="days" value="«·À·«À«¡" id="days_3"></label>
-                	  <br>
-                      <label>«·«—»⁄«¡ <input type="radio" name="days" value="«·«—»⁄«¡" id="days_4"></label>
-                	  <br>
-                	  <label>«·Œ„Ì” <input type="radio" name="days" value="«·Œ„Ì”" id="days_5"></label>
-                	  <br>
-                      <label>«·Ã„⁄… <input type="radio" name="days" value="«·Ã„⁄…" id="days_6"></label>
-                	  <br />
-                      <P> 
-                      </P>
-                      
-                      <input type="submit" value="√Œ «—" />
-              	  </p>
-                </form>
-       	  <!-- InstanceEndEditable -->
+        		<?php
+                include 'assets/modules/unauthorized.php';
+                ?>
+                
+                <div class="back">
+                	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>  &nbsp;
+                	<a href="adminOptions.php"><img src="assets/images/back.png" /></a>
+                </div>
+                
+                <hr />
+                
+        	<!-- InstanceEndEditable -->
         	
         </div>
         

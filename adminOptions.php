@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html><!-- InstanceBegin template="/Templates/Template.dwt.php" codeOutsideHTMLIsLocked="false" -->
 <head>
@@ -33,11 +36,19 @@
         <div class="contentDiv">
         	
             <!-- InstanceBeginEditable name="contentRegion" -->
-				<div class="optionsDiv">
-                    <a class="adminsOptionA" href="studentOption.php"><h3>ÿ·«»</h3></a> <br />
-                    <a class="adminsOptionA" href="volunteerOption.php"><h3>„ ÿÊ⁄Ì‰</h3></a> <br />
-                    <a class="adminsOptionA" href="scheduleOption.php"><h3>Ãœ«Ê·</h3></a> <br />
+				<?php
+                include 'assets/modules/unauthorized.php';
+                ?>
+                    
+                <div class='optionsDiv'>
+                    <a class='adminsOptionA' href='studentOption.php'><h3>ÿ·«»</h3></a>
+                    <a class='adminsOptionA' href='volunteerOption.php'><h3>„ ÿÊ⁄Ì‰</h3></a>
+                    <a class='adminsOptionA' href='scheduleOption.php'><h3>Ãœ«Ê·</h3></a>
+                    <a class='adminsOptionA' href='strategyOption.php'><h3>Œÿÿ ‘Â—Ì…</h3></a>
+                    <a class='adminsOptionA' href='reportOption.php'><h3>„·«ÕŸ«  ‘Â—Ì…</h3></a>
+                    <a class='adminsOptionA' href='otherOption.php'><h3>√‰‘ÿ… «·«Œ—Ï</h3></a>
 				</div>
+				
         	<!-- InstanceEndEditable -->
         	
         </div>
