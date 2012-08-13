@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html><!-- InstanceBegin template="/Templates/Template.dwt.php" codeOutsideHTMLIsLocked="false" -->
 <head>
@@ -33,9 +36,65 @@
         <div class="contentDiv">
         	
             <!-- InstanceBeginEditable name="contentRegion" -->
-        		<div class="back">
+        		<?php
+                include 'assets/modules/unauthorized.php';
+                ?>
+                <div class="back">
                 	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>  &nbsp;
                 	<a href="studentOption.php"><img src="assets/images/back.png" /></a>
+                </div>
+                
+                <hr />
+                
+                <div class="addStudentDataDiv">
+                	<h4>Õ–› »Ì«‰«  ÿ«·»</h4>
+                    
+                    <?php
+					$server = "localhost";
+					$username = "root";
+					$password = "";
+					$database = "resala";
+					
+					$conn = mysql_connect($server, $username, $password);
+					if (!$conn) {die('Could not connect due to: ' . mysql_error());}
+					
+					mysql_query("SET NAMES cp1256");
+					mysql_query("set characer set cp1256");
+					
+					mysql_select_db($database, $conn);
+					
+					$getStudentquery = mysql_query("SELECT * FROM student ORDER BY f_name ASC",$conn);
+		
+					echo "<table border='1' class='volunteerTable'>";
+					echo "<tr>";
+					echo "<th>Õ–›</th><th>«·„Ê»Ì·</th> <th>«·«”„</th>";
+					echo "</tr>";
+					
+					while($row = mysql_fetch_array($getStudentquery)  ){
+						
+						echo "<tr>";
+						
+						echo "<td>";
+						echo "<form action='deleteStudent2.php' method='post' name='submitStudID'> ";
+						echo "<input name='studID' type='hidden' value='".$row['student_id']."' /><input type='submit' value='Õ–›' />";
+						echo "</td>";
+						
+						echo "<td>";
+						echo $row['mobile'];
+						echo "</td>";
+						
+						echo "<td>";
+						echo $row['f_name'] . " " . $row['m_name'] . " " .$row['l_name'];
+						echo "</td>";
+						
+						echo "</tr>";
+						echo "</form>";
+						
+					}
+					echo "</table>";
+					mysql_close();
+				
+				?>
                 </div>
         	<!-- InstanceEndEditable -->
         	

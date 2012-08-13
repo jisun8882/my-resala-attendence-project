@@ -36,12 +36,65 @@ session_start();
         <div class="contentDiv">
         	
             <!-- InstanceBeginEditable name="contentRegion" -->
-        		<?php
+            <?php
                 include 'assets/modules/unauthorized.php';
-                ?>
+			?>
                 
-                Content goes here <br />
-            Sample content
+<?php
+
+$f_name = mysql_real_escape_string( $_POST['f_name'] );
+$m_name = mysql_real_escape_string( $_POST['m_name'] );
+$l_name = mysql_real_escape_string( $_POST['l_name'] );
+
+$mobile = mysql_real_escape_string( $_POST['mobile'] );
+$subject = mysql_real_escape_string( $_POST['subject'] );
+
+$date1 = mysql_real_escape_string( $_POST['date1'] );
+$day1 =  $_POST['day1'];
+
+$date2 = mysql_real_escape_string( $_POST['date2'] );
+$day2 = $_POST['day2'];
+
+$server = "localhost";
+$username = "root";
+$password = "";
+$database = "resala";
+
+$conn = mysql_connect($server, $username, $password);
+if (!$conn) {die('Could not connect due to: ' . mysql_error());}
+
+mysql_query("SET NAMES cp1256");
+mysql_query("set characer set cp1256");
+
+mysql_select_db($database, $conn);
+
+$addQuery = mysql_query("INSERT INTO `$database`.`stuff` 
+(work, date2, day2, date1, day1, mobile, l_name, m_name, f_name, subject, stuff_id) 
+VALUES 
+('áÇ' , '$date2', '$day2', '$date1', '$day1', '$mobile','$l_name','$m_name','$f_name', '$subject', NULL)",$conn);
+
+if($addQuery){
+	?>
+    <script>
+		alert("Êã ÅÖÇİÉ ÇáãÊØæÚ ÈäÌÇÍ");
+		location.href = "volunteerOption.php";
+	</script>
+    <?php
+}
+else{
+	?>
+    <script>
+		alert("ÍÕá ÎØÃ ÇáÑÌÇÁ ÃÚÏ ÇáÚãáíÉ");
+		location.href = "volunteerOption.php";
+	</script>
+    <?php
+
+}
+
+mysql_close();
+
+?>
+
         	<!-- InstanceEndEditable -->
         	
         </div>

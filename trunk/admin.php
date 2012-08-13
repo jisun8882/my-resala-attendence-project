@@ -1,3 +1,8 @@
+<?php
+session_start();
+if(isset($_SESSION['username']))
+  unset($_SESSION['username']);
+?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html><!-- InstanceBegin template="/Templates/Template.dwt.php" codeOutsideHTMLIsLocked="false" -->
 <head>

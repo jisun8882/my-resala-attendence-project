@@ -40,8 +40,45 @@ session_start();
                 include 'assets/modules/unauthorized.php';
                 ?>
                 
-                Content goes here <br />
-            Sample content
+                <div class="back">
+                	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>  &nbsp;
+                	<a href="otherOption.php"><img src="assets/images/back.png" /></a>
+                </div>
+                
+                <hr />
+                
+                <div class="optionsDiv">
+                	<h4>√Œ «— ﬁ«∆„… √‰‘ÿ… ‘Â—Ì…</h4>
+                    <h4>: √Œÿ«— «·‘Â—</h4>
+                    <?php
+						$server = "localhost";
+						$username = "root";
+						$password = "";
+						$database = "information_schema";
+						$myDatabase = "resalaother";
+						
+						$conn = mysql_connect($server, $username, $password);
+						if (!$conn) {die('Could not connect due to: ' . mysql_error());}
+						
+						mysql_query("SET NAMES cp1256");
+						mysql_query("set characer set cp1256");
+						
+						mysql_select_db($database, $conn);
+						
+						$getTablesquery = mysql_query("SELECT TABLE_NAME FROM TABLES WHERE TABLE_SCHEMA LIKE '$myDatabase' ORDER BY TABLE_NAME DESC",$conn);
+						
+						echo "<select name='getTables'>";
+						
+						while($row = mysql_fetch_array($getTablesquery)  ){
+							echo "<option value='".$row['TABLE_NAME']."'>";
+							echo $row['TABLE_NAME'];
+							echo "</option>";
+						}
+						
+						echo "</select>";
+						mysql_close();
+					?>
+                </div>
         	<!-- InstanceEndEditable -->
         	
         </div>

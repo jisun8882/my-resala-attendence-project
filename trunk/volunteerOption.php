@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html><!-- InstanceBegin template="/Templates/Template.dwt.php" codeOutsideHTMLIsLocked="false" -->
 <head>
@@ -33,8 +36,22 @@
         <div class="contentDiv">
         	
             <!-- InstanceBeginEditable name="contentRegion" -->
-        		Content goes here <br />
-            Sample content
+        		<?php
+                include 'assets/modules/unauthorized.php';
+                ?>
+                
+                <div class="back">
+                	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>  &nbsp;
+                	<a href="adminOptions.php"><img src="assets/images/back.png" /></a>
+                </div>
+                
+                <hr />
+                
+                <div class="optionsDiv">
+                    <a class="adminsOptionA" href="addVolunteer.php"><h3>ลึวÝษ ใสุๆฺ ฬฯํฯ</h3></a> <br />
+                    <a class="adminsOptionA" href="editVolunteer.php"><h3>สฺฯํแ ศํวไวส ใสุๆฺ</h3></a> <br />
+                    <a class="adminsOptionA" href="deleteVolunteer.php"><h3>อะÝ ใสุๆฺ</h3></a>
+				</div>
         	<!-- InstanceEndEditable -->
         	
         </div>

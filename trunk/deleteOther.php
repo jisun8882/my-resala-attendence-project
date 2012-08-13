@@ -40,8 +40,35 @@ session_start();
                 include 'assets/modules/unauthorized.php';
                 ?>
                 
-                Content goes here <br />
-            Sample content
+                <div class="back">
+                	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>  &nbsp;
+                	<a href="otherOption.php"><img src="assets/images/back.png" /></a>
+                </div>
+                
+                <hr />
+                
+                <div class="optionsDiv">
+                	<h4>Õ–› ﬁ«∆„… √‰‘ÿ… ‘Â—Ì…</h4>
+                    <h4>: √Œÿ«— «·‘Â—</h4>
+                    <form name="pickMonth" method="post" action="deleteOther1.php">
+                        <select name="month">
+                            <option>- √Œ «— «·‘Â— -</option>
+                            <option value="Ì‰«Ì—">Ì‰«Ì—</option>
+                            <option value="›»—«Ì—">›»—«Ì—</option>
+                            <option value="„«—”">„«—”</option>
+                            <option value="√»—Ì·">√»—Ì·</option>
+                            <option value="„«ÌÊ">„«ÌÊ</option>
+                            <option value="ÌÊ‰ÌÊ">ÌÊ‰ÌÊ</option>
+                            <option value="ÌÊ·ÌÊ">ÌÊ·ÌÊ</option>
+                            <option value="√€”ÿ”">√€”ÿ”</option>
+                            <option value="”» „»—">”» „»—</option>
+                            <option value="√ﬂ Ê»—">√ﬂ Ê»—</option>
+                            <option value="‰Ê›„»—">‰Ê›„»—</option>
+                            <option value="œÌ”„»—">œÌ”„»—</option>
+                        </select>
+                        <br />
+                        <input type="submit" value="Õ–›" />
+					</form>
         	<!-- InstanceEndEditable -->
         	
         </div>
