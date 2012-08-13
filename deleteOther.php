@@ -26,7 +26,7 @@ session_start();
         
         <div class="navDiv">
         	<a href="admin.php" class="nav">«·œŒÊ·</a>
-        	<a href="#" class="nav">√‰‘ÿ… √Œ—Ï</a>
+        	<a href="other.php" class="nav">√‰‘ÿ… √Œ—Ï</a>
         	<a href="volunteer.php" class="nav">„ ÿÊ⁄Ì‰</a>
         	<a href="#" class="nav">„·«ÕŸ«  ‘Â—Ì…</a>
         	<a href="#" class="nav">Œÿÿ ‘Â—Ì…</a>
@@ -41,34 +41,48 @@ session_start();
                 ?>
                 
                 <div class="back">
-                	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>  &nbsp;
+                	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>
                 	<a href="otherOption.php"><img src="assets/images/back.png" /></a>
                 </div>
                 
                 <hr />
                 
                 <div class="optionsDiv">
-                	<h4>Õ–› ﬁ«∆„… √‰‘ÿ… ‘Â—Ì…</h4>
+                	<h4>√Œ «— ﬁ«∆„… √‰‘ÿ… ‘Â—Ì…</h4>
                     <h4>: √Œÿ«— «·‘Â—</h4>
-                    <form name="pickMonth" method="post" action="deleteOther1.php">
-                        <select name="month">
-                            <option>- √Œ «— «·‘Â— -</option>
-                            <option value="Ì‰«Ì—">Ì‰«Ì—</option>
-                            <option value="›»—«Ì—">›»—«Ì—</option>
-                            <option value="„«—”">„«—”</option>
-                            <option value="√»—Ì·">√»—Ì·</option>
-                            <option value="„«ÌÊ">„«ÌÊ</option>
-                            <option value="ÌÊ‰ÌÊ">ÌÊ‰ÌÊ</option>
-                            <option value="ÌÊ·ÌÊ">ÌÊ·ÌÊ</option>
-                            <option value="√€”ÿ”">√€”ÿ”</option>
-                            <option value="”» „»—">”» „»—</option>
-                            <option value="√ﬂ Ê»—">√ﬂ Ê»—</option>
-                            <option value="‰Ê›„»—">‰Ê›„»—</option>
-                            <option value="œÌ”„»—">œÌ”„»—</option>
-                        </select>
-                        <br />
-                        <input type="submit" value="Õ–›" />
-					</form>
+                    <?php
+						$server = "localhost";
+						$username = "root";
+						$password = "";
+						$database = "information_schema";
+						$myDatabase = "resalaother";
+						
+						$conn = mysql_connect($server, $username, $password);
+						if (!$conn) {die('Could not connect due to: ' . mysql_error());}
+						
+						mysql_query("SET NAMES cp1256");
+						mysql_query("set characer set cp1256");
+						
+						mysql_select_db($database, $conn);
+						
+						$getTablesquery = mysql_query("SELECT TABLE_NAME FROM TABLES WHERE TABLE_SCHEMA LIKE '$myDatabase' ORDER BY CREATE_TIME ASC",$conn);
+						
+						echo "<form action='deleteOther1.php' method='post' name='editTables'> ";
+						echo "<select name='getTableName'>";
+						echo "<option>- √Œ «— ﬁ«∆„… «·√‰‘ÿ… „‰ Â‰« -</option>";
+						while($row = mysql_fetch_array($getTablesquery)  ){
+							echo "<option value='".$row['TABLE_NAME']."'>";
+							echo $row['TABLE_NAME'];
+							echo "</option>";
+						}
+						
+						echo "</select><br />";
+						echo "<input type='submit' name='submit' value='√Œ «—' />";
+						echo "</form>";
+						
+						mysql_close();
+					?>
+                </div>
         	<!-- InstanceEndEditable -->
         	
         </div>

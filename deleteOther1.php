@@ -26,7 +26,7 @@ session_start();
         
         <div class="navDiv">
         	<a href="admin.php" class="nav">«·œŒÊ·</a>
-        	<a href="#" class="nav">√‰‘ÿ… √Œ—Ï</a>
+        	<a href="other.php" class="nav">√‰‘ÿ… √Œ—Ï</a>
         	<a href="volunteer.php" class="nav">„ ÿÊ⁄Ì‰</a>
         	<a href="#" class="nav">„·«ÕŸ«  ‘Â—Ì…</a>
         	<a href="#" class="nav">Œÿÿ ‘Â—Ì…</a>
@@ -41,49 +41,40 @@ session_start();
                 ?>
                 
 				<?php
-					if( $_SESSION['username'] != "resala" ){
-						echo "«·—Ã«¡ «·Ÿ€ÿ ⁄·Ï «·œŒÊ· Ê ﬂ «»… «·«”„ Ê ﬂ·„Â «·”—";
+                    $month = $_POST['getTableName'];
+
+                    $server = "localhost";
+                    $username = "root";
+                    $password = "";
+                    $database = "resalaother";
+                    
+                    $conn = mysql_connect($server, $username, $password);
+                    if (!$conn) {die('Could not connect due to: ' . mysql_error());}
+                    
+                    mysql_query("SET NAMES cp1256");
+                    mysql_query("set characer set cp1256");
+                    
+                    mysql_select_db($database, $conn);
+                    
+                    $deleteQuery = mysql_query("DROP TABLE `$month`",$conn);
+                    
+                    if($deleteQuery){
+                        ?>
+                        <script>
+                            alert(" „ Õ–› ﬁ«∆„… «·√‰‘ÿ… «·‘Â—Ì… »‰Ã«Õ ·‘Â— <?php echo $month ?>");
+                            location.href = "otherOption.php";
+                        </script>
+                        <?php
+                    }
+                    else{
+                        ?>
+                        <script>
+                            alert("Õ’· Œÿ√ «·—Ã«¡ √⁄œ «·⁄„·Ì…");
+                            location.href = "otherOption.php";
+                        </script>
+                        <?php
 					}
-					else{
-						$month = mysql_real_escape_string( $_POST['month'] );
-						$year =  date('Y');
-						
-						$server = "localhost";
-						$username = "root";
-						$password = "";
-						$database = "resalaother";
-						
-						$conn = mysql_connect($server, $username, $password);
-						if (!$conn) {die('Could not connect due to: ' . mysql_error());}
-						
-						mysql_query("SET NAMES cp1256");
-						mysql_query("set characer set cp1256");
-						
-						mysql_select_db($database, $conn);
-						
-						$deleteQuery = mysql_query("DROP TABLE `$month $year`",$conn);
-						
-						if($deleteQuery){
-							?>
-							<script>
-								alert(" „ Õ–› ﬁ«∆„… «·√‰‘ÿ… «·‘Â—Ì… »‰Ã«Õ ·‘Â— <?php echo $month." ".$year ?>");
-								location.href = "otherOption.php";
-							</script>
-							<?php
-						}
-						else{
-							?>
-							<script>
-								alert("Õ’· Œÿ√ «·—Ã«¡ √⁄œ «·⁄„·Ì…");
-								location.href = "otherOption.php";
-							</script>
-							<?php
-						
-						}
-						
 						mysql_close();
-					}
-				
 				?>
         	<!-- InstanceEndEditable -->
         	

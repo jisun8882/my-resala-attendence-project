@@ -47,15 +47,16 @@ session_start();
                 
                 <hr />
                 
-                <div class="optionsDiv">
-                	<h4>√Œ «— ﬁ«∆„… √‰‘ÿ… ‘Â—Ì…</h4>
-                    <h4>: √Œÿ«— «·‘Â—</h4>
-                    <?php
+                <div class="VoloptionsDiv">
+                	<?php
+						$otherID = $_POST['otherID'];
+						$_SESSION['otherId'] = $otherID;
+						$tableName = $_SESSION['tableName'];
+						
 						$server = "localhost";
 						$username = "root";
 						$password = "";
-						$database = "information_schema";
-						$myDatabase = "resalaother";
+						$database = "resalaother";
 						
 						$conn = mysql_connect($server, $username, $password);
 						if (!$conn) {die('Could not connect due to: ' . mysql_error());}
@@ -65,22 +66,54 @@ session_start();
 						
 						mysql_select_db($database, $conn);
 						
-						$getTablesquery = mysql_query("SELECT TABLE_NAME FROM TABLES WHERE TABLE_SCHEMA LIKE '$myDatabase' ORDER BY CREATE_TIME ASC",$conn);
+						$getOtherQuery = mysql_query("SELECT * FROM $tableName WHERE other_id = '$otherID'",$conn);
 						
-						echo "<form action='editOther1.php' method='post' name='editTables'> ";
-						echo "<select name='getTableName'>";
-						echo "<option>- √Œ «— ﬁ«∆„… «·√‰‘ÿ… „‰ Â‰« -</option>";
-						while($row = mysql_fetch_array($getTablesquery)  ){
-							echo "<option value='".$row['TABLE_NAME']."'>";
-							echo $row['TABLE_NAME'];
-							echo "</option>";
+						echo "<form name='otherData' action='editOtherItem2.php' method='POST'>";
+						echo "<table width='700px' border='0'>";
+						
+						while($row = mysql_fetch_array($getOtherQuery)  ){
+								echo "<tr>";
+								echo "<td colspan='2'>";
+								echo "<input name='body' type='text' size='80' style='text-align:right' autocomplete='off' value='".$row['body']."' />";
+								echo ": «·‰‘«ÿ </td>";
+								echo "</td>";
+								echo "</tr>";
+								
+								echo "<tr>";
+								echo "<td>";
+								echo "<input name='date' type='text' size='15' style='text-align:right' autocomplete='off' value='".$row['date']."' />";
+								echo ": «· «—ÌŒ</td>";
+								echo "</td>";
+								
+								echo "<td>";
+								echo "<input name='day' type='text' size='15' style='text-align:right' autocomplete='off' value='".$row['day']."' />";
+								echo ": «·ÌÊ„</td>";
+								echo "</td>";
+								echo "</tr>";
+								
+								echo "<tr>";
+								echo "<td>";
+								echo "  „À«·: ” ” - ‘ ‘ - Ì Ì";
+								echo "</td>";
+								echo "<td>";
+								echo "</td>";
+								echo "</tr>";
+								
+								echo "<tr>";
+								echo "<td>";
+								echo "<input type='submit' name='submit' value=' ⁄œÌ·' />";
+								echo "</td>";
+								
+								echo "<td>";
+								echo "</td>";
+								echo "</tr>";
+							
 						}
+						echo "</table>";
+						echo "</form";
 						
-						echo "</select><br />";
-						echo "<input type='submit' name='submit' value='√Œ «—' />";
-						echo "</form>";
-						
-						mysql_close();
+						mysql_close($conn);
+					
 					?>
                 </div>
         	<!-- InstanceEndEditable -->

@@ -40,8 +40,59 @@ session_start();
                 include 'assets/modules/unauthorized.php';
                 ?>
                 
-                Content goes here <br />
-            Sample content
+                <div class="back">
+                	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>
+                	<a href="otherOption.php"><img src="assets/images/back.png" /></a>
+                </div>
+                
+                <hr />
+                <?php
+					$otherID = $_SESSION['otherId'];
+					$tableName = $_SESSION['tableName'];
+					
+					$body = mysql_real_escape_string( $_POST['body'] );
+					$date = mysql_real_escape_string( $_POST['date'] );
+					$day = mysql_real_escape_string( $_POST['day'] );
+					
+					$server = "localhost";
+					$username = "root";
+					$password = "";
+					$database = "resalaother";
+					
+					$conn = mysql_connect($server, $username, $password);
+					if (!$conn) {die('Could not connect due to: ' . mysql_error());}
+					
+					mysql_query("SET NAMES cp1256");
+					mysql_query("set characer set cp1256");
+					
+					mysql_select_db($database, $conn);
+					
+					$editQuery = mysql_query("UPDATE `$database`.`$tableName` 
+					SET  date = '".$date."', day = '".$day."', body = '".$body."' 
+					WHERE other_id = '$otherID' ",$conn);
+					
+					if($editQuery){
+						
+						?>
+						<script>
+							alert(" „  ⁄œÌ· »Ì«‰«  «·‰‘«ÿ");
+							location.href = "otherOption.php";
+						</script>
+						<?php
+					}
+					else{
+						?>
+						<script>
+							alert("Õ’· Œÿ√ «·—Ã«¡ √⁄œ «·⁄„·Ì…");
+							location.href = "otherOption.php";
+						</script>
+						<?php
+					
+					}
+					
+					mysql_close();
+					
+				?>
         	<!-- InstanceEndEditable -->
         	
         </div>

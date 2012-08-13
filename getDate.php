@@ -33,7 +33,7 @@ if(isset($_SESSION['username']))
         
         <div class="navDiv">
         	<a href="admin.php" class="nav">гАонФА</a>
-        	<a href="#" class="nav">цДтьи цняЛ</a>
+        	<a href="other.php" class="nav">цДтьи цняЛ</a>
         	<a href="volunteer.php" class="nav">ЦйьФзМД</a>
         	<a href="#" class="nav">ЦАгмыгй тЕяМи</a>
         	<a href="#" class="nav">ньь тЕяМи</a>

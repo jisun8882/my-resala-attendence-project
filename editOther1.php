@@ -26,7 +26,7 @@ session_start();
         
         <div class="navDiv">
         	<a href="admin.php" class="nav">«·œŒÊ·</a>
-        	<a href="#" class="nav">√‰‘ÿ… √Œ—Ï</a>
+        	<a href="other.php" class="nav">√‰‘ÿ… √Œ—Ï</a>
         	<a href="volunteer.php" class="nav">„ ÿÊ⁄Ì‰</a>
         	<a href="#" class="nav">„·«ÕŸ«  ‘Â—Ì…</a>
         	<a href="#" class="nav">Œÿÿ ‘Â—Ì…</a>
@@ -41,12 +41,76 @@ session_start();
                 ?>
                 
                 <div class="back">
-                	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>  &nbsp;
+                	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>
                 	<a href="otherOption.php"><img src="assets/images/back.png" /></a>
                 </div>
                 
                 <hr />
                 
+                <div class="VoloptionsDiv">
+                <h4> ⁄œÌ· »Ì«‰« </h4>
+                <hr />
+                <h3><a href="addOtherItem.php" class='adminsOptionA'>&laquo; ≈÷«›… ‰‘«ÿ ÃœÌœ</a></h3>
+				
+				<?php
+					$tableName = $_POST['getTableName'];
+					$_SESSION['tableName'] = $tableName;
+					$server = "localhost";
+					$username = "root";
+					$password = "";
+					$database = "resalaother";
+					
+					$conn = mysql_connect($server, $username, $password);
+					if (!$conn) {die('Could not connect due to: ' . mysql_error());}
+					
+					mysql_query("SET NAMES cp1256");
+					mysql_query("set characer set cp1256");
+					
+					mysql_select_db($database, $conn);
+					
+					$getOtherQuery = mysql_query("SELECT * FROM $tableName ORDER BY date ASC",$conn);
+
+					echo "<table width='auto' border='1'>";
+					echo "<tr>";
+					echo "<th>Õ–›</th> <th> ⁄œÌ·</th> <th> «—ÌŒ</th> <th>ÌÊ„</th> <th>«·√‰‘ÿ…</th>";
+					echo "</tr>";
+					
+					while($row = mysql_fetch_array($getOtherQuery)  ){
+						echo "<tr>";
+						
+						echo "<td>";
+						echo "<form name='deleteForm' method='post' action='deleteOtherItem.php' >";
+						echo "<input name='submit' type='submit' value='Õ–›'> ";
+						echo "<input name='otherID' type='hidden' value='".$row['other_id']."' />";
+						echo "</form>";
+						echo "</td>";
+						
+						echo "<td>";
+						echo "<form name='editForm' method='POST' action='editOtherItem.php' >";
+						echo "<input name='otherID' type='hidden' value='".$row['other_id']."' />";
+						echo "<input name='submit' type='submit' value='⁄œ·'> ";
+						echo "</form>";
+						echo "</td>";
+						
+						echo "<td>";
+						echo $row['date'];
+						echo "</td>";
+						
+						echo "<td>";
+						echo $row['day'];
+						echo "</td>";
+						
+						echo "<td>";
+						echo $row['body'];
+						echo "</td>";
+
+						echo "</tr>";
+					}
+					echo "</table";
+					mysql_close($conn);
+				?>
+
+                </div>
         	<!-- InstanceEndEditable -->
         	
         </div>

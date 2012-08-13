@@ -28,7 +28,7 @@ if(isset($_SESSION['username']))
         
         <div class="navDiv">
         	<a href="admin.php" class="nav">«·œŒÊ·</a>
-        	<a href="#" class="nav">√‰‘ÿ… √Œ—Ï</a>
+        	<a href="other.php" class="nav">√‰‘ÿ… √Œ—Ï</a>
         	<a href="volunteer.php" class="nav">„ ÿÊ⁄Ì‰</a>
         	<a href="#" class="nav">„·«ÕŸ«  ‘Â—Ì…</a>
         	<a href="#" class="nav">Œÿÿ ‘Â—Ì…</a>
@@ -54,7 +54,7 @@ if(isset($_SESSION['username']))
 					
 					mysql_select_db($database, $conn);
 					
-					$getVolquery = mysql_query("SELECT * FROM stuff WHERE work = '0' ORDER BY subject ASC",$conn);
+					$getVolquery = mysql_query("SELECT * FROM stuff WHERE work = '·«' ORDER BY subject ASC",$conn);
 		
 					echo "<table border='1' class='volunteerTable'>";
 					echo "<tr>";

@@ -1,5 +1,7 @@
 <?php
 session_start();
+if(isset($_SESSION['otherId']))
+  unset($_SESSION['otherId']);
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html><!-- InstanceBegin template="/Templates/Template.dwt.php" codeOutsideHTMLIsLocked="false" -->
@@ -26,7 +28,7 @@ session_start();
         
         <div class="navDiv">
         	<a href="admin.php" class="nav">гАонФА</a>
-        	<a href="#" class="nav">цДтьи цняЛ</a>
+        	<a href="other.php" class="nav">цДтьи цняЛ</a>
         	<a href="volunteer.php" class="nav">ЦйьФзМД</a>
         	<a href="#" class="nav">ЦАгмыгй тЕяМи</a>
         	<a href="#" class="nav">ньь тЕяМи</a>
