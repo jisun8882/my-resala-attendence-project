@@ -26,7 +26,7 @@ session_start();
         
         <div class="navDiv">
         	<a href="admin.php" class="nav">гАонФА</a>
-        	<a href="#" class="nav">цДтьи цняЛ</a>
+        	<a href="other.php" class="nav">цДтьи цняЛ</a>
         	<a href="volunteer.php" class="nav">ЦйьФзМД</a>
         	<a href="#" class="nav">ЦАгмыгй тЕяМи</a>
         	<a href="#" class="nav">ньь тЕяМи</a>
@@ -42,8 +42,8 @@ session_start();
 				
 				<?php
 					$month = mysql_real_escape_string( $_POST['month'] );
-					$year =  date('Y');
-					
+					$year = date('Y');
+				
 					$server = "localhost";
 					$username = "root";
 					$password = "";
@@ -57,17 +57,17 @@ session_start();
 					
 					mysql_select_db($database, $conn);
 					
-					$createQuery = mysql_query("CREATE TABLE `$database`.`$month $year` (
-						`date` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
+					$createQuery = mysql_query("CREATE TABLE `$database`.`$month$year` (
+						`date` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL ,
 						`day` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL ,
-						`body` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
+						`body` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL ,
 						`other_id` INT( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY
 						) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_unicode_ci;",$conn);
 					
 					if($createQuery){
 						?>
 						<script>
-							alert("йЦ цДтга чгфЦи цДтьи тЕяМи лоМои щгяши хДлгм АтЕя <?php echo $month." ".$year ?>");
+							alert("йЦ цДтга чгфЦи цДтьи тЕяМи лоМои щгяши хДлгм АтЕя <?php echo $month. " ".$year ?>");
 							location.href = "otherOption.php";
 						</script>
 						<?php

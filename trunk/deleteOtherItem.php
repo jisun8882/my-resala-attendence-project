@@ -40,8 +40,56 @@ session_start();
                 include 'assets/modules/unauthorized.php';
                 ?>
                 
-                Content goes here <br />
-            Sample content
+                <div class="back">
+                	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>
+                	<a href="otherOption.php"><img src="assets/images/back.png" /></a>
+                </div>
+                
+                <hr />
+                
+                <div class="VoloptionsDiv">
+                	<?php
+						$otherID = $_POST['otherID'];
+						$tableName = $_SESSION['tableName'];
+						
+						$server = "localhost";
+						$username = "root";
+						$password = "";
+						$database = "resalaother";
+						
+						$conn = mysql_connect($server, $username, $password);
+						if (!$conn) {die('Could not connect due to: ' . mysql_error());}
+						
+						mysql_query("SET NAMES cp1256");
+						mysql_query("set characer set cp1256");
+						
+						mysql_select_db($database, $conn);
+						
+						$deleteQuery = mysql_query("DELETE FROM `$database`.`$tableName` 
+						WHERE other_id = '$otherID' ",$conn);
+						
+						if($deleteQuery){
+							
+							?>
+							<script>
+								alert(" „ Õ–› «·’› »‰Ã«Õ");
+								location.href = "otherOption.php";
+							</script>
+							<?php
+						}
+						else{
+							?>
+							<script>
+								alert("Õ’· Œÿ√ «·—Ã«¡ √⁄œ «·⁄„·Ì…");
+								location.href = "otherOption.php";
+							</script>
+							<?php
+						
+						}
+						mysql_close($conn);
+					
+					?>
+                </div>
         	<!-- InstanceEndEditable -->
         	
         </div>

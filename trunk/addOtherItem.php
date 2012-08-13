@@ -40,8 +40,36 @@ session_start();
                 include 'assets/modules/unauthorized.php';
                 ?>
                 
-                Content goes here <br />
-            Sample content
+                <div class="back">
+                	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>
+                	<a href="otherOption.php"><img src="assets/images/back.png" /></a>
+                </div>
+                
+                <hr />
+                
+                <div class="VoloptionsDiv">
+                	<h4>≈÷«›… ‰‘«ÿ ÃœÌœ</h4>
+                    <form action="addOtherItem1.php" method="post" name="addItem">
+                        <table width="600" border="1">
+                        <tr>
+                            <td colspan="2">
+                            <input name="body" type="text" size="80" style="text-align:right" autocomplete="off" />: «·‰‘«ÿ </td>
+                        </tr>
+                        <tr>
+                            <td><input name="date" type="text" size="15" style="text-align:right" autocomplete="off" />: «· «—ÌŒ</td>
+                            <td><input name="day" type="text" size="15" style="text-align:right" autocomplete="off" />: «·ÌÊ„</td>
+                        </tr>
+                        <tr>
+                            <td>„À«·: ” ” - ‘ ‘ - Ì Ì</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td><input type="submit" name="submit" value="√÷«›…" /></td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        </table>
+					</form>
+                </div>
         	<!-- InstanceEndEditable -->
         	
         </div>
