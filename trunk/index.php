@@ -30,8 +30,8 @@ if(isset($_SESSION['username']))
         	<a href="admin.php" class="nav">гАонФА</a>
         	<a href="other.php" class="nav">цДтьи цняЛ</a>
         	<a href="volunteer.php" class="nav">ЦйьФзМД</a>
-        	<a href="#" class="nav">ЦАгмыгй тЕяМи</a>
-        	<a href="#" class="nav">ньь тЕяМи</a>
+        	<a href="report.php" class="nav">ЦАгмыгй тЕяМи</a>
+        	<a href="strategy.php" class="nav">ньь тЕяМи</a>
         	<a href="getDay.php" class="nav">гАшМгх</a>
         </div>
         
@@ -39,13 +39,14 @@ if(isset($_SESSION['username']))
         	
             <!-- InstanceBeginEditable name="contentRegion" -->
         		<h2> <marquee direction="right">
-                    <font style="color:#090">ЦямхгП хъЦ</font>
-                    <font style="color:#03F">щЛ</font>
-                    <font style="color:#090">ояФс</font>
-                    <font style="color:#03F">йчФМЕ</font>
-                    <font style="color:#090">ясгАи</font>
-                    <font style="color:#03F">щяз</font>
-                    <font style="color:#090">гАЦзгоЛ</font>
+                    <font style="color:#090">ЦямхгП</font>
+                    <font style="color:#03F">хъЦ</font>
+                    <font style="color:#090">щЛ</font>
+                    <font style="color:#03F">ояФс</font>
+                    <font style="color:#090">йчФМЕ</font>
+                    <font style="color:#03F">ясгАи</font>
+                    <font style="color:#090">щяз</font>
+                    <font style="color:#03F">гАЦзгоЛ</font>
                 </marquee> </h2>
                
         	<!-- InstanceEndEditable -->

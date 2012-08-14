@@ -46,21 +46,21 @@ session_start();
                 
                 <div class="back">
                 	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>
-                	<a href="otherOption.php"><img src="assets/images/back.png" /></a>
+                	<a href="strategyOption.php"><img src="assets/images/back.png" /></a>
                 </div>
                 
                 <hr />
                 
                 <div class="VoloptionsDiv">
                 	<?php
-						$otherID = $_POST['otherID'];
-						$_SESSION['otherId'] = $otherID;
+						$strategyID = $_POST['strategyID'];
+						$_SESSION['strategyId'] = $strategyID;
 						$tableName = $_SESSION['tableName'];
 						
 						$server = "localhost";
 						$username = "root";
 						$password = "";
-						$database = "resalaother";
+						$database = "resalastrategy";
 						
 						$conn = mysql_connect($server, $username, $password);
 						if (!$conn) {die('Could not connect due to: ' . mysql_error());}
@@ -70,10 +70,10 @@ session_start();
 						
 						mysql_select_db($database, $conn);
 						
-						$getOtherQuery = mysql_query("SELECT * FROM $tableName WHERE other_id = '$otherID'",$conn);
+						$getOtherQuery = mysql_query("SELECT * FROM $tableName WHERE strategy_id = '$strategyID'",$conn);
 						
-						echo "<form name='otherData' action='editOtherItem2.php' method='POST'>";
-						echo "<table width='700px' border='0'>";
+						echo "<form name='otherData' action='editStrategyItem2.php' method='POST'>";
+						echo "<table width='600px' border='0'>";
 						
 						while($row = mysql_fetch_array($getOtherQuery)  ){
 								echo "<tr>";
@@ -85,7 +85,12 @@ session_start();
 								
 								echo "<tr>";
 								echo "<td>";
-						
+								echo "<select name='status'>
+										<option value='".$row['status']."'>".$row['status']."</option>
+                                    	<option>- √Œ «— «·Õ«·… -</option>
+                                        <option value=' „'> „</option>
+                                        <option value='·„ Ì „'>·„ Ì „</option>
+                                    </select>: «·Õ«·…";
 								echo "</td>";
 					
 								echo "<td>";
@@ -113,7 +118,6 @@ session_start();
 								echo "<input name='date' type='text' size='15' style='text-align:right' autocomplete='off' value='".$row['date']."' />";
 								echo ": «· «—ÌŒ </td>";
 								
-								echo "</td>";
 								echo "</tr>";
 								
 								echo "<tr>";

@@ -28,8 +28,8 @@ session_start();
         	<a href="admin.php" class="nav">гАонФА</a>
         	<a href="other.php" class="nav">цДтьи цняЛ</a>
         	<a href="volunteer.php" class="nav">ЦйьФзМД</a>
-        	<a href="#" class="nav">ЦАгмыгй тЕяМи</a>
-        	<a href="#" class="nav">ньь тЕяМи</a>
+        	<a href="report.php" class="nav">ЦАгмыгй тЕяМи</a>
+        	<a href="strategy.php" class="nav">ньь тЕяМи</a>
         	<a href="getDay.php" class="nav">гАшМгх</a>
         </div>
         
@@ -40,7 +40,7 @@ session_start();
                 include 'assets/modules/unauthorized.php';
                 ?>
                 <div class="back">
-                	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>  &nbsp;
+                	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>
                 	<a href="studentOption.php"><img src="assets/images/back.png" /></a>
                 </div>
                 

@@ -28,8 +28,8 @@ session_start();
         	<a href="admin.php" class="nav">«·œŒÊ·</a>
         	<a href="other.php" class="nav">√‰‘ÿ… √Œ—Ï</a>
         	<a href="volunteer.php" class="nav">„ ÿÊ⁄Ì‰</a>
-        	<a href="#" class="nav">„·«ÕŸ«  ‘Â—Ì…</a>
-        	<a href="#" class="nav">Œÿÿ ‘Â—Ì…</a>
+        	<a href="report.php" class="nav">„·«ÕŸ«  ‘Â—Ì…</a>
+        	<a href="strategy.php" class="nav">Œÿÿ ‘Â—Ì…</a>
         	<a href="getDay.php" class="nav">«·€Ì«»</a>
         </div>
         
@@ -98,8 +98,22 @@ session_start();
 					echo "<tr>";
 					echo "<td>&nbsp;</td>";
 					echo "<td>&nbsp;</td>";
-					echo "<td><input name='subject' type='text' size='20' style='text-align:right' autocomplete='off' value='".$row['subject']."' />";
-					echo ": «·„«œ…</td>";
+					echo "<td><select name='subject'>
+									<option value='".$row['subject']."'>".$row['subject']."</option>
+                                    <option value='-·„  œŒ· „«œÂ'>- √Œ «— «·„«œ… „‰ «·ﬁ«∆„… -</option>
+                                    <option value='≈‰Ã·Ì“Ï'>≈‰Ã·Ì“Ï</option>
+                                    <option value='⁄—»Ï'>⁄—»Ï</option>
+                                    <option value='œ—«”« '>- œ—«”«  -</option>
+                                    <option value=' «—ÌŒ'> «—ÌŒ</option>
+                                    <option value='Ã€—«›Ì«'>Ã€—«›Ì«</option>
+                                    <option value='⁄·Ê„'>- ⁄·Ê„ -</option>
+                                    <option value='ﬂÌ„Ì«¡'>ﬂÌ„Ì«¡</option>
+                                    <option value='›Ì“Ì«¡'>›Ì“Ì«¡</option>
+                                    <option value='√ÕÌ«¡'>√ÕÌ«¡</option>
+                                    <option value='—Ì«÷Ì« '>- —Ì«÷Ì«  -</option>
+                                    <option value='Ã»—'>Ã»—</option>
+                                    <option value='Â‰œ”Â'>Â‰œ”Â</option>
+                                    </select>: «·„«œÂ</td>";
 					echo "<td>&nbsp;</td>";
 					echo "<td><input name='mobile' type='text' size='20' style='text-align:right' autocomplete='off' value='".$row['mobile']."' />";
 					echo ": «·„Ê»Ì·</td>";

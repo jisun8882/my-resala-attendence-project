@@ -1,5 +1,7 @@
 <?php
 session_start();
+if(isset($_SESSION['strategyId']))
+  unset($_SESSION['strategyId']);
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html><!-- InstanceBegin template="/Templates/Template.dwt.php" codeOutsideHTMLIsLocked="false" -->
@@ -28,8 +30,8 @@ session_start();
         	<a href="admin.php" class="nav">гАонФА</a>
         	<a href="other.php" class="nav">цДтьи цняЛ</a>
         	<a href="volunteer.php" class="nav">ЦйьФзМД</a>
-        	<a href="#" class="nav">ЦАгмыгй тЕяМи</a>
-        	<a href="#" class="nav">ньь тЕяМи</a>
+        	<a href="report.php" class="nav">ЦАгмыгй тЕяМи</a>
+        	<a href="strategy.php" class="nav">ньь тЕяМи</a>
         	<a href="getDay.php" class="nav">гАшМгх</a>
         </div>
         
@@ -46,6 +48,12 @@ session_start();
                 </div>
                 
                 <hr />
+                
+                <div class="optionsDiv">
+                    <a class="adminsOptionA" href="createStrategy.php"><h3> цДтга ньи тЕяМи лоМои</h3></a> <br />
+                    <a class="adminsOptionA" href="editStrategy.php"><h3>йзоМА гАньи гАтЕяМи</h3></a><br />
+                    <a class="adminsOptionA" href="deleteStrategy.php"><h3>мпщ гАньи гАтЕяМи</h3></a>
+				</div>
                 
         	<!-- InstanceEndEditable -->
         	

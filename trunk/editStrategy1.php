@@ -36,25 +36,30 @@ session_start();
         <div class="contentDiv">
         	
             <!-- InstanceBeginEditable name="contentRegion" -->
-        		<?php
+				
+				<?php
                 include 'assets/modules/unauthorized.php';
                 ?>
                 
                 <div class="back">
-                	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>  &nbsp;
-                	<a href="studentOption.php"><img src="assets/images/back.png" /></a>
+                	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>
+                	<a href="strategyOption.php"><img src="assets/images/back.png" /></a>
                 </div>
                 
                 <hr />
                 
-                <div class="addStudentDataDiv">
-                	<h4>√»ÕÀ ⁄‰ ÿ«·»</h4>
-                    
-                    <?php
+                <div class="VoloptionsDivS">
+                <h4> ⁄œÌ· »Ì«‰« </h4>
+                <hr />
+                <h3><a href="addStrategyItem.php" class='adminsOptionA'>&laquo; ≈÷«›… ’› ÃœÌœ</a></h3>
+				
+				<?php
+					$tableName = $_POST['getTableName'];
+					$_SESSION['tableName'] = $tableName;
 					$server = "localhost";
 					$username = "root";
 					$password = "";
-					$database = "resala";
+					$database = "resalastrategy";
 					
 					$conn = mysql_connect($server, $username, $password);
 					if (!$conn) {die('Could not connect due to: ' . mysql_error());}
@@ -64,40 +69,55 @@ session_start();
 					
 					mysql_select_db($database, $conn);
 					
-					$getStudentquery = mysql_query("SELECT * FROM student ORDER BY f_name ASC",$conn);
-		
-					echo "<table border='1' class='volunteerTable'>";
+					$getOtherQuery = mysql_query("SELECT * FROM $tableName ORDER BY date ASC",$conn);
+
+					echo "<table width='auto' border='1'>";
 					echo "<tr>";
-					echo "<th> ⁄œÌ·</th><th>«·„Ê»Ì·</th> <th>«·«”„</th>";
+					echo "<th>Õ–›</th> <th> ⁄œÌ·</th> <th>«·Õ«·…</th> <th> «—ÌŒ</th> <th>ÌÊ„</th> <th>«·√‰‘ÿ…</th>";
 					echo "</tr>";
 					
-					while($row = mysql_fetch_array($getStudentquery)  ){
-						
+					while($row = mysql_fetch_array($getOtherQuery)  ){
 						echo "<tr>";
 						
 						echo "<td>";
-						echo "<form action='editStudent2.php' method='post' name='submitStudID'> ";
-						echo "<input name='studID' type='hidden' value='".$row['student_id']."' /><input type='submit' value='⁄œ·' />";
-						echo "</td>";
-						
-						echo "<td>";
-						echo $row['mobile'];
-						echo "</td>";
-						
-						echo "<td>";
-						echo $row['f_name'] . " " . $row['m_name'] . " " .$row['l_name'];
-						echo "</td>";
-						
-						echo "</tr>";
+						echo "<form name='deleteForm' method='post' action='deleteStrategyItem.php' >";
+						echo "<input name='submit' type='submit' value='Õ–›'> ";
+						echo "<input name='strategyID' type='hidden' value='".$row['strategy_id']."' />";
 						echo "</form>";
+						echo "</td>";
 						
+						echo "<td>";
+						echo "<form name='editForm' method='POST' action='editStrategyItem.php' >";
+						echo "<input name='strategyID' type='hidden' value='".$row['strategy_id']."' />";
+						echo "<input name='submit' type='submit' value='⁄œ·'> ";
+						echo "</form>";
+						echo "</td>";
+						
+						echo "<td>";
+						echo $row['status'];
+						echo "</td>";
+						
+						echo "<td>";
+						echo $row['date'];
+						echo "</td>";
+						
+						echo "<td>";
+						echo $row['day'];
+						echo "</td>";
+						
+						echo "<td>";
+						echo $row['body'];
+						echo "</td>";
+
+						echo "</tr>";
+						
+						$counter++;
 					}
-					echo "</table>";
-					mysql_close();
-				
+					echo "</table";
+					mysql_close($conn);
 				?>
+
                 </div>
-                
         	<!-- InstanceEndEditable -->
         	
         </div>

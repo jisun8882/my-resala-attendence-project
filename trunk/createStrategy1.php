@@ -1,5 +1,5 @@
 <?php
-session_start();
+session_start(); 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html><!-- InstanceBegin template="/Templates/Template.dwt.php" codeOutsideHTMLIsLocked="false" -->
@@ -39,22 +39,15 @@ session_start();
         		<?php
                 include 'assets/modules/unauthorized.php';
                 ?>
-                
-                <div class="back">
-                	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>  &nbsp;
-                	<a href="studentOption.php"><img src="assets/images/back.png" /></a>
-                </div>
-                
-                <hr />
-                
-                <div class="addStudentDataDiv">
-                	<h4>√»ÕÀ ⁄‰ ÿ«·»</h4>
-                    
-                    <?php
+				
+				<?php
+					$month = mysql_real_escape_string( $_POST['month'] );
+					$year = date('Y');
+				
 					$server = "localhost";
 					$username = "root";
 					$password = "";
-					$database = "resala";
+					$database = "resalastrategy";
 					
 					$conn = mysql_connect($server, $username, $password);
 					if (!$conn) {die('Could not connect due to: ' . mysql_error());}
@@ -64,40 +57,34 @@ session_start();
 					
 					mysql_select_db($database, $conn);
 					
-					$getStudentquery = mysql_query("SELECT * FROM student ORDER BY f_name ASC",$conn);
-		
-					echo "<table border='1' class='volunteerTable'>";
-					echo "<tr>";
-					echo "<th> ⁄œÌ·</th><th>«·„Ê»Ì·</th> <th>«·«”„</th>";
-					echo "</tr>";
+					$createQuery = mysql_query("CREATE TABLE `$database`.`$month$year` (
+						`status` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL ,
+						`date` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL ,
+						`day` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL ,
+						`body` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL ,
+						`strategy_id` INT( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY
+						) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_unicode_ci;",$conn);
 					
-					while($row = mysql_fetch_array($getStudentquery)  ){
-						
-						echo "<tr>";
-						
-						echo "<td>";
-						echo "<form action='editStudent2.php' method='post' name='submitStudID'> ";
-						echo "<input name='studID' type='hidden' value='".$row['student_id']."' /><input type='submit' value='⁄œ·' />";
-						echo "</td>";
-						
-						echo "<td>";
-						echo $row['mobile'];
-						echo "</td>";
-						
-						echo "<td>";
-						echo $row['f_name'] . " " . $row['m_name'] . " " .$row['l_name'];
-						echo "</td>";
-						
-						echo "</tr>";
-						echo "</form>";
-						
+					if($createQuery){
+						?>
+						<script>
+							alert(" „ √‰‘«¡ Œÿ… ‘Â—Ì… ÃœÌœ… ›«—€… »‰Ã«Õ ·‘Â— <?php echo $month. " ".$year ?>");
+							location.href = "otherOption.php";
+						</script>
+						<?php
 					}
-					echo "</table>";
+					else{
+						?>
+						<script>
+							alert("·ﬁœ √‰‘«¡  «·Œÿ… «·‘Â—Ì… ·‘Â— <?php echo $month." ".$year ?> „”»ﬁ«");
+							location.href = "otherOption.php";
+						</script>
+						<?php
+					
+					}
+					
 					mysql_close();
-				
 				?>
-                </div>
-                
         	<!-- InstanceEndEditable -->
         	
         </div>

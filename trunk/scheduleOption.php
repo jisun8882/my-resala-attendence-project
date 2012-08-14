@@ -28,8 +28,8 @@ session_start();
         	<a href="admin.php" class="nav">«·œŒÊ·</a>
         	<a href="other.php" class="nav">√‰‘ÿ… √Œ—Ï</a>
         	<a href="volunteer.php" class="nav">„ ÿÊ⁄Ì‰</a>
-        	<a href="#" class="nav">„·«ÕŸ«  ‘Â—Ì…</a>
-        	<a href="#" class="nav">Œÿÿ ‘Â—Ì…</a>
+        	<a href="report.php" class="nav">„·«ÕŸ«  ‘Â—Ì…</a>
+        	<a href="strategy.php" class="nav">Œÿÿ ‘Â—Ì…</a>
         	<a href="getDay.php" class="nav">«·€Ì«»</a>
         </div>
         
@@ -40,8 +40,18 @@ session_start();
                 include 'assets/modules/unauthorized.php';
                 ?>
                 
-                Content goes here <br />
-            Sample content
+                <div class="back">
+                	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>
+                	<a href="adminOptions.php"><img src="assets/images/back.png" /></a>
+                </div>
+                
+                <hr />
+                
+                <div class="optionsDiv">
+                    <a class="adminsOptionA" href="createOther.php"><h3> √‰‘«¡ ﬁ«∆„… √‰‘ÿ… ‘Â—Ì… ÃœÌœ…</h3></a> <br />
+                    <a class="adminsOptionA" href="editOther.php"><h3> ⁄œÌ· ﬁ«∆„… «·√‰‘ÿ… «·‘Â—Ì…</h3></a><br />
+                    <a class="adminsOptionA" href="deleteOther.php"><h3>Õ–› ﬁ«∆„… «·√‰‘ÿ… «·‘Â—Ì…</h3></a>
+				</div>
         	<!-- InstanceEndEditable -->
         	
         </div>

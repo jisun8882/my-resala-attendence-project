@@ -28,8 +28,8 @@ session_start();
         	<a href="admin.php" class="nav">ÇáÏÎæá</a>
         	<a href="other.php" class="nav">ÃäÔØÉ ÃÎÑì</a>
         	<a href="volunteer.php" class="nav">ãÊØæÚíä</a>
-        	<a href="#" class="nav">ãáÇÍÙÇÊ ÔåÑíÉ</a>
-        	<a href="#" class="nav">ÎØØ ÔåÑíÉ</a>
+        	<a href="report.php" class="nav">ãáÇÍÙÇÊ ÔåÑíÉ</a>
+        	<a href="strategy.php" class="nav">ÎØØ ÔåÑíÉ</a>
         	<a href="getDay.php" class="nav">ÇáÛíÇÈ</a>
         </div>
         
@@ -71,7 +71,7 @@ session_start();
 					mysql_select_db($database, $conn);
 					
 					$editQuery = mysql_query("UPDATE `$database`.`stuff` 
-					SET  work = 0, date2= '".$date2."', day2= '".$day2."', date1= '".$date1."', day1= '".$day1."', mobile = '".$mobile."', l_name = '".$l_name."', m_name = '".$m_name."', f_name = '".$f_name."', subject= '".$subject."' 
+					SET date2= '".$date2."', day2= '".$day2."', date1= '".$date1."', day1= '".$day1."', mobile = '".$mobile."', l_name = '".$l_name."', m_name = '".$m_name."', f_name = '".$f_name."', subject= '".$subject."' 
 					WHERE stuff_id = '$stuffID' ",$conn);
 					
 					if($editQuery){

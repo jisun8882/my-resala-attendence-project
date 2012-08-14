@@ -42,47 +42,49 @@ session_start();
                 
                 <div class="back">
                 	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>
-                	<a href="otherOption.php"><img src="assets/images/back.png" /></a>
+                	<a href="adminOptions.php"><img src="assets/images/back.png" /></a>
                 </div>
                 
                 <hr />
                 
                 <div class="optionsDiv">
-                	<h4>√Œ «— ﬁ«∆„… √‰‘ÿ… ‘Â—Ì…</h4>
-                    <h4>: √Œÿ«— «·‘Â—</h4>
-                    <?php
-						$server = "localhost";
-						$username = "root";
-						$password = "";
-						$database = "information_schema";
-						$myDatabase = "resalaother";
-						
-						$conn = mysql_connect($server, $username, $password);
-						if (!$conn) {die('Could not connect due to: ' . mysql_error());}
-						
-						mysql_query("SET NAMES cp1256");
-						mysql_query("set characer set cp1256");
-						
-						mysql_select_db($database, $conn);
-						
-						$getTablesquery = mysql_query("SELECT TABLE_NAME FROM TABLES WHERE TABLE_SCHEMA LIKE '$myDatabase' ORDER BY CREATE_TIME ASC",$conn);
-						
-						echo "<form action='editOther1.php' method='post' name='editTables'> ";
-						echo "<select name='getTableName'>";
-						echo "<option>- √Œ «— ﬁ«∆„… «·√‰‘ÿ… „‰ Â‰« -</option>";
-						while($row = mysql_fetch_array($getTablesquery)  ){
-							echo "<option value='".$row['TABLE_NAME']."'>";
-							echo $row['TABLE_NAME'];
-							echo "</option>";
-						}
-						
-						echo "</select><br />";
-						echo "<input type='submit' name='submit' value='√Œ «—' />";
-						echo "</form>";
-						
-						mysql_close();
-					?>
-                </div>
+                    <h3>√Œ «— „Ã„Ê⁄…</h3>
+                    
+                       <form action="groupOption1.php" method="post" name="getGroup"> 
+                       
+                       <input type="submit" value="√Œ «—" />
+                        <select name="group">
+                            <option>- √Œ «— „Ã„Ê⁄… -</option>
+                            
+                            <?php
+								$server = "localhost";
+								$username = "root";
+								$password = "";
+								$database = "resala";
+								
+								$conn = mysql_connect($server, $username, $password);
+								if (!$conn) {die('Could not connect due to: ' . mysql_error());}
+								
+								mysql_query("SET NAMES cp1256");
+								mysql_query("set characer set cp1256");
+								
+								mysql_select_db($database, $conn);
+								
+								$getGroupQuery = mysql_query("SELECT * FROM `$database`.`group`",$conn);
+								while($row = mysql_fetch_array($getGroupQuery)  ){
+									
+									echo "<option value='".$row['group_id']."' >";
+									echo $row['name'];
+									echo "</option>";
+									
+								};
+							
+							?>
+                        </select>
+                        
+					</form>
+                    
+				</div>    
         	<!-- InstanceEndEditable -->
         	
         </div>

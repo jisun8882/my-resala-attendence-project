@@ -42,20 +42,20 @@ session_start();
                 
                 <div class="back">
                 	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>
-                	<a href="otherOption.php"><img src="assets/images/back.png" /></a>
+                	<a href="strategyOption.php"><img src="assets/images/back.png" /></a>
                 </div>
                 
                 <hr />
                 
                 <div class="optionsDiv">
-                	<h4>√Œ «— ﬁ«∆„… √‰‘ÿ… ‘Â—Ì…</h4>
+                	<h4>√Œ «—  «·Œÿ… «·‘Â—Ì…</h4>
                     <h4>: √Œÿ«— «·‘Â—</h4>
                     <?php
 						$server = "localhost";
 						$username = "root";
 						$password = "";
 						$database = "information_schema";
-						$myDatabase = "resalaother";
+						$myDatabase = "resalastrategy";
 						
 						$conn = mysql_connect($server, $username, $password);
 						if (!$conn) {die('Could not connect due to: ' . mysql_error());}
@@ -67,7 +67,7 @@ session_start();
 						
 						$getTablesquery = mysql_query("SELECT TABLE_NAME FROM TABLES WHERE TABLE_SCHEMA LIKE '$myDatabase' ORDER BY CREATE_TIME ASC",$conn);
 						
-						echo "<form action='editOther1.php' method='post' name='editTables'> ";
+						echo "<form action='deleteStrategy1.php' method='post' name='editTables'> ";
 						echo "<select name='getTableName'>";
 						echo "<option>- √Œ «— ﬁ«∆„… «·√‰‘ÿ… „‰ Â‰« -</option>";
 						while($row = mysql_fetch_array($getTablesquery)  ){

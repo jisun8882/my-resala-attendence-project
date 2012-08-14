@@ -1,5 +1,7 @@
 <?php
 session_start();
+if(isset($_SESSION['username']))
+  unset($_SESSION['username']);
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html><!-- InstanceBegin template="/Templates/Template.dwt.php" codeOutsideHTMLIsLocked="false" -->
@@ -36,25 +38,72 @@ session_start();
         <div class="contentDiv">
         	
             <!-- InstanceBeginEditable name="contentRegion" -->
-        		<?php
-                include 'assets/modules/unauthorized.php';
-                ?>
-                
-                <div class="back">
-                	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>  &nbsp;
-                	<a href="studentOption.php"><img src="assets/images/back.png" /></a>
-                </div>
-                
-                <hr />
-                
-                <div class="addStudentDataDiv">
-                	<h4>√»ÕÀ ⁄‰ ÿ«·»</h4>
-                    
-                    <?php
+        		<h3>«·Œÿ… «·‘Â—Ì… ·Â–Â «·‘Â—</h3>
+                <?php
 					$server = "localhost";
 					$username = "root";
 					$password = "";
-					$database = "resala";
+					$database = "resalastrategy";
+			
+					$currentMonth = date('M');
+					$currentYear = date('Y');
+					$TableName = date('M');
+					
+					switch ($currentMonth)
+					{
+						case "Jan":
+							$TableName = "Ì‰«Ì—";
+							echo "Ì‰«Ì—"." ".$currentYear;
+							break;
+						case "Feb":
+							$TableName = "›»—«Ì—";
+							echo "›»—«Ì—"." ".$currentYear;
+							break;
+						case "Mar":
+							$TableName = "„«—”";
+							echo "„«—”"." ".$currentYear;
+							break;
+						case "Apr":
+							$TableName = "√»—Ì·";
+							echo "√»—Ì·"." ".$currentYear;
+							break;
+						case "May":
+							$TableName = "„«ÌÊ";
+							echo "„«ÌÊ"." ".$currentYear;
+							break;
+						case "Jun":
+							$TableName = "ÌÊ‰ÌÊ";
+							echo "ÌÊ‰ÌÊ"." ".$currentYear;
+							break;
+						case "Jul":
+							$TableName = "ÌÊ·ÌÊ";
+							echo "ÌÊ·ÌÊ"." ".$currentYear;
+							break;
+						case "Aug":
+							$TableName = "√€”ÿ”";
+							echo "√€”ÿ”"." ".$currentYear;
+							break;
+						case "Sep":
+							$TableName = "”» „»—";
+							echo "”» „»—"." ".$currentYear;
+							break;
+						case "Oct":
+							$TableName = "√ﬂ Ê»—";
+							echo "√ﬂ Ê»—"." ".$currentYear;
+							break;
+						case "Nov":
+							$TableName = "‰Ê›„»—";
+							echo "‰Ê›„»—"." ".$currentYear;
+							break;
+						case "Dec":
+							$TableName = "œÌ”„»—";
+							echo "œÌ”„»—"." ".$currentYear;
+							break;
+						default:
+							echo "error";
+					}
+					
+					$TableName = $TableName.$currentYear;
 					
 					$conn = mysql_connect($server, $username, $password);
 					if (!$conn) {die('Could not connect due to: ' . mysql_error());}
@@ -64,40 +113,40 @@ session_start();
 					
 					mysql_select_db($database, $conn);
 					
-					$getStudentquery = mysql_query("SELECT * FROM student ORDER BY f_name ASC",$conn);
-		
+					$getVolquery = mysql_query("SELECT * FROM `$database`.`$TableName`",$conn);
+					if(!$getVolquery){echo mysql_error();}
 					echo "<table border='1' class='volunteerTable'>";
 					echo "<tr>";
-					echo "<th> ⁄œÌ·</th><th>«·„Ê»Ì·</th> <th>«·«”„</th>";
+					echo "<th>«·Õ«·…</th> <th>«· «—ÌŒ</th> <th>«·ÌÊ„</th> <th>«·‰‘«ÿ</th>";
 					echo "</tr>";
 					
-					while($row = mysql_fetch_array($getStudentquery)  ){
+					while($row = mysql_fetch_array($getVolquery)  ){
 						
 						echo "<tr>";
 						
 						echo "<td>";
-						echo "<form action='editStudent2.php' method='post' name='submitStudID'> ";
-						echo "<input name='studID' type='hidden' value='".$row['student_id']."' /><input type='submit' value='⁄œ·' />";
+						echo $row['status'];
 						echo "</td>";
 						
 						echo "<td>";
-						echo $row['mobile'];
+						echo $row['date'];
 						echo "</td>";
 						
 						echo "<td>";
-						echo $row['f_name'] . " " . $row['m_name'] . " " .$row['l_name'];
+						echo $row['day'];
+						echo "</td>";
+						
+						echo "<td>";
+						echo $row['body'];
 						echo "</td>";
 						
 						echo "</tr>";
-						echo "</form>";
 						
 					}
 					echo "</table>";
 					mysql_close();
 				
 				?>
-                </div>
-                
         	<!-- InstanceEndEditable -->
         	
         </div>

@@ -42,47 +42,44 @@ session_start();
                 
                 <div class="back">
                 	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>
-                	<a href="otherOption.php"><img src="assets/images/back.png" /></a>
+                	<a href="groupOption.php"><img src="assets/images/back.png" /></a>
                 </div>
                 
                 <hr />
                 
+                <?php
+					$groupID = $_POST['group'];
+					$_SESSION['groupID'] = $groupID;
+					
+					$server = "localhost";
+					$username = "root";
+					$password = "";
+					$database = "resala";
+					
+					$conn = mysql_connect($server, $username, $password);
+					if (!$conn) {die('Could not connect due to: ' . mysql_error());}
+					
+					mysql_query("SET NAMES cp1256");
+					mysql_query("set characer set cp1256");
+					
+					mysql_select_db($database, $conn);
+					
+					$getTablesquery = mysql_query("SELECT name FROM `$database`.`group` 
+					WHERE group_id = '$groupID' ",$conn);
+					
+					while($row = mysql_fetch_array($getTablesquery)  ){
+						echo "<h2><u>"; 
+						echo $row['name'];
+						echo "</u></h2> <br />";
+					}
+					mysql_close();
+				?>
+                
                 <div class="optionsDiv">
-                	<h4>√Œ «— ﬁ«∆„… √‰‘ÿ… ‘Â—Ì…</h4>
-                    <h4>: √Œÿ«— «·‘Â—</h4>
-                    <?php
-						$server = "localhost";
-						$username = "root";
-						$password = "";
-						$database = "information_schema";
-						$myDatabase = "resalaother";
-						
-						$conn = mysql_connect($server, $username, $password);
-						if (!$conn) {die('Could not connect due to: ' . mysql_error());}
-						
-						mysql_query("SET NAMES cp1256");
-						mysql_query("set characer set cp1256");
-						
-						mysql_select_db($database, $conn);
-						
-						$getTablesquery = mysql_query("SELECT TABLE_NAME FROM TABLES WHERE TABLE_SCHEMA LIKE '$myDatabase' ORDER BY CREATE_TIME ASC",$conn);
-						
-						echo "<form action='editOther1.php' method='post' name='editTables'> ";
-						echo "<select name='getTableName'>";
-						echo "<option>- √Œ «— ﬁ«∆„… «·√‰‘ÿ… „‰ Â‰« -</option>";
-						while($row = mysql_fetch_array($getTablesquery)  ){
-							echo "<option value='".$row['TABLE_NAME']."'>";
-							echo $row['TABLE_NAME'];
-							echo "</option>";
-						}
-						
-						echo "</select><br />";
-						echo "<input type='submit' name='submit' value='√Œ «—' />";
-						echo "</form>";
-						
-						mysql_close();
-					?>
-                </div>
+                    <a class="adminsOptionA" href="addGroup.php"><h3>≈÷«›… ÿ«·» ≈·Ï „Ã„Ê⁄…</h3></a>
+                    <a class="adminsOptionA" href="editGroup.php"><h3>Õ–› ÿ«·» „‰ „Ã„Ê⁄…</h3></a>
+                    <a class="adminsOptionA" href="truncateGroup.php"><h3>Õ–› «·Ã„Ì⁄</h3></a>
+				</div>
         	<!-- InstanceEndEditable -->
         	
         </div>

@@ -42,20 +42,19 @@ session_start();
                 
                 <div class="back">
                 	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>
-                	<a href="otherOption.php"><img src="assets/images/back.png" /></a>
+                	<a href="groupOption.php"><img src="assets/images/back.png" /></a>
                 </div>
                 
                 <hr />
                 
                 <div class="optionsDiv">
-                	<h4>√Œ «— ﬁ«∆„… √‰‘ÿ… ‘Â—Ì…</h4>
-                    <h4>: √Œÿ«— «·‘Â—</h4>
                     <?php
+						$groupID = $_SESSION['groupID'];
+						
 						$server = "localhost";
 						$username = "root";
 						$password = "";
-						$database = "information_schema";
-						$myDatabase = "resalaother";
+						$database = "resala";
 						
 						$conn = mysql_connect($server, $username, $password);
 						if (!$conn) {die('Could not connect due to: ' . mysql_error());}
@@ -65,24 +64,29 @@ session_start();
 						
 						mysql_select_db($database, $conn);
 						
-						$getTablesquery = mysql_query("SELECT TABLE_NAME FROM TABLES WHERE TABLE_SCHEMA LIKE '$myDatabase' ORDER BY CREATE_TIME ASC",$conn);
-						
-						echo "<form action='editOther1.php' method='post' name='editTables'> ";
-						echo "<select name='getTableName'>";
-						echo "<option>- √Œ «— ﬁ«∆„… «·√‰‘ÿ… „‰ Â‰« -</option>";
-						while($row = mysql_fetch_array($getTablesquery)  ){
-							echo "<option value='".$row['TABLE_NAME']."'>";
-							echo $row['TABLE_NAME'];
-							echo "</option>";
+						$DeleteStudents = mysql_query("DELETE FROM `$database`.`groupStudent` WHERE group_id = '$groupID'",$conn);
+						if($DeleteStudents)
+						{
+							?>
+							<script>
+								alert(" „  ›—Ì€ «·„Ã„Ê⁄… »‰Ã«Õ");
+								location.href = "adminOptions.php";
+							</script>
+							<?php
 						}
+						else{
+							?>
+							<script>
+								alert("Õ’· Œÿ√ «·—Ã«¡ √⁄œ «·⁄„·Ì…");
+								location.href = "adminOptions.php";
+							</script>
+							<?php
 						
-						echo "</select><br />";
-						echo "<input type='submit' name='submit' value='√Œ «—' />";
-						echo "</form>";
+						}
 						
 						mysql_close();
 					?>
-                </div>
+				</div>
         	<!-- InstanceEndEditable -->
         	
         </div>
