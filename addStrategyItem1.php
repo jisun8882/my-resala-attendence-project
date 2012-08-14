@@ -2,7 +2,7 @@
 session_start();
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html><!-- InstanceBegin template="/Templates/Template.dwt.php" codeOutsideHTMLIsLocked="false" -->
+<html><!-- InstanceBegin template="../../../Applications/XAMPP/xamppfiles/htdocs/my-resala-attendence-project/Templates/Template.dwt.php" codeOutsideHTMLIsLocked="false" -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1256">
 <!-- InstanceBeginEditable name="doctitle" -->
@@ -28,8 +28,8 @@ session_start();
         	<a href="admin.php" class="nav">الدخول</a>
         	<a href="other.php" class="nav">أنشطة أخرى</a>
         	<a href="volunteer.php" class="nav">متطوعين</a>
-        	<a href="report.php" class="nav">ملاحظات شهرية</a>
-        	<a href="strategy.php" class="nav">خطط شهرية</a>
+        	<a href="#" class="nav">ملاحظات شهرية</a>
+        	<a href="#" class="nav">خطط شهرية</a>
         	<a href="getDay.php" class="nav">الغياب</a>
         </div>
         
@@ -42,47 +42,51 @@ session_start();
                 
                 <div class="back">
                 	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>
-                	<a href="otherOption.php"><img src="assets/images/back.png" /></a>
+                	<a href="strategyOption.php"><img src="assets/images/back.png" /></a>
                 </div>
                 
                 <hr />
                 
-                <div class="optionsDiv">
-                	<h4>أختار قائمة أنشطة شهرية</h4>
-                    <h4>: أخطار الشهر</h4>
-                    <?php
-						$server = "localhost";
-						$username = "root";
-						$password = "";
-						$database = "information_schema";
-						$myDatabase = "resalaother";
-						
-						$conn = mysql_connect($server, $username, $password);
-						if (!$conn) {die('Could not connect due to: ' . mysql_error());}
-						
-						mysql_query("SET NAMES cp1256");
-						mysql_query("set characer set cp1256");
-						
-						mysql_select_db($database, $conn);
-						
-						$getTablesquery = mysql_query("SELECT TABLE_NAME FROM TABLES WHERE TABLE_SCHEMA LIKE '$myDatabase' ORDER BY CREATE_TIME ASC",$conn);
-						
-						echo "<form action='editOther1.php' method='post' name='editTables'> ";
-						echo "<select name='getTableName'>";
-						echo "<option>- أختار قائمة الأنشطة من هنا -</option>";
-						while($row = mysql_fetch_array($getTablesquery)  ){
-							echo "<option value='".$row['TABLE_NAME']."'>";
-							echo $row['TABLE_NAME'];
-							echo "</option>";
-						}
-						
-						echo "</select><br />";
-						echo "<input type='submit' name='submit' value='أختار' />";
-						echo "</form>";
-						
-						mysql_close();
-					?>
-                </div>
+                <?php
+					$body = mysql_real_escape_string( $_POST['body'] );
+					$date = mysql_real_escape_string( $_POST['date2'] );
+					$day = mysql_real_escape_string( $_POST['day'] );
+					
+					$tableName = $_SESSION['tableName'];
+					
+					$server = "localhost";
+					$username = "root";
+					$password = "";
+					$database = "resalastrategy";
+					
+					$conn = mysql_connect($server, $username, $password);
+					if (!$conn) {die('Could not connect due to: ' . mysql_error());}
+					
+					mysql_query("SET NAMES cp1256");
+					mysql_query("set characer set cp1256");
+					
+					mysql_select_db($database, $conn);
+					
+					$addQuery = mysql_query("INSERT INTO `$database`.`$tableName` (status, date, day, body, strategy_id) VALUES ('لم يتم','$date','$day','$body',NULL)",$conn);
+					
+					if($addQuery){
+						?>
+						<script>
+							alert("تم إضافة الصف بنجاح");
+							location.href = "strategyOption.php";
+						</script>
+						<?php
+					}
+					else{
+						?>
+						<script>
+							alert("حصل خطأ الرجاء أعد العملية");
+							location.href = "strategyOption.php";
+						</script>
+						<?php
+                        }
+
+				?>
         	<!-- InstanceEndEditable -->
         	
         </div>

@@ -1,4 +1,5 @@
 <?php
+require_once('assets/modules/calendar/classes/tc_calendar.php');
 session_start();
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -7,6 +8,9 @@ session_start();
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1256">
 <!-- InstanceBeginEditable name="doctitle" -->
 <title>Welcome to Resala</title>
+
+<link href="assets/modules/calendar/calendar.css" rel="stylesheet" type="text/css" />
+<script language="javascript" src="assets/modules/calendar/calendar.js"></script>
 <!-- InstanceEndEditable -->
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/navButton.css" />
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/main.css" />
@@ -28,8 +32,8 @@ session_start();
         	<a href="admin.php" class="nav">الدخول</a>
         	<a href="other.php" class="nav">أنشطة أخرى</a>
         	<a href="volunteer.php" class="nav">متطوعين</a>
-        	<a href="#" class="nav">ملاحظات شهرية</a>
-        	<a href="#" class="nav">خطط شهرية</a>
+        	<a href="report.php" class="nav">ملاحظات شهرية</a>
+        	<a href="strategy.php" class="nav">خطط شهرية</a>
         	<a href="getDay.php" class="nav">الغياب</a>
         </div>
         
@@ -50,17 +54,38 @@ session_start();
                 <div class="VoloptionsDiv">
                 	<h4>إضافة نشاط جديد</h4>
                     <form action="addOtherItem1.php" method="post" name="addItem">
-                        <table width="600" border="1">
+                        <table width="600" border="0">
                         <tr>
                             <td colspan="2">
                             <input name="body" type="text" size="80" style="text-align:right" autocomplete="off" />: النشاط </td>
                         </tr>
                         <tr>
-                            <td><input name="date" type="text" size="15" style="text-align:right" autocomplete="off" />: التاريخ</td>
-                            <td><input name="day" type="text" size="15" style="text-align:right" autocomplete="off" />: اليوم</td>
+                            <td align="right">
+                            <?php
+                            $myCalendar = new tc_calendar("date2");
+                            $myCalendar->setIcon("assets/modules/calendar/images/iconCalendar.gif");
+                            $myCalendar->setDate(date('d'), date('m'), date('Y'));
+                            $myCalendar->setPath("assets/modules/calendar/");
+                            $myCalendar->setYearInterval(1970, 2020);
+                            $myCalendar->dateAllow('2008-05-13', '2019-12-31', false);
+                            $myCalendar->startMonday(true); 
+                            $myCalendar->writeScript();
+                            ?>
+                            
+                            </td>
+                            <td><select name="day">
+                                    	<option>- أختار اليوم -</option>
+                                        <option value="السبت">السبت</option>
+                                        <option value="الاحد">الاحد</option>
+                                        <option value="الاثنين">الاثنين</option>
+                                        <option value="الثلاثاء">الثلاثاء</option>
+                                        <option value="الاربعاء">الاربعاء</option>
+                                        <option value="الخميس">الخميس</option>
+                                        <option value="الجمعة">الجمعة</option>
+                                    </select>: اليوم</td>
                         </tr>
                         <tr>
-                            <td>مثال: س س - ش ش - ي ي</td>
+                            <td> </td>
                             <td>&nbsp;</td>
                         </tr>
                         <tr>

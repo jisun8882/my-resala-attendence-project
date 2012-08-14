@@ -28,8 +28,8 @@ session_start();
         	<a href="admin.php" class="nav">ÇבÏÎזב</a>
         	<a href="other.php" class="nav">ÃהÔØÉ ÃÎÑל</a>
         	<a href="volunteer.php" class="nav">דÊØזÚםה</a>
-        	<a href="#" class="nav">דבÇÍÙÇÊ ÔוÑםÉ</a>
-        	<a href="#" class="nav">ÎØØ ÔוÑםÉ</a>
+        	<a href="report.php" class="nav">דבÇÍÙÇÊ ÔוÑםÉ</a>
+        	<a href="strategy.php" class="nav">ÎØØ ÔוÑםÉ</a>
         	<a href="getDay.php" class="nav">ÇבÛםÇÈ</a>
         </div>
         
@@ -46,6 +46,12 @@ session_start();
                 </div>
                 
                 <hr />
+                
+                <div class="optionsDiv">
+                	<a class="adminsOptionA" href="studentReport.php"><h3>דבÇÍÙÉ ÔוÑםו בØבÇÈ</h3></a> <br />
+                    <a class="adminsOptionA" href="volunteerReport.php"><h3>דבÇÍÙÉ ÔוÑםו בדÊØזÚםה</h3></a>
+				</div>
+                
                 
         	<!-- InstanceEndEditable -->
         	

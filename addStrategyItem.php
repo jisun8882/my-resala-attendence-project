@@ -1,8 +1,6 @@
 <?php
 require_once('assets/modules/calendar/classes/tc_calendar.php');
-session_start(); 
-if(isset($_SESSION['username']))
-  unset($_SESSION['username']);
+session_start();
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html><!-- InstanceBegin template="/Templates/Template.dwt.php" codeOutsideHTMLIsLocked="false" -->
@@ -13,7 +11,6 @@ if(isset($_SESSION['username']))
 
 <link href="assets/modules/calendar/calendar.css" rel="stylesheet" type="text/css" />
 <script language="javascript" src="assets/modules/calendar/calendar.js"></script>
-
 <!-- InstanceEndEditable -->
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/navButton.css" />
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/main.css" />
@@ -43,18 +40,28 @@ if(isset($_SESSION['username']))
         <div class="contentDiv">
         	
             <!-- InstanceBeginEditable name="contentRegion" -->
-        		<h2>«·€Ì«»</h2>
-                <?php
-					$_SESSION['theDay'] = $_GET['days'];
-					echo "<h2> ·ﬁœ √Œ —  ÌÊ„ <font style='color:#F00'>" . $_SESSION['theDay'] . "</font></h2>";	
-				?>
-                <h4>√Œ «— «· «—ÌŒ</h4>
+        		<?php
+                include 'assets/modules/unauthorized.php';
+                ?>
                 
-                <div class="pickDate">
-                	
-                    <form name="form1" method="post" action="getSched.php">
-                    
-                        <?php
+                <div class="back">
+                	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>
+                	<a href="StrategyOption.php"><img src="assets/images/back.png" /></a>
+                </div>
+                
+                <hr />
+                
+                <div class="VoloptionsDiv">
+                	<h4>≈÷«›… ’› ÃœÌœ</h4>
+                    <form action="addStrategyItem1.php" method="post" name="addItem">
+                        <table width="600" border="0">
+                        <tr>
+                            <td colspan="2">
+                            <input name="body" type="text" size="80" style="text-align:right" autocomplete="off" />: «·Œÿ… </td>
+                        </tr>
+                        <tr>
+                            <td align="right">
+                            <?php
                             $myCalendar = new tc_calendar("date2");
                             $myCalendar->setIcon("assets/modules/calendar/images/iconCalendar.gif");
                             $myCalendar->setDate(date('d'), date('m'), date('Y'));
@@ -63,15 +70,31 @@ if(isset($_SESSION['username']))
                             $myCalendar->dateAllow('2008-05-13', '2019-12-31', false);
                             $myCalendar->startMonday(true); 
                             $myCalendar->writeScript();
-							
-                        ?>
-                        
-                        <input type="submit" name="submit" id="submit" value="⁄—÷ «·Õ’’" >
-                        <input type="button" name="button3" id="button3" value=" «ﬂÌœ «· «—ÌŒ" onClick="javascript:alert(this.form.date2.value);">
-    
-                    </form>
-                   
-				</div>
+                            ?>
+                            
+                            </td>
+                            <td><select name="day">
+                                    	<option>- √Œ «— «·ÌÊ„ -</option>
+                                        <option value="«·”» ">«·”» </option>
+                                        <option value="«·«Õœ">«·«Õœ</option>
+                                        <option value="«·«À‰Ì‰">«·«À‰Ì‰</option>
+                                        <option value="«·À·«À«¡">«·À·«À«¡</option>
+                                        <option value="«·«—»⁄«¡">«·«—»⁄«¡</option>
+                                        <option value="«·Œ„Ì”">«·Œ„Ì”</option>
+                                        <option value="«·Ã„⁄…">«·Ã„⁄…</option>
+                                    </select>: ÌÊ„</td>
+                        </tr>
+                        <tr>
+                            <td> </td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td><input type="submit" name="submit" value="√÷«›…" /></td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        </table>
+					</form>
+                </div>
         	<!-- InstanceEndEditable -->
         	
         </div>

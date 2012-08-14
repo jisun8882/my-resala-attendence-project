@@ -28,8 +28,8 @@ session_start();
         	<a href="admin.php" class="nav">гАонФА</a>
         	<a href="other.php" class="nav">цДтьи цняЛ</a>
         	<a href="volunteer.php" class="nav">ЦйьФзМД</a>
-        	<a href="#" class="nav">ЦАгмыгй тЕяМи</a>
-        	<a href="#" class="nav">ньь тЕяМи</a>
+        	<a href="report.php" class="nav">ЦАгмыгй тЕяМи</a>
+        	<a href="strategy.php" class="nav">ньь тЕяМи</a>
         	<a href="getDay.php" class="nav">гАшМгх</a>
         </div>
         
@@ -47,9 +47,9 @@ session_start();
                 
                 <hr />
                 
-                <div class="VoloptionsDiv">
+                <div class="VoloptionsDivS">
                 <h4>йзоМА хМгДгй</h4>
-                <hr />
+                
                 <h3><a href="addOtherItem.php" class='adminsOptionA'>&laquo; ежгщи Дтгь лоМо</a></h3>
 				
 				<?php

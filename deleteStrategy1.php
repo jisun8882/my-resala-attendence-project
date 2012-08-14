@@ -1,5 +1,5 @@
 <?php
-session_start();
+session_start(); 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html><!-- InstanceBegin template="/Templates/Template.dwt.php" codeOutsideHTMLIsLocked="false" -->
@@ -40,49 +40,42 @@ session_start();
                 include 'assets/modules/unauthorized.php';
                 ?>
                 
-                <div class="back">
-                	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>
-                	<a href="otherOption.php"><img src="assets/images/back.png" /></a>
-                </div>
-                
-                <hr />
-                
-                <div class="optionsDiv">
-                	<h4>√Œ «— ﬁ«∆„… √‰‘ÿ… ‘Â—Ì…</h4>
-                    <h4>: √Œÿ«— «·‘Â—</h4>
-                    <?php
-						$server = "localhost";
-						$username = "root";
-						$password = "";
-						$database = "information_schema";
-						$myDatabase = "resalaother";
-						
-						$conn = mysql_connect($server, $username, $password);
-						if (!$conn) {die('Could not connect due to: ' . mysql_error());}
-						
-						mysql_query("SET NAMES cp1256");
-						mysql_query("set characer set cp1256");
-						
-						mysql_select_db($database, $conn);
-						
-						$getTablesquery = mysql_query("SELECT TABLE_NAME FROM TABLES WHERE TABLE_SCHEMA LIKE '$myDatabase' ORDER BY CREATE_TIME ASC",$conn);
-						
-						echo "<form action='editOther1.php' method='post' name='editTables'> ";
-						echo "<select name='getTableName'>";
-						echo "<option>- √Œ «— ﬁ«∆„… «·√‰‘ÿ… „‰ Â‰« -</option>";
-						while($row = mysql_fetch_array($getTablesquery)  ){
-							echo "<option value='".$row['TABLE_NAME']."'>";
-							echo $row['TABLE_NAME'];
-							echo "</option>";
-						}
-						
-						echo "</select><br />";
-						echo "<input type='submit' name='submit' value='√Œ «—' />";
-						echo "</form>";
-						
+				<?php
+                    $month = $_POST['getTableName'];
+
+                    $server = "localhost";
+                    $username = "root";
+                    $password = "";
+                    $database = "resalastrategy";
+                    
+                    $conn = mysql_connect($server, $username, $password);
+                    if (!$conn) {die('Could not connect due to: ' . mysql_error());}
+                    
+                    mysql_query("SET NAMES cp1256");
+                    mysql_query("set characer set cp1256");
+                    
+                    mysql_select_db($database, $conn);
+                    
+                    $deleteQuery = mysql_query("DROP TABLE `$month`",$conn);
+                    
+                    if($deleteQuery){
+                        ?>
+                        <script>
+                            alert(" „ Õ–› «·Œÿ… «·‘Â—Ì… »‰Ã«Õ ·‘Â— <?php echo $month ?>");
+                            location.href = "strategyOption.php";
+                        </script>
+                        <?php
+                    }
+                    else{
+                        ?>
+                        <script>
+                            alert("Õ’· Œÿ√ «·—Ã«¡ √⁄œ «·⁄„·Ì…");
+                            location.href = "strategyOption.php";
+                        </script>
+                        <?php
+					}
 						mysql_close();
-					?>
-                </div>
+				?>
         	<!-- InstanceEndEditable -->
         	
         </div>

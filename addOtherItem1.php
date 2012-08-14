@@ -28,8 +28,8 @@ session_start();
         	<a href="admin.php" class="nav">ÇáÏÎæá</a>
         	<a href="other.php" class="nav">ÃäÔØÉ ÃÎÑì</a>
         	<a href="volunteer.php" class="nav">ãÊØæÚíä</a>
-        	<a href="#" class="nav">ãáÇÍÙÇÊ ÔåÑíÉ</a>
-        	<a href="#" class="nav">ÎØØ ÔåÑíÉ</a>
+        	<a href="report.php" class="nav">ãáÇÍÙÇÊ ÔåÑíÉ</a>
+        	<a href="strategy.php" class="nav">ÎØØ ÔåÑíÉ</a>
         	<a href="getDay.php" class="nav">ÇáÛíÇÈ</a>
         </div>
         
@@ -49,7 +49,7 @@ session_start();
                 
                 <?php
 					$body = mysql_real_escape_string( $_POST['body'] );
-					$date = mysql_real_escape_string( $_POST['date'] );
+					$date = mysql_real_escape_string( $_POST['date2'] );
 					$day = mysql_real_escape_string( $_POST['day'] );
 					
 					$tableName = $_SESSION['tableName'];

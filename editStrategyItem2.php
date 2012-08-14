@@ -46,43 +46,57 @@ session_start();
                 </div>
                 
                 <hr />
-                
-                <div class="optionsDiv">
-                	<h4>√Œ «— ﬁ«∆„… √‰‘ÿ… ‘Â—Ì…</h4>
-                    <h4>: √Œÿ«— «·‘Â—</h4>
-                    <?php
-						$server = "localhost";
-						$username = "root";
-						$password = "";
-						$database = "information_schema";
-						$myDatabase = "resalaother";
+                <?php
+					$strategyID = $_SESSION['strategyId'];
+					$tableName = $_SESSION['tableName'];
+					
+					$body = mysql_real_escape_string( $_POST['body'] );
+					$date = mysql_real_escape_string( $_POST['date'] );
+					$day = mysql_real_escape_string( $_POST['day'] );
+					$status = mysql_real_escape_string( $_POST['status'] );
+					
+					$server = "localhost";
+					$username = "root";
+					$password = "";
+					$database = "resalastrategy";
+					
+					$conn = mysql_connect($server, $username, $password);
+					if (!$conn) {die('Could not connect due to: ' . mysql_error());}
+					
+					mysql_query("SET NAMES cp1256");
+					mysql_query("set characer set cp1256");
+					
+					mysql_select_db($database, $conn);
+					
+					$editQuery = mysql_query("UPDATE `$database`.`$tableName` 
+					SET  status = '".$status."', 
+					date = '".$date."', 
+					day = '".$day."', 
+					body = '".$body."' 
+					WHERE strategy_id = '$strategyID' ",$conn);
+					
+					if($editQuery){
 						
-						$conn = mysql_connect($server, $username, $password);
-						if (!$conn) {die('Could not connect due to: ' . mysql_error());}
-						
-						mysql_query("SET NAMES cp1256");
-						mysql_query("set characer set cp1256");
-						
-						mysql_select_db($database, $conn);
-						
-						$getTablesquery = mysql_query("SELECT TABLE_NAME FROM TABLES WHERE TABLE_SCHEMA LIKE '$myDatabase' ORDER BY CREATE_TIME ASC",$conn);
-						
-						echo "<form action='editOther1.php' method='post' name='editTables'> ";
-						echo "<select name='getTableName'>";
-						echo "<option>- √Œ «— ﬁ«∆„… «·√‰‘ÿ… „‰ Â‰« -</option>";
-						while($row = mysql_fetch_array($getTablesquery)  ){
-							echo "<option value='".$row['TABLE_NAME']."'>";
-							echo $row['TABLE_NAME'];
-							echo "</option>";
-						}
-						
-						echo "</select><br />";
-						echo "<input type='submit' name='submit' value='√Œ «—' />";
-						echo "</form>";
-						
-						mysql_close();
-					?>
-                </div>
+						?>
+						<script>
+							alert(" „  ⁄œÌ· »Ì«‰«  «·Œÿ…");
+							location.href = "strategyOption.php";
+						</script>
+						<?php
+					}
+					else{
+						?>
+						<script>
+							alert("Õ’· Œÿ√ «·—Ã«¡ √⁄œ «·⁄„·Ì…");
+							location.href = "strategyOption.php";
+						</script>
+						<?php
+					
+					}
+					
+					mysql_close();
+					
+				?>
         	<!-- InstanceEndEditable -->
         	
         </div>

@@ -1,5 +1,7 @@
 <?php
 session_start();
+if(isset($_SESSION['username']))
+  unset($_SESSION['username']);
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html><!-- InstanceBegin template="/Templates/Template.dwt.php" codeOutsideHTMLIsLocked="false" -->
@@ -36,50 +38,8 @@ session_start();
         <div class="contentDiv">
         	
             <!-- InstanceBeginEditable name="contentRegion" -->
-        		<?php
-                include 'assets/modules/unauthorized.php';
-                ?>
-                
-                <?php
-					$stuffID = $_POST['stuffID'];
-					$_SESSION['currentStuffID'] = $_POST['stuffID'];
-					
-					$server = "localhost";
-					$username = "root";
-					$password = "";
-					$database = "resala";
-					
-					$conn = mysql_connect($server, $username, $password);
-					if (!$conn) {die('Could not connect due to: ' . mysql_error());}
-					
-					mysql_query("SET NAMES cp1256");
-					mysql_query("set characer set cp1256");
-					
-					mysql_select_db($database, $conn);
-					
-					$deleteQuery = mysql_query("DELETE FROM `$database`.`stuff` 
-					WHERE stuff_id = '$stuffID' ",$conn);
-					
-					if($deleteQuery){
-						
-						?>
-						<script>
-							alert(" „ Õ–› «·„ ÿÊ⁄ »‰Ã«Õ");
-							location.href = "volunteerOption.php";
-						</script>
-						<?php
-					}
-					else{
-						?>
-						<script>
-							alert("Õ’· Œÿ√ «·—Ã«¡ √⁄œ «·⁄„·Ì…");
-							location.href = "volunteerOption.php";
-						</script>
-						<?php
-					
-					}
-					mysql_close($conn);
-				?>
+        		Content goes here <br />
+            Sample content
         	<!-- InstanceEndEditable -->
         	
         </div>
