@@ -39,17 +39,21 @@ session_start();
         		<?php
                 include 'assets/modules/unauthorized.php';
                 ?>
-				
-				<?php
-
-					$studID = $_SESSION['currentStudentID'];
-					
-					$f_name = mysql_real_escape_string( $_POST['f_name'] );
-					$m_name = mysql_real_escape_string( $_POST['m_name'] );
-					$l_name = mysql_real_escape_string( $_POST['l_name'] );
-					
-					$mobile = mysql_real_escape_string( $_POST['mobile'] );
-					$gender = mysql_real_escape_string( $_POST['gender'] );
+                
+                <div class="back">
+                	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>
+                	<a href="scheduleOption.php"><img src="assets/images/back.png" /></a>
+                </div>
+                
+                <hr />
+                
+                <?php
+					$groupID = $_SESSION['groupID'];
+					$groupName = $_SESSION['Gname'];
+					$_SESSION['subjectName'];
+					$date = $_POST['dateID'];
+					$day = $_POST['dayID'];
+					$stuffID = $_POST['stuffID'];
 					
 					$server = "localhost";
 					$username = "root";
@@ -64,32 +68,60 @@ session_start();
 					
 					mysql_select_db($database, $conn);
 					
-					$editQuery = mysql_query("UPDATE `$database`.`student` 
-					SET  gender='".$gender."', mobile = '".$mobile."', l_name = '".$l_name."', m_name = '".$m_name."', f_name = '".$f_name."' 
-					WHERE student_id = '$studID' ",$conn);
+					$insertQuery = mysql_query("INSERT INTO `$database`.`schedule`
+					(schedule_id, stuff_id, group_id, day, date)
+					VALUES
+					(NULL, '$stuffID', '$groupID', '$day', '$date')",$conn);
 					
-					if($editQuery){
-						
+					if($insertQuery){
 						?>
 						<script>
-							alert(" „  ⁄œÌ· »Ì«‰«  «·ÿ«·»");
-							location.href = "studentOption.php";
+							
+							alert(" „ √‰‘«¡ «·ÃœÊ· »‰Ã«Õ <?php echo $groupName ?>");
+							location.href = "adminOptions.php";
 						</script>
 						<?php
 					}
 					else{
+						echo mysql_error();
 						?>
 						<script>
 							alert("Õ’· Œÿ√ «·—Ã«¡ √⁄œ «·⁄„·Ì…");
-							location.href = "studentOption.php";
+							location.href = "adminOptions.php";
 						</script>
 						<?php
-					
+						
 					}
 					
-					mysql_close();
+					$getFuck = mysql_query("SELECT * FROM stuff
+										WHERE stuff_id = '$stuffID'",$conn);
 					
-					?>
+					while($row=mysql_fetch_array($getFuck) ){
+							$currentDay2 = $row['day2'];
+							$currentDay1 = $row['day1'];
+							$currentDate2 = $row['date2'];
+							$currentDate1 = $row['date1'];
+					}
+					
+					$x = strcmp($currentDay2 ,$day);
+					$y = strcmp($currentDate2 ,$date);
+					if($x == '-5' and $y == '-5' ){
+						$updateStuffSlot2 = mysql_query("UPDATE `$database`.stuff
+							SET slot2 = '‰⁄„'
+							WHERE stuff_id = '$stuffID' ", $conn);
+							if(!$updateStuffSlot2){echo mysql_error();}
+					}
+					else{
+							$updateStuffSlot1 = mysql_query("UPDATE `$database`.stuff
+							SET slot1 = '‰⁄„'
+							WHERE stuff_id = '$stuffID' ", $conn);
+							if(!$updateStuffSlot1){echo mysql_error();}
+						}
+						
+						echo mysql_error();
+					
+				?>
+                
         	<!-- InstanceEndEditable -->
         	
         </div>

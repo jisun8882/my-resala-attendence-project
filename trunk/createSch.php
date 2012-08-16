@@ -1,5 +1,5 @@
 <?php
-session_start();
+session_start(); 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html><!-- InstanceBegin template="/Templates/Template.dwt.php" codeOutsideHTMLIsLocked="false" -->
@@ -37,23 +37,53 @@ session_start();
         	
             <!-- InstanceBeginEditable name="contentRegion" -->
         		<?php
-                include 'assets/modules/unauthorized.php';
+                include 'assets/modules/unauthorized.php';				
                 ?>
-                
                 <div class="back">
                 	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>
-                	<a href="adminOptions.php"><img src="assets/images/back.png" /></a>
+                	<a href="scheduleOption.php"><img src="assets/images/back.png" /></a>
                 </div>
                 
                 <hr />
                 
                 <div class="optionsDiv">
-                    <a class="adminsOptionA" href="createSch.php">
-                    <h3> √‰‘«¡  ÃœÊ· ÃœÌœ</h3></a> <br />
-                    <a class="adminsOptionA" href="editSch.php">
-                    <h3> ⁄œÌ·/Õ–› ÃœÊ·  </h3></a><br />
-                    <a class="adminsOptionA" href="deleteSch.php">
-                    <h3>Õ–› Ã„Ì⁄ ÃœÊ·  </h3></a>
+                    <h3>√Œ «— „Ã„Ê⁄…</h3>
+                    
+                       <form action="createSch1.php" method="post" name="getGroup"> 
+                       
+                       <input type="submit" value="√Œ «—" />
+                        <select name="group">
+                            <option>- √Œ «— „Ã„Ê⁄… -</option>
+                            
+                            <?php
+								$server = "localhost";
+								$username = "root";
+								$password = "";
+								$database = "resala";
+								
+								$conn = mysql_connect($server, $username, $password);
+								if (!$conn) {die('Could not connect due to: ' . mysql_error());}
+								
+								mysql_query("SET NAMES cp1256");
+								mysql_query("set characer set cp1256");
+								
+								mysql_select_db($database, $conn);
+								
+								$getGroupQuery = mysql_query("SELECT * FROM `$database`.`group`",$conn);
+								while($row = mysql_fetch_array($getGroupQuery)  ){
+									
+									echo "<option value='".$row['group_id']."' >";
+									echo $row['name'];
+									$_SESSION['groupID'] = $row['group_id'];
+									echo "</option>";
+									
+								};
+							
+							?>
+                        </select>
+                        
+					</form>
+                    
 				</div>
         	<!-- InstanceEndEditable -->
         	

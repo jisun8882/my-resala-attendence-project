@@ -50,6 +50,79 @@ session_start();
 					echo $_SESSION['Gname'];
 					echo "</u></h2> <br />";
 				?>
+                
+                 <div class="addStudentDataDiv">
+                	<h4>Õ–› ÿ«·»</h4>
+                    
+                <?php
+					$server = "localhost";
+					$username = "root";
+					$password = "";
+					$database = "resala";
+					
+					$groupID = $_SESSION['groupID'];
+						
+					$conn = mysql_connect($server, $username, $password);
+					if (!$conn) {die('Could not connect due to: ' . mysql_error());}
+					
+					mysql_query("SET NAMES cp1256");
+					mysql_query("set characer set cp1256");
+					
+					mysql_select_db($database, $conn);
+					
+					$getStudentGroupquery = mysql_query("SELECT student_id FROM groupStudent 
+					WHERE 
+					group_id = $groupID ",$conn);
+					
+					echo mysql_error();
+					
+					echo "<table border='1' class='volunteerTable'>";
+					echo "<tr>";
+					echo "<th>Õ–›</th><th>«·„Ê»Ì·</th> <th>«·«”„</th>";
+					echo "</tr>";
+					
+					while($row = mysql_fetch_array($getStudentGroupquery)  ){
+						
+						$getStudentInfoquery = mysql_query("SELECT * FROM student 
+						WHERE 
+						student_id = ".$row['student_id']." ",$conn);
+						
+						while($row = mysql_fetch_array($getStudentInfoquery)  ){
+						
+						echo "<tr>";
+						
+						echo "<td>";
+						echo "<form action='editGroup2.php' method='post' name='submitStu2Grp'> ";
+						echo "<input name='studID' type='hidden' value='".$row['student_id']."' />
+						<input name='sizes[]' type='checkbox' value='".$row['student_id']."'>";
+						echo "</td>";
+						
+						echo "<td>";
+						echo $row['mobile'];
+						echo "</td>";
+						
+						echo "<td>";
+						echo $row['f_name'] . " " . $row['m_name'] . " " .$row['l_name'];
+						echo "</td>";
+						
+						echo "</tr>";
+						}
+					}
+					
+					echo"<tr>";
+					echo"<td>";
+					echo "<input type='submit' value='Õ–›'";
+					echo "</tr>";
+					echo "</tr>";
+					
+					echo "</form>";
+						
+					echo "</table>";
+					
+					mysql_close();
+				?>
+                
+                </div>
         	<!-- InstanceEndEditable -->
         	
         </div>

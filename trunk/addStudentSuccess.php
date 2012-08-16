@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,6 +21,7 @@ $m_name = mysql_real_escape_string( $_POST['m_name'] );
 $l_name = mysql_real_escape_string( $_POST['l_name'] );
 
 $mobile = mysql_real_escape_string( $_POST['mobile'] );
+$gender = mysql_real_escape_string( $_POST['gender'] );
 
 $server = "localhost";
 $username = "root";
@@ -32,7 +36,7 @@ mysql_query("set characer set cp1256");
 
 mysql_select_db($database, $conn);
 
-$addQuery = mysql_query("INSERT INTO `$database`.`student` (mobile, l_name, m_name, f_name, student_id) VALUES ('$mobile','$l_name','$m_name','$f_name',NULL)",$conn);
+$addQuery = mysql_query("INSERT INTO `$database`.`student` (gender, mobile, l_name, m_name, f_name, student_id) VALUES ('$gender', '$mobile','$l_name','$m_name','$f_name',NULL)",$conn);
 
 if($addQuery){
 	?>

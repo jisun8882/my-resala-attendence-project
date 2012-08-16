@@ -71,13 +71,14 @@ session_start();
 						echo "<h2><u>"; 
 						echo $row['name'];
 						echo "</u></h2> <br />";
+						$_SESSION['Gname'] = $row['name'];
 					}
 					mysql_close();
 				?>
                 
                 <div class="optionsDiv">
                     <a class="adminsOptionA" href="addGroup.php"><h3>ֵײַÝֹ ״ַבָ ֵבל דּדזÚֹ</h3></a>
-                    <a class="adminsOptionA" href="editGroup.php"><h3>ֽ׀Ý ״ַבָ דה דּדזÚֹ</h3></a>
+                    <a class="adminsOptionA" href="editGroup.php"><h3>Úׁײ/ֽ׀Ý ״ַבָ דה דּדזÚֹ</h3></a>
                     <a class="adminsOptionA" href="truncateGroup.php"><h3>ֽ׀Ý ַבּדםÚ</h3></a>
 				</div>
         	<!-- InstanceEndEditable -->

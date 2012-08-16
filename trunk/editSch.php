@@ -1,5 +1,5 @@
 <?php
-session_start();
+session_start(); 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html><!-- InstanceBegin template="/Templates/Template.dwt.php" codeOutsideHTMLIsLocked="false" -->
@@ -37,18 +37,17 @@ session_start();
         	
             <!-- InstanceBeginEditable name="contentRegion" -->
         		<?php
-                include 'assets/modules/unauthorized.php';
+                include 'assets/modules/unauthorized.php';				
                 ?>
-                
                 <div class="back">
-                	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>  &nbsp;
-                	<a href="studentOption.php"><img src="assets/images/back.png" /></a>
+                	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>
+                	<a href="scheduleOption.php"><img src="assets/images/back.png" /></a>
                 </div>
                 
                 <hr />
                 
-                <div class="addStudentDataDiv">
-                	<h4>√»ÕÀ ⁄‰ ÿ«·»</h4>
+                <div class="VoloptionsDivS">
+                	<h4>ﬂ· «·Ãœ«Ê·</h4>
                     
                     <?php
 					$server = "localhost";
@@ -64,44 +63,79 @@ session_start();
 					
 					mysql_select_db($database, $conn);
 					
-					$getStudentquery = mysql_query("SELECT * FROM student ORDER BY f_name ASC",$conn);
+					$getScheduleQuery = mysql_query("SELECT * FROM schedule ORDER BY day ASC",$conn);
 		
 					echo "<table border='1' class='volunteerTable'>";
 					echo "<tr>";
-					echo "<th> ⁄œÌ·</th> <th>«·‰Ê⁄</th> <th>«·„Ê»Ì·</th> <th>«·«”„</th>";
+					echo "<th>Õ–›</th> <th> ⁄œÌ·</th> <th>«·„ ÿÊ⁄</th> 
+							<th>«·„⁄«œ</th> <th>«·’›</th> <th>«·ÌÊ„</th> <th>«·„«œ…</th>";
 					echo "</tr>";
 					
-					while($row = mysql_fetch_array($getStudentquery)  ){
+					while($row = mysql_fetch_array($getScheduleQuery)  ){
 						
-						echo "<tr>";
-						
-						echo "<td>";
-						echo "<form action='editStudent2.php' method='post' name='submitStudID'> ";
-						echo "<input name='studID' type='hidden' value='".$row['student_id']."' /><input type='submit' value='⁄œ·' />";
-						echo "</td>";
-						
-						echo "<td>";
-						echo $row['gender'];
-						echo "</td>";
-						
-						echo "<td>";
-						echo $row['mobile'];
-						echo "</td>";
-						
-						echo "<td>";
-						echo $row['f_name'] . " " . $row['m_name'] . " " .$row['l_name'];
-						echo "</td>";
-						
-						echo "</tr>";
-						echo "</form>";
+						$getGroup = mysql_query("SELECT * FROM `resala`.`group`
+										WHERE group_id = '".$row['group_id']."' ",$conn);
+										
+						while($row2 = mysql_fetch_array($getGroup)){
+							
+							$getStuff = mysql_query("SELECT * FROM stuff
+									WHERE stuff_id = '".$row['stuff_id']."' ",$conn);
+									
+							while($row3 = mysql_fetch_array($getStuff)){
+								
+								echo "<tr>";
+								
+echo "<td>";
+echo "<form action='dropSch1.php' method='post' name='deleteSchedule'> ";
+echo "<input name='stuffID' type='hidden' value='".$row3['stuff_id']."' />
+		<input name='groupID' type='hidden' value='".$row2['group_id']."' />
+		<input name='schedID' type='hidden' value='".$row['schedule_id']."' />
+		<input type='submit' value='Õ–›' />";
+echo "</form>";
+echo "</td>";
+
+echo "<td>";
+echo "<form action='editSch1.php' method='post' name='deleteSchedule'> ";
+echo "<input name='stuffID' type='hidden' value='".$row3['stuff_id']."' />
+		<input name='groupID' type='hidden' value='".$row2['group_id']."' />
+		<input name='schedID' type='hidden' value='".$row['schedule_id']."' />
+		<input type='submit' value=' ⁄œÌ·' />";
+echo "</form>";
+echo "</td>";
+
+echo "<td>";
+echo $row3['f_name'] . " " . $row3['m_name'] . " " . $row3['l_name'];
+echo "</td>";
+
+echo "<td>";
+echo $row['date'];
+echo "</td>";
+
+echo "<td>";
+echo $row2['name'];
+echo "</td>";
+
+echo "<td>";
+echo $row['day'];
+echo "</td>";
+
+echo "<td>";
+echo $row3['subject'];
+echo "</td>";
+
+echo "</tr>";
+								
+							}
+							
+						}
 						
 					}
 					echo "</table>";
+					echo mysql_error();
 					mysql_close();
 				
 				?>
                 </div>
-                
         	<!-- InstanceEndEditable -->
         	
         </div>

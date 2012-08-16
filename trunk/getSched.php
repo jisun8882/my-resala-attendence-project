@@ -42,6 +42,7 @@ if(isset($_SESSION['username']))
 				
                 <?php
 					echo "<h3> «·ÌÊ„: <font style='color:#F00'>" . $_SESSION['theDay'] . "</font><br /> «· «—ÌŒ: ";
+					$day = $_SESSION['theDay'];
 					$_SESSION['theDate'] = $_POST['date2'];
 					echo "<font style='color:#F00'>" . $_SESSION['theDate'] ."</font></h3>";
 				?>
@@ -55,15 +56,59 @@ if(isset($_SESSION['username']))
 					$conn = mysql_connect($server, $username, $password);
 					if (!$conn) {die('Could not connect due to: ' . mysql_error());}
 					
+					mysql_query("SET NAMES cp1256");
+					mysql_query("set characer set cp1256");
+					
 					mysql_select_db($database, $conn);
 					
-					$queryy = mysql_query("SELECT * FROM student WHERE student_id = '1' ",$conn);
-		
+					$queryy = mysql_query("SELECT * FROM schedule LEFT JOIN stuff 
+					ON 
+					schedule.stuff_id = stuff.stuff_id
+					WHERE day = '$day' ",$conn);
+
+					echo "<table border='1'>";
+					
+					echo "<tr>";
+					echo "<th>√› Õ «·€Ì«»</th> <th>«·„⁄«œ</th> <th>«·„ ÿÊ⁄</th> <th>«·’›</th> <th>«·„«œ…</th>";
+					echo "</tr>";
+					
 					while($row = mysql_fetch_array($queryy)  ){
+						echo "<tr>";
 						
-						echo $row['f_name'];
+						echo "<td>";
+						echo "<form action='' method='post' name='submitAttend'> ";
+						echo "<input name='stuffID' type='hidden' value='".$row['stuff_id']."' />
+							<input name='groupID' type='hidden' value='".$row['group_id']."' />
+							<input name='scheduleID' type='hidden' value='".$row['schedule_id']."' />
+							<input type='submit' value='√› Õ' />";
+						echo "</td>";
+						
+						echo "<td>";
+						echo $row['day'];
+						echo "</td>";
+						
+						echo "<td>";
+						echo $row['f_name']. " " . $row['m_name'] . " " . $row['l_name'];
+						echo "</td>";
+						
+						echo "<td>";
+						$getGroupName = mysql_query("SELECT name FROM `resala`.`group` 
+													Where group_id = '".$row['group_id']."' ",$conn);
+						while($row2 = mysql_fetch_array($getGroupName) ){
+							echo $row2['name'];
+						}
+						
+						echo "</td>";
+						
+						echo "<td>";
+						echo $row['subject'];
+						echo "</td>";
+ 						echo "</tr>";
+						
 						
 					}
+					
+					echo "</table>";
 					
 					mysql_close();
 				?>

@@ -5,6 +5,7 @@ CREATE DATABASE IF NOT EXISTS `resalastrategy` DEFAULT CHARACTER SET utf8 COLLAT
 CREATE DATABASE IF NOT EXISTS `resala` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS `resala`.`student` (
+`gender` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
 `mobile` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
 `l_name` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
 `m_name` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL ,
@@ -20,9 +21,10 @@ CREATE TABLE IF NOT EXISTS `resala`.`studentReport` (
 ) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS `resala`.`stuff` (
-`work` VARCHAR( 3 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
+`slot2` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
 `date2` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
 `day2` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
+`slot1` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
 `date1` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
 `day1` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
 `mobile` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
@@ -46,7 +48,16 @@ CREATE TABLE  `resala`.`group` (
 ) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 CREATE TABLE  `resala`.`groupStudent` (
-`gs_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 `group_id` INT NOT NULL ,
-`student_id` INT NOT NULL
+`student_id` INT NOT NULL ,
+UNIQUE (`group_id` ,`student_id` )
+) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+CREATE TABLE  `resala`.`schedule` (
+`schedule_id` INT( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`stuff_id` INT( 5 ) NOT NULL ,
+`group_id` INT( 5 ) NOT NULL , 
+`day` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL ,
+`date` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL ,
+UNIQUE (`schedule_id`, `stuff_id`,`group_id`)
 ) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_unicode_ci;
