@@ -42,19 +42,21 @@ session_start();
                 
                 <div class="back">
                 	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>  &nbsp;
-                	<a href="studentOption.php"><img src="assets/images/back.png" /></a>
+                	<a href="createSch1.php"><img src="assets/images/back.png" /></a>
                 </div>
                 
                 <hr />
                 
-                <div class="optionsDiv">
-                <h4> ⁄œÌ· »Ì«‰« </h4>
-                <hr />
-				
 				<?php
-					$studID = $_POST['studID'];
-					$_SESSION['currentStudentID'] = $_POST['studID'];
+					$groupID = $_SESSION['groupID'];
+					$groupName = $_SESSION['Gname'];
+					$subject = $_POST['subject'];
+					$_SESSION['subjectName'] = $subject;
+				?>
 					
+					<div class="VoloptionsDiv">
+                <h4>√Œ «— „ ÿÊ⁄ ·<?php echo $_SESSION['Gname'] ?> „«œ… <?php echo $_SESSION['subjectName']?></h4>
+                <?php	
 					$server = "localhost";
 					$username = "root";
 					$password = "";
@@ -68,85 +70,70 @@ session_start();
 					
 					mysql_select_db($database, $conn);
 					
-					$getStudQuery = mysql_query("SELECT * FROM student WHERE student_id = '$studID' ",$conn);
+					$getVolQuery = mysql_query("SELECT * FROM stuff
+					WHERE (slot1 = '·«' OR slot2 = '·«') AND subject = '$subject'
+					",$conn);
 					
-					echo "<form name='studentData' action='editStudent3.php' method='POST'>";
-					echo "<table width='auto' border='0'>";
+					echo "<table border='1' class='volunteerTable'>";
+					echo "<tr>";
+					echo "<th>√Œ «—</th> <th>«·„⁄«œ «·À«‰Ï</th> <th>√Œ «—</th> <th>«·„⁄«œ «·«Ê·</th> <th>«·„Ê»Ì·</th> <th>«·«”„</th>";
+					echo "</tr>";
+					while($row = mysql_fetch_array($getVolQuery)  ){
+						if($row['slot1'] == '‰⁄„' ){
+							$row['day1'] = "";
+							$row['date1'] = "€Ì— „ «Õ";
+						}
 					
-					while($row = mysql_fetch_array($getStudQuery)  ){
-			
+						if($row['slot2'] == '‰⁄„' ){
+							$row['day2'] = "";
+							$row['date2'] = "€Ì— „ «Õ";
+						}
+						
 						echo "<tr>";
+						
 						echo "<td>";
-						echo "<input name='f_name' type='text' size='10' style='text-align:right' autocomplete='off' value='".$row['f_name']."' />";
-						echo ": «·«”„ «·«Ê·</td>";
-						echo "</tr>";
-						
-						echo "<tr>";
-						echo "<td>&nbsp;</td>";
-						echo "</tr>";
-						
-						echo "<tr>";
-						echo "<td>";
-						echo "<input name='m_name' type='text' size='10' style='text-align:right' autocomplete='off' value='".$row['m_name']."' />";
-						echo ": «·«”„ «·«Ê”ÿ</td>";
-						echo "</tr>";
-						
-						echo "<tr>";
-						echo "<td>&nbsp;</td>";
-						echo "</tr>";
-						
-						echo "<tr>";
-						echo "<td>";
-						echo "<input name='l_name' type='text' size='10' style='text-align:right' autocomplete='off' value='".$row['l_name']."' />";
-						echo ": «·«”„ «·«ŒÌ—</td>";
-						echo "</tr>";
-						
-						echo "<tr>";
-						echo "<td>&nbsp;</td>";
-						echo "</tr>";
-						
-						echo "<tr>";
-						echo "<td>";
-						echo "<input name='mobile' type='text' size='15' style='text-align:right' autocomplete='off' value='".$row['mobile']."' /> ";
-						echo ": «·„Ê»Ì·</td>";
-						echo "</tr>";
-						
-						echo "<tr>";
-						echo "<td>";
-						echo "<select name='gender'>
-								<option value='".$row['gender']."'>".$row['gender']."</option>
-								<option>----------------</option>
-								<option>- √Œ «— «·‰Ê⁄ -</option>
-								<option value='»‰ '>»‰ </option>
-								<option value='Ê·œ'>Ê·œ</option>
-								</select>: «·‰Ê⁄";
+						echo "<form action='createSch3.php' method='post' name='submitstuffID'> ";
+						echo "<input name='stuffID' type='hidden' value='".$row['stuff_id']."' />
+							  <input name='dateID' type='hidden' value='".$row['date2']."' />
+							  <input name='dayID' type='hidden' value='".$row['day2']."' />
+							  <input type='submit' value='√Œ «—' />
+							  </form>";
 						echo "</td>";
-						echo "</tr>";
 						
-						echo "<tr>";
-						echo "<td>&nbsp;</td>";
-						echo "</tr>";
-						
-						echo "<tr>";
-						echo "<td>&nbsp;</td>";
-						echo "</tr>";
-						
-						echo "<tr>";
 						echo "<td>";
-						echo "<input name='submit' type='submit' value='⁄œ·' />";
+						echo $row['date2'] . " " . $row['day2'];
 						echo "</td>";
+						
+						echo "<td>";
+						echo "<form action='createSch3.php' method='post' name='submitstuffID'> ";
+						echo "<input name='stuffID' type='hidden' value='".$row['stuff_id']."' />
+							  <input name='dateID' type='hidden' value='".$row['date1']."' />
+							  <input name='dayID' type='hidden' value='".$row['day1']."' />
+							  <input type='submit' value='√Œ «—' />
+							  </form>";
+						echo "</td>";
+						
+						echo "<td>";
+						echo $row['date1'] . " " . $row['day1'];
+						echo "</td>";
+						
+						echo "<td>";
+						echo $row['mobile'];
+						echo "</td>";
+						
+						echo "<td>";
+						echo $row['f_name'] . " " . $row['m_name'] . " " .$row['l_name'];
+						echo "</td>";
+						
 						echo "</tr>";
-						
-						
-							
+						echo "</form>";
 					}
-					echo "</table";
-					echo "</form>";
+					echo "</table>";
+					
 					mysql_close($conn);
 				?>
 
                 </div>
-                
         	<!-- InstanceEndEditable -->
         	
         </div>

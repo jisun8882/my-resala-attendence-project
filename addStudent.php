@@ -46,7 +46,7 @@ session_start();
                 
                 <hr />
                 
-                <div class="optionsDiv">
+                <div class="addStudentDataDiv">
                 	<h4>≈÷«›… ÿ«·» ÃœÌœ</h4>
                     <h5>⁄·«„… (*)  ⁄‰Ï »Ì«‰«  „ÿ·Ê»… Ê „Â„Â</h5>
                         
@@ -76,6 +76,18 @@ session_start();
                                 <tr>
                                     <td>(*)<input name="mobile" type="text" size="25" autocomplete="off">: «·„Ê»Ì·</td>
                                 </tr>
+                                
+                                <tr>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>(*)<select name="gender">
+                                    		<option>- √Œ «— «·‰Ê⁄ -</option>
+                                            <option value="»‰ ">»‰ </option>
+                                            <option value="Ê·œ">Ê·œ</option>
+                                    		</select>: «·‰Ê⁄</td>
+                                </tr>
+                                
                                 <tr>
                                     <td>&nbsp;</td>
                                 </tr>

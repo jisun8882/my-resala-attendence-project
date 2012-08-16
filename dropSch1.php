@@ -37,20 +37,16 @@ session_start();
         	
             <!-- InstanceBeginEditable name="contentRegion" -->
         		<?php
-                include 'assets/modules/unauthorized.php';
+                include 'assets/modules/unauthorized.php';				
                 ?>
-				
-				<?php
-
-					$studID = $_SESSION['currentStudentID'];
-					
-					$f_name = mysql_real_escape_string( $_POST['f_name'] );
-					$m_name = mysql_real_escape_string( $_POST['m_name'] );
-					$l_name = mysql_real_escape_string( $_POST['l_name'] );
-					
-					$mobile = mysql_real_escape_string( $_POST['mobile'] );
-					$gender = mysql_real_escape_string( $_POST['gender'] );
-					
+                <div class="back">
+                	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>
+                	<a href="scheduleOption.php"><img src="assets/images/back.png" /></a>
+                </div>
+                
+                <hr />
+                
+                <?php
 					$server = "localhost";
 					$username = "root";
 					$password = "";
@@ -64,32 +60,38 @@ session_start();
 					
 					mysql_select_db($database, $conn);
 					
-					$editQuery = mysql_query("UPDATE `$database`.`student` 
-					SET  gender='".$gender."', mobile = '".$mobile."', l_name = '".$l_name."', m_name = '".$m_name."', f_name = '".$f_name."' 
-					WHERE student_id = '$studID' ",$conn);
+					echo $schedID = $_POST['schedID'];
+					echo $stuffID = $_POST['stuffID'];
+					echo $groupID = $_POST['groupID'];
 					
-					if($editQuery){
+					$getDateDay = mysql_query("SELECT date,day FROM `$database`.`schedule`
+						WHERE schedule_id = '$schedID' ",$conn);
 						
-						?>
-						<script>
-							alert(" „  ⁄œÌ· »Ì«‰«  «·ÿ«·»");
-							location.href = "studentOption.php";
-						</script>
-						<?php
-					}
-					else{
-						?>
-						<script>
-							alert("Õ’· Œÿ√ «·—Ã«¡ √⁄œ «·⁄„·Ì…");
-							location.href = "studentOption.php";
-						</script>
-						<?php
-					
+					while($row = mysql_fetch_array($getDateDay) ){
+						$currentDate = $row['date'];
+						$currentDay = $row['day'];
 					}
 					
+					$deleteSchedule = mysql_query("DELETE FROM `$database`.`schedule`
+								WHERE schedule_id = '$schedID' ",$conn);
+					
+					$deleteStuffSlot = mysql_query("SELECT * FROM `$database`.`stuff`
+					WHERE stuff_id = '$stuffID' ",$conn);
+					
+					while($row = mysql_fetch_array($deleteStuffSlot) ){
+						$resetSlot1 = mysql_query("UPDATE `$database`.`stuff`
+								SET slot1 = '·«'
+								WHERE date1 = '$currentDate' AND day1 = '$currentDay' ",$conn);
+								
+						$resetSlot2 = mysql_query("UPDATE `$database`.`stuff`
+								SET slot2 = '·«'
+								WHERE date2 = '$currentDate' AND day2 = '$currentDay' ",$conn);
+					}
+					
+					echo mysql_error();
 					mysql_close();
 					
-					?>
+				?>
         	<!-- InstanceEndEditable -->
         	
         </div>

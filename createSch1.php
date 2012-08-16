@@ -41,16 +41,16 @@ session_start();
                 ?>
                 
                 <div class="back">
-                	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>  &nbsp;
-                	<a href="studentOption.php"><img src="assets/images/back.png" /></a>
+                	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>
+                	<a href="createSch.php"><img src="assets/images/back.png" /></a>
                 </div>
                 
                 <hr />
                 
-                <div class="addStudentDataDiv">
-                	<h4>√»ÕÀ ⁄‰ ÿ«·»</h4>
-                    
-                    <?php
+                <?php
+					$groupID = $_POST['group'];
+					$_SESSION['groupID'] = $groupID;
+					
 					$server = "localhost";
 					$username = "root";
 					$password = "";
@@ -64,44 +64,43 @@ session_start();
 					
 					mysql_select_db($database, $conn);
 					
-					$getStudentquery = mysql_query("SELECT * FROM student ORDER BY f_name ASC",$conn);
-		
-					echo "<table border='1' class='volunteerTable'>";
-					echo "<tr>";
-					echo "<th> ⁄œÌ·</th> <th>«·‰Ê⁄</th> <th>«·„Ê»Ì·</th> <th>«·«”„</th>";
-					echo "</tr>";
+					$getTablesquery = mysql_query("SELECT name FROM `$database`.`group` 
+					WHERE group_id = '$groupID' ",$conn);
 					
-					while($row = mysql_fetch_array($getStudentquery)  ){
-						
-						echo "<tr>";
-						
-						echo "<td>";
-						echo "<form action='editStudent2.php' method='post' name='submitStudID'> ";
-						echo "<input name='studID' type='hidden' value='".$row['student_id']."' /><input type='submit' value='⁄œ·' />";
-						echo "</td>";
-						
-						echo "<td>";
-						echo $row['gender'];
-						echo "</td>";
-						
-						echo "<td>";
-						echo $row['mobile'];
-						echo "</td>";
-						
-						echo "<td>";
-						echo $row['f_name'] . " " . $row['m_name'] . " " .$row['l_name'];
-						echo "</td>";
-						
-						echo "</tr>";
-						echo "</form>";
-						
+					while($row = mysql_fetch_array($getTablesquery)  ){
+						echo "<h2><u>"; 
+						echo $row['name'];
+						echo "</u></h2> <br />";
+						$_SESSION['Gname'] = $row['name'];
 					}
-					echo "</table>";
 					mysql_close();
-				
 				?>
-                </div>
                 
+                <div class="optionsDiv">
+                    <h3>√Œ «— «·„«œÂ</h3>
+                    
+                       <form action="createSch2.php" method="post" name="getGroup"> 
+                       
+                       <input type="submit" value="√Œ «—" />
+                        <select name="subject">
+                            <option>- √Œ «— „«œÂ -</option>
+                            <option value='≈‰Ã·Ì“Ï'>≈‰Ã·Ì“Ï</option>
+                            <option value='⁄—»Ï'>⁄—»Ï</option>
+                            <option value='œ—«”« '>- œ—«”«  -</option>
+                            <option value=' «—ÌŒ'> «—ÌŒ</option>
+                            <option value='Ã€—«›Ì«'>Ã€—«›Ì«</option>
+                            <option value='⁄·Ê„'>- ⁄·Ê„ -</option>
+                            <option value='ﬂÌ„Ì«¡'>ﬂÌ„Ì«¡</option>
+                            <option value='›Ì“Ì«¡'>›Ì“Ì«¡</option>
+                            <option value='√ÕÌ«¡'>√ÕÌ«¡</option>
+                            <option value='—Ì«÷Ì« '>- —Ì«÷Ì«  -</option>
+                            <option value='Ã»—'>Ã»—</option>
+                            <option value='Â‰œ”Â'>Â‰œ”Â</option>
+                        </select>
+                        
+					</form>
+                    
+				</div>
         	<!-- InstanceEndEditable -->
         	
         </div>

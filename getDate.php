@@ -66,9 +66,10 @@ if(isset($_SESSION['username']))
 							
                         ?>
                         
-                        <input type="submit" name="submit" id="submit" value="ÚÑÖ ÇáÍÕÕ" >
+                        
                         <input type="button" name="button3" id="button3" value="ÊÇßíÏ ÇáÊÇÑíÎ" onClick="javascript:alert(this.form.date2.value);">
     
+    					<input type="submit" name="submit" id="submit" value="ÚÑÖ ÇáÍÕÕ" >
                     </form>
                    
 				</div>

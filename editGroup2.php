@@ -37,59 +37,62 @@ session_start();
         	
             <!-- InstanceBeginEditable name="contentRegion" -->
         		<?php
-                include 'assets/modules/unauthorized.php';
+                include 'assets/modules/unauthorized.php';				
                 ?>
-				
-				<?php
-
-					$studID = $_SESSION['currentStudentID'];
-					
-					$f_name = mysql_real_escape_string( $_POST['f_name'] );
-					$m_name = mysql_real_escape_string( $_POST['m_name'] );
-					$l_name = mysql_real_escape_string( $_POST['l_name'] );
-					
-					$mobile = mysql_real_escape_string( $_POST['mobile'] );
-					$gender = mysql_real_escape_string( $_POST['gender'] );
-					
-					$server = "localhost";
-					$username = "root";
-					$password = "";
-					$database = "resala";
-					
-					$conn = mysql_connect($server, $username, $password);
-					if (!$conn) {die('Could not connect due to: ' . mysql_error());}
-					
-					mysql_query("SET NAMES cp1256");
-					mysql_query("set characer set cp1256");
-					
-					mysql_select_db($database, $conn);
-					
-					$editQuery = mysql_query("UPDATE `$database`.`student` 
-					SET  gender='".$gender."', mobile = '".$mobile."', l_name = '".$l_name."', m_name = '".$m_name."', f_name = '".$f_name."' 
-					WHERE student_id = '$studID' ",$conn);
-					
-					if($editQuery){
+                
+                <?php
+					if (isset($_POST['sizes'])) {
+						$sizesArray = $_POST['sizes'];
 						
-						?>
-						<script>
-							alert(" „  ⁄œÌ· »Ì«‰«  «·ÿ«·»");
-							location.href = "studentOption.php";
-						</script>
-						<?php
+						$server = "localhost";
+						$username = "root";
+						$password = "";
+						$database = "resala";
+						$tableName = "groupStudent";
+						
+						echo $groupID = $_SESSION['groupID'];
+						echo "<br />";
+						echo $_SESSION['Gname'];
+						echo "<br />";
+						
+						$conn = mysql_connect($server, $username, $password);
+						if (!$conn) {die('Could not connect due to: ' . mysql_error());}
+						
+						mysql_query("SET NAMES cp1256");
+						mysql_query("set characer set cp1256");
+						
+						mysql_select_db($database, $conn);
+						
+						foreach ($sizesArray as $key => $value)
+						{
+							$deleteQuery = mysql_query("DELETE FROM `$database`.`$tableName` 
+							WHERE group_id = $groupID AND student_id = $value",$conn);
+						}
+						
+						if($deleteQuery){
+							echo mysql_error();
+							?>
+							<script>
+								alert(" „ Õ–› «·ÿ·«» «·Ï „Ã„Ê⁄… <?php echo $_SESSION['Gname'] ?> »‰Ã«Õ");
+								location.href = "groupOption.php";
+							</script>
+							<?php
+						}
+						else{
+							
+							?>
+							<script>
+								alert("Õ’· Œÿ√ «·—Ã«¡ √⁄œ «·⁄„·Ì…");
+								location.href = "groupOption.php";
+							</script>
+							<?php
+						
+						}
+						
+						mysql_close();
 					}
-					else{
-						?>
-						<script>
-							alert("Õ’· Œÿ√ «·—Ã«¡ √⁄œ «·⁄„·Ì…");
-							location.href = "studentOption.php";
-						</script>
-						<?php
-					
-					}
-					
-					mysql_close();
-					
-					?>
+				
+				?>
         	<!-- InstanceEndEditable -->
         	
         </div>

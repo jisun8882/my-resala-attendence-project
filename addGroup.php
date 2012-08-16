@@ -48,8 +48,85 @@ session_start();
                 <?php
                 	echo "<h2><u>"; 
 					echo $_SESSION['Gname'];
+					$_SESSION['groupID'];
+					$getIDint = intval($_SESSION['groupID']);
 					echo "</u></h2> <br />";
 				?>
+                
+                <div class="addStudentDataDiv">
+                	<h4>√÷› ÿ«·»</h4>
+                    
+                    <?php
+					$server = "localhost";
+					$username = "root";
+					$password = "";
+					$database = "resala";
+					
+					$conn = mysql_connect($server, $username, $password);
+					if (!$conn) {die('Could not connect due to: ' . mysql_error());}
+					
+					mysql_query("SET NAMES cp1256");
+					mysql_query("set characer set cp1256");
+					
+					mysql_select_db($database, $conn);
+					
+					if( $odd = $getIDint%2 )
+					{
+						// $odd == 1; the remainder of 25/2
+						$gender = "Ê·œ";
+						//echo 'ODD Number!';
+					}
+					else
+					{
+						// $odd == 0; nothing remains if e.g. $number is 48 instead,
+						// as in 48 / 2
+						$gender = "»‰ ";
+						//echo 'EVEN Number!';
+					}
+					
+					$getStudentquery = mysql_query("SELECT * FROM student WHERE gender = '$gender' ORDER BY f_name ASC",$conn);
+		
+					echo "<table border='1' class='volunteerTable'>";
+					echo "<tr>";
+					echo "<th>√÷›</th><th>«·„Ê»Ì·</th> <th>«·«”„</th>";
+					echo "</tr>";
+					
+					while($row = mysql_fetch_array($getStudentquery)  ){
+						
+						echo "<tr>";
+						
+						echo "<td>";
+						echo "<form action='addGroup2.php' method='post' name='submitStu2Grp'> ";
+						echo "<input name='studID' type='hidden' value='".$row['student_id']."' />
+						<input name='sizes[]' type='checkbox' value='".$row['student_id']."'>";
+						echo "</td>";
+						
+						echo "<td>";
+						echo $row['mobile'];
+						echo "</td>";
+						
+						echo "<td>";
+						echo $row['f_name'] . " " . $row['m_name'] . " " .$row['l_name'];
+						echo "</td>";
+						
+						echo "</tr>";
+						
+					}
+					
+					echo"<tr>";
+					echo"<td>";
+					echo "<input type='submit' value='√÷›'";
+					echo "</tr>";
+					echo "</tr>";
+					
+					echo "</form>";
+						
+					echo "</table>";
+					
+					mysql_close();
+				
+				?>
+                </div>
         	<!-- InstanceEndEditable -->
         	
         </div>

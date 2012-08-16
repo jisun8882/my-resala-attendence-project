@@ -37,59 +37,14 @@ session_start();
         	
             <!-- InstanceBeginEditable name="contentRegion" -->
         		<?php
-                include 'assets/modules/unauthorized.php';
+                include 'assets/modules/unauthorized.php';				
                 ?>
-				
-				<?php
-
-					$studID = $_SESSION['currentStudentID'];
-					
-					$f_name = mysql_real_escape_string( $_POST['f_name'] );
-					$m_name = mysql_real_escape_string( $_POST['m_name'] );
-					$l_name = mysql_real_escape_string( $_POST['l_name'] );
-					
-					$mobile = mysql_real_escape_string( $_POST['mobile'] );
-					$gender = mysql_real_escape_string( $_POST['gender'] );
-					
-					$server = "localhost";
-					$username = "root";
-					$password = "";
-					$database = "resala";
-					
-					$conn = mysql_connect($server, $username, $password);
-					if (!$conn) {die('Could not connect due to: ' . mysql_error());}
-					
-					mysql_query("SET NAMES cp1256");
-					mysql_query("set characer set cp1256");
-					
-					mysql_select_db($database, $conn);
-					
-					$editQuery = mysql_query("UPDATE `$database`.`student` 
-					SET  gender='".$gender."', mobile = '".$mobile."', l_name = '".$l_name."', m_name = '".$m_name."', f_name = '".$f_name."' 
-					WHERE student_id = '$studID' ",$conn);
-					
-					if($editQuery){
-						
-						?>
-						<script>
-							alert(" „  ⁄œÌ· »Ì«‰«  «·ÿ«·»");
-							location.href = "studentOption.php";
-						</script>
-						<?php
-					}
-					else{
-						?>
-						<script>
-							alert("Õ’· Œÿ√ «·—Ã«¡ √⁄œ «·⁄„·Ì…");
-							location.href = "studentOption.php";
-						</script>
-						<?php
-					
-					}
-					
-					mysql_close();
-					
-					?>
+                <div class="back">
+                	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>
+                	<a href="scheduleOption.php"><img src="assets/images/back.png" /></a>
+                </div>
+                
+                <hr />
         	<!-- InstanceEndEditable -->
         	
         </div>

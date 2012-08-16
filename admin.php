@@ -48,7 +48,7 @@ if(isset($_SESSION['username']))
                             <td colspan="2"><h2>√œŒ· «·√”„ Ê ﬂ·„… «·”—</h2></td>
                           </tr>
                           <tr>
-                            <td><input type="text" name="username" id="username" autocomplete="off"/></td>
+                            <td><input type="text" name="username" id="username" autocomplete="off" autofocus="autofocus"/></td>
                             <td>: «·«”„</td>
                           </tr>
                           <tr>

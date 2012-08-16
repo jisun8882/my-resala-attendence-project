@@ -69,9 +69,9 @@ mysql_query("set characer set cp1256");
 mysql_select_db($database, $conn);
 
 $addQuery = mysql_query("INSERT INTO `$database`.`stuff` 
-(work, date2, day2, date1, day1, mobile, l_name, m_name, f_name, subject, stuff_id) 
+(slot2, date2, day2, slot1, date1, day1, mobile, l_name, m_name, f_name, subject, stuff_id) 
 VALUES 
-('áÇ' , '$date2', '$day2', '$date1', '$day1', '$mobile','$l_name','$m_name','$f_name', '$subject', NULL)",$conn);
+('áÇ' , '$date2', '$day2', 'áÇ', '$date1', '$day1', '$mobile','$l_name','$m_name','$f_name', '$subject', NULL)",$conn);
 
 if($addQuery){
 	?>
