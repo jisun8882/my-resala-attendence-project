@@ -1,5 +1,7 @@
 <?php
 session_start();
+if(isset($_SESSION['username']))
+  unset($_SESSION['username']);
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html><!-- InstanceBegin template="/Templates/Template.dwt.php" codeOutsideHTMLIsLocked="false" -->
@@ -7,6 +9,10 @@ session_start();
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1256">
 <!-- InstanceBeginEditable name="doctitle" -->
 <title>Welcome to Resala</title>
+<script type="text/javascript" src="assets/javascript/jquery.js"></script>
+<script type="text/javascript" src="assets/javascript/jquery.print.js"></script>
+<script type="text/javascript" src="assets/javascript/printSnippt.js"></script>
+
 <!-- InstanceEndEditable -->
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/navButton.css" />
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/main.css" />
@@ -37,20 +43,12 @@ session_start();
         <div class="contentDiv">
         	
             <!-- InstanceBeginEditable name="contentRegion" -->
-        		<?php
-                include 'assets/modules/unauthorized.php';
-                ?>
-                
-                <div class="back">
-                	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>
-                	<a href="groupOption.php"><img src="assets/images/back.png" /></a>
-                </div>
-                
-                <hr />
-                
-                <?php
+        		<div class="VoloptionsDiv">
+                    <h2>عرض الجدول</h2>
+                    <br />
+                    
+				<?php
 					$groupID = $_POST['group'];
-					$_SESSION['groupID'] = $groupID;
 					
 					$server = "localhost";
 					$username = "root";
@@ -65,23 +63,62 @@ session_start();
 					
 					mysql_select_db($database, $conn);
 					
-					$getTablesquery = mysql_query("SELECT name FROM `$database`.`group` 
+					$getGroupName = mysql_query("SELECT name FROM `$database`.`group`
 					WHERE group_id = '$groupID' ",$conn);
 					
-					while($row = mysql_fetch_array($getTablesquery)  ){
-						echo "<h2><u>"; 
-						echo $row['name'];
-						echo "</u></h2> <br />";
-						$_SESSION['Gname'] = $row['name'];
+					while($row2 = mysql_fetch_array($getGroupName) ){
+						echo $row2['name'];
+						
 					}
+					
+					$getScheduleQuery = mysql_query("SELECT * FROM schedule 
+							WHERE group_id = '$groupID' 
+							ORDER BY dayOrder,date ASC",$conn);
+					
+					echo "<p> </p>";
+					echo "<table border='1' class='volunteerTable'>";
+					echo "<tr>";
+					echo " <th>المدرس مستر/مس</th> <th>المعاد</th> <th>اليوم</th> <th>المادة</th>";
+					echo "</tr>";
+							
+					while($row = mysql_fetch_array($getScheduleQuery) ){
+						$getStuffInfo = mysql_query("SELECT f_name, m_name, l_name, subject 
+						FROM `$database`.`stuff`
+						WHERE stuff_id = '".$row['stuff_id']."' ",$conn);
+						
+						while($row3 = mysql_fetch_array($getStuffInfo) ){
+							echo "<tr>";
+							
+							echo "<td>";
+							echo $row3['f_name'] . " " . $row3['m_name'] . " " . $row3['l_name'];
+							echo "</td>";
+							
+							echo "<td>";
+							echo $row['date'];
+							echo "</td>";
+							
+							echo "<td>";
+							echo $row['day'];
+							echo "</td>";
+							
+							echo "<td>";
+							echo $row3['subject'];
+							echo "</td>";
+							
+							echo "</tr>";
+						}
+					}
+					
+					echo "</table>";
 					mysql_close();
 				?>
                 
-                <div class="optionsDiv">
-                    <a class="adminsOptionA" href="addGroup.php"><h3>إضافة طالب إلى مجموعة</h3></a>
-                    <a class="adminsOptionA" href="editGroup.php"><h3>عرض/حذف طالب من مجموعة</h3></a>
-                    <a class="adminsOptionA" href="truncateGroup.php"><h3>حذف الجميع</h3></a>
-				</div>
+                </div>
+                
+                <p>
+                	<input type="button" value="أطبع الجدول" class="PrintSch"/>
+                </p>
+                
         	<!-- InstanceEndEditable -->
         	
         </div>

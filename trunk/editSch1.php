@@ -16,11 +16,11 @@ session_start();
 
 <body>
 
-	<div class="mainWrapper">
+  <div class="mainWrapper">
 		
         <div class="bannerDiv">
         	<a href="index.php">
-            	<img src="assets/images/banner" class="bannerImage" alt="œ—Ê”  ﬁÊÌÂ «œÌ" />
+            	<img src="assets/images/banner.png" class="bannerImage" alt="œ—Ê”  ﬁÊÌÂ «œÌ" />
             </a>
         </div>
         
@@ -30,6 +30,7 @@ session_start();
         	<a href="volunteer.php" class="nav">„ ÿÊ⁄Ì‰</a>
         	<a href="report.php" class="nav">„·«ÕŸ«  ‘Â—Ì…</a>
         	<a href="strategy.php" class="nav">Œÿÿ ‘Â—Ì…</a>
+            <a href="schedule.php" class="nav">«·Ãœ«Ê·</a>
         	<a href="getDay.php" class="nav">«·€Ì«»</a>
         </div>
         
@@ -45,6 +46,110 @@ session_start();
                 </div>
                 
                 <hr />
+                
+                <div class='VoloptionsDivS'>
+                
+                	<h4>√Œ «— „ ÿÊ⁄</h4>
+                   <?php
+				   	$groupID = $_POST['groupID'];
+					$stuffID = $_POST['stuffID'];
+					$scheduleID = $_POST['schedID'];
+					$oldDate = $_POST['oldDate'];
+					$oldDay = $_POST['oldDay'];
+					
+					$_SESSION['scheduleID'] = $scheduleID;
+					$_SESSION['oldStuffIID'] = $stuffID;
+					$_SESSION['oldDate'] = $oldDate;
+					$_SESSION['oldDay'] = $oldDay;
+					
+					$server = "localhost";
+					$username = "root";
+					$password = "";
+					$database = "resala";
+					
+					$conn = mysql_connect($server, $username, $password);
+					if (!$conn) {die('Could not connect due to: ' . mysql_error());}
+					
+					mysql_query("SET NAMES cp1256");
+					mysql_query("set characer set cp1256");
+					
+					mysql_select_db($database, $conn);
+					
+					$getSubjectQuery = mysql_query("SELECT subject FROM `$database`.`stuff` 
+									WHERE stuff_id = '$stuffID' ",$conn);
+						
+					while($row = mysql_fetch_array($getSubjectQuery)  ){
+						$getALLStuff = mysql_query("SELECT * FROM `$database`.`stuff`
+						WHERE (slot1 = '·«' OR slot2 = '·«') 
+						AND 
+						subject = '".$row['subject']."' ", $conn);
+						
+						echo "<table border='1' class='volunteerTable'>";
+						echo "<tr>";
+						echo "<th>√Œ «—</th> <th>«·„⁄«œ «·À«‰Ï</th> <th>√Œ «—</th> <th>«·„⁄«œ «·«Ê·</th> <th>«·„Ê»Ì·</th> <th>«·«”„</th>";
+						echo "</tr>";
+					
+						while($row2 = mysql_fetch_array($getALLStuff)  ){
+							
+							if($row2['slot1'] == '‰⁄„' ){
+							$row2['day1'] = "";
+							$row2['date1'] = "€Ì— „ «Õ";
+						}
+					
+						if($row2['slot2'] == '‰⁄„' ){
+							$row2['day2'] = "";
+							$row2['date2'] = "€Ì— „ «Õ";
+						}
+						
+							echo "<tr>";
+							
+							echo "<td>";
+							echo "<form action='editSch2.php' method='post' name='submitstuffID'> ";
+							echo "<input name='stuffID' type='hidden' value='".$row2['stuff_id']."' />
+								  <input name='dateID' type='hidden' value='".$row2['date2']."' />
+								  <input name='dayID' type='hidden' value='".$row2['day2']."' />
+								  <input type='submit' value='√Œ «—' />
+								  </form>";
+							echo "</td>";
+							
+							echo "<td>";
+							echo $row2['date2'] . " " . $row2['day2'];
+							echo "</td>";
+							
+							echo "<td>";
+							echo "<form action='editSch2.php' method='post' name='submitstuffID'> ";
+							echo "<input name='stuffID' type='hidden' value='".$row2['stuff_id']."' />
+								  <input name='dateID' type='hidden' value='".$row2['date1']."' />
+								  <input name='dayID' type='hidden' value='".$row2['day1']."' />
+								  <input type='submit' value='√Œ «—' />
+								  </form>";
+							echo "</td>";
+							
+							echo "<td>";
+							echo $row2['date1'] . " " . $row2['day1'];
+							echo "</td>";
+							
+							echo "<td>";
+							echo $row2['mobile'];
+							echo "</td>";
+							
+							echo "<td>";
+							echo $row2['f_name'] . " " . $row2['m_name'] . " " .$row2['l_name'];
+							echo "</td>";
+							
+							echo "</tr>";
+							echo "</form>";
+							
+							echo "</tr>";
+							
+						}
+						echo "</table>";
+					}
+						mysql_error();
+					mysql_close($conn);
+				   ?>
+                   
+				</div>
         	<!-- InstanceEndEditable -->
         	
         </div>

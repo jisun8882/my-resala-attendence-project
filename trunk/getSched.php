@@ -18,11 +18,11 @@ if(isset($_SESSION['username']))
 
 <body>
 
-	<div class="mainWrapper">
+  <div class="mainWrapper">
 		
         <div class="bannerDiv">
         	<a href="index.php">
-            	<img src="assets/images/banner" class="bannerImage" alt="œ—Ê”  ﬁÊÌÂ «œÌ" />
+            	<img src="assets/images/banner.png" class="bannerImage" alt="œ—Ê”  ﬁÊÌÂ «œÌ" />
             </a>
         </div>
         
@@ -32,6 +32,7 @@ if(isset($_SESSION['username']))
         	<a href="volunteer.php" class="nav">„ ÿÊ⁄Ì‰</a>
         	<a href="report.php" class="nav">„·«ÕŸ«  ‘Â—Ì…</a>
         	<a href="strategy.php" class="nav">Œÿÿ ‘Â—Ì…</a>
+            <a href="schedule.php" class="nav">«·Ãœ«Ê·</a>
         	<a href="getDay.php" class="nav">«·€Ì«»</a>
         </div>
         
@@ -40,11 +41,11 @@ if(isset($_SESSION['username']))
             <!-- InstanceBeginEditable name="contentRegion" -->
         		<h2>«·€Ì«»</h2>
 				
+                <div class="VoloptionsDiv">
                 <?php
-					echo "<h3> «·ÌÊ„: <font style='color:#F00'>" . $_SESSION['theDay'] . "</font><br /> «· «—ÌŒ: ";
-					$day = $_SESSION['theDay'];
-					$_SESSION['theDate'] = $_POST['date2'];
-					echo "<font style='color:#F00'>" . $_SESSION['theDate'] ."</font></h3>";
+					$day = $_POST['days'];
+					echo "<h3> «·ÌÊ„: <font style='color:#F00'>".$day."</font>";
+					
 				?>
                 
                 <?
@@ -64,7 +65,8 @@ if(isset($_SESSION['username']))
 					$queryy = mysql_query("SELECT * FROM schedule LEFT JOIN stuff 
 					ON 
 					schedule.stuff_id = stuff.stuff_id
-					WHERE day = '$day' ",$conn);
+					WHERE day = '$day' 
+					ORDER BY date ASC",$conn);
 
 					echo "<table border='1'>";
 					
@@ -76,15 +78,16 @@ if(isset($_SESSION['username']))
 						echo "<tr>";
 						
 						echo "<td>";
-						echo "<form action='' method='post' name='submitAttend'> ";
+						echo "<form action='openAttend.php' method='post' name='submitAttend'> ";
 						echo "<input name='stuffID' type='hidden' value='".$row['stuff_id']."' />
 							<input name='groupID' type='hidden' value='".$row['group_id']."' />
 							<input name='scheduleID' type='hidden' value='".$row['schedule_id']."' />
 							<input type='submit' value='√› Õ' />";
+						echo "</form>";
 						echo "</td>";
 						
 						echo "<td>";
-						echo $row['day'];
+						echo $row['date'];
 						echo "</td>";
 						
 						echo "<td>";
@@ -112,6 +115,8 @@ if(isset($_SESSION['username']))
 					
 					mysql_close();
 				?>
+                </div>
+                
         	<!-- InstanceEndEditable -->
         	
         </div>

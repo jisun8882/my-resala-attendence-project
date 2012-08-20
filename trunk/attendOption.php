@@ -6,7 +6,7 @@ session_start();
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1256">
 <!-- InstanceBeginEditable name="doctitle" -->
-<title>Welcome to Resala</title>
+<title>دروس تقويه جمعية رسالة</title>
 <!-- InstanceEndEditable -->
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/navButton.css" />
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/main.css" />
@@ -40,18 +40,19 @@ session_start();
         		<?php
                 include 'assets/modules/unauthorized.php';
                 ?>
-                
                 <div class="back">
                 	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>
-                	<a href="groupOption.php"><img src="assets/images/back.png" /></a>
+                	<a href="adminOptions.php"><img src="assets/images/back.png" /></a>
                 </div>
                 
                 <hr />
                 
-                <?php
-					$groupID = $_POST['group'];
-					$_SESSION['groupID'] = $groupID;
-					
+                <div class="VoloptionsDiv">
+                	
+                    <h2>أنشاء ورقة غياب لجدول</h2>
+                    <br />
+                    
+				<?php
 					$server = "localhost";
 					$username = "root";
 					$password = "";
@@ -65,23 +66,62 @@ session_start();
 					
 					mysql_select_db($database, $conn);
 					
-					$getTablesquery = mysql_query("SELECT name FROM `$database`.`group` 
-					WHERE group_id = '$groupID' ",$conn);
+					$getAllSchedules = mysql_query("SELECT * FROM `$database`.`schedule`
+					LEFT JOIN stuff ON schedule.stuff_id = stuff.stuff_id
+					LEFT JOIN resala.group ON schedule.group_id = group.group_id
+					ORDER BY dayOrder ASC",$conn);
 					
-					while($row = mysql_fetch_array($getTablesquery)  ){
-						echo "<h2><u>"; 
+					echo "<table border='1'>";
+					echo "<tr>";
+					echo "<th>أنشاء غياب</th> <th>المعاد</th> 
+							<th>اليوم</th> <th>المتطوع</th> <th>المادة</th> <th>الصف</th>";
+					echo "</tr>";
+					while($row=mysql_fetch_array($getAllSchedules) ){
+						echo "<tr>";
+						
+						echo "<td>";
+						echo "<form action='createAttend.php' method='post' name='submitAtt'> ";
+						echo "<input name='stuffID' type='hidden' value='".$row['stuff_id']."' />
+							<input name='scheduleID' type='hidden' value='".$row['schedule_id']."' />
+							<input name='groupID' type='hidden' value='".$row['group_id']."' />
+							<input type='submit' value='أنشاء' />
+							</form>";
+						echo "</td>";
+						
+						echo "<td>";
+						echo $row['date'];
+						echo "</td>";
+						
+						echo "<td>";
+						echo $row['day'];
+						echo "</td>";
+						
+						echo "<td>";
+						echo $row['f_name'] . " " . $row['m_name'] . " " . $row['l_name'];
+						echo "</td>";
+						
+						echo "<td>";
+						echo $row['subject'];
+						echo "</td>";
+						
+						echo "<td>";
 						echo $row['name'];
-						echo "</u></h2> <br />";
-						$_SESSION['Gname'] = $row['name'];
+						echo "</td>";
+						
+						echo "</tr>";
+						
+						$insertQuery = mysql_query("INSERT INTO studentReport
+						(sr_id, student_id, group_id, schedule_id, comment, 1st_monthly, 
+							2nd_monthly, 3rd_monthly, 4th_monthly)
+						VALUES
+						(NULL, '".$row['student_id']."', '".$row['group_id']."', '".$row['schedule_id']."', 'NO', 'NO', 'NO', 'NO', 'No')", $conn);
 					}
+					
+					echo "</table>";
 					mysql_close();
 				?>
-                
-                <div class="optionsDiv">
-                    <a class="adminsOptionA" href="addGroup.php"><h3>إضافة طالب إلى مجموعة</h3></a>
-                    <a class="adminsOptionA" href="editGroup.php"><h3>عرض/حذف طالب من مجموعة</h3></a>
-                    <a class="adminsOptionA" href="truncateGroup.php"><h3>حذف الجميع</h3></a>
-				</div>
+                <h2><a href="SubAttStu.php"class="adminsOptionA" >أضافة طلاب فى وسط العام الدراسى</a></h2>
+                </div>
         	<!-- InstanceEndEditable -->
         	
         </div>

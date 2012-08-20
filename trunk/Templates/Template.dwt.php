@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1256">
 <!-- TemplateBeginEditable name="doctitle" -->
-<title>Welcome to Resala</title>
+<title>دروس تقويه جمعية رسالة</title>
 <!-- TemplateEndEditable -->
 <link rel="stylesheet" type="text/css" href="../assets/stylesheet/navButton.css" />
 <link rel="stylesheet" type="text/css" href="../assets/stylesheet/main.css" />
@@ -13,11 +13,11 @@
 
 <body>
 
-	<div class="mainWrapper">
+  <div class="mainWrapper">
 		
         <div class="bannerDiv">
         	<a href="../index.php">
-            	<img src="../assets/images/banner" class="bannerImage" alt="دروس تقويه ادي" />
+            	<img src="../assets/images/banner.png" class="bannerImage" alt="دروس تقويه ادي" />
             </a>
         </div>
         
@@ -27,6 +27,7 @@
         	<a href="volunteer.php" class="nav">متطوعين</a>
         	<a href="report.php" class="nav">ملاحظات شهرية</a>
         	<a href="strategy.php" class="nav">خطط شهرية</a>
+            <a href="schedule.php" class="nav">الجداول</a>
         	<a href="getDay.php" class="nav">الغياب</a>
         </div>
         
