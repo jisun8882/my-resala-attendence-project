@@ -16,11 +16,11 @@ session_start();
 
 <body>
 
-	<div class="mainWrapper">
+  <div class="mainWrapper">
 		
         <div class="bannerDiv">
         	<a href="index.php">
-            	<img src="assets/images/banner" class="bannerImage" alt="œ—Ê”  ﬁÊÌÂ «œÌ" />
+            	<img src="assets/images/banner.png" class="bannerImage" alt="œ—Ê”  ﬁÊÌÂ «œÌ" />
             </a>
         </div>
         
@@ -30,6 +30,7 @@ session_start();
         	<a href="volunteer.php" class="nav">„ ÿÊ⁄Ì‰</a>
         	<a href="report.php" class="nav">„·«ÕŸ«  ‘Â—Ì…</a>
         	<a href="strategy.php" class="nav">Œÿÿ ‘Â—Ì…</a>
+            <a href="schedule.php" class="nav">«·Ãœ«Ê·</a>
         	<a href="getDay.php" class="nav">«·€Ì«»</a>
         </div>
         
@@ -89,6 +90,8 @@ echo "<td>";
 echo "<form action='dropSch1.php' method='post' name='deleteSchedule'> ";
 echo "<input name='stuffID' type='hidden' value='".$row3['stuff_id']."' />
 		<input name='groupID' type='hidden' value='".$row2['group_id']."' />
+		<input name='oldDate' type='hidden' value='".$row['date']."' />
+		<input name='oldDay' type='hidden' value='".$row['day']."' />
 		<input name='schedID' type='hidden' value='".$row['schedule_id']."' />
 		<input type='submit' value='Õ–›' />";
 echo "</form>";
@@ -98,6 +101,8 @@ echo "<td>";
 echo "<form action='editSch1.php' method='post' name='deleteSchedule'> ";
 echo "<input name='stuffID' type='hidden' value='".$row3['stuff_id']."' />
 		<input name='groupID' type='hidden' value='".$row2['group_id']."' />
+		<input name='oldDate' type='hidden' value='".$row['date']."' />
+		<input name='oldDay' type='hidden' value='".$row['day']."' />
 		<input name='schedID' type='hidden' value='".$row['schedule_id']."' />
 		<input type='submit' value=' ⁄œÌ·' />";
 echo "</form>";

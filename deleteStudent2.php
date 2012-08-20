@@ -16,11 +16,11 @@ session_start();
 
 <body>
 
-	<div class="mainWrapper">
+  <div class="mainWrapper">
 		
         <div class="bannerDiv">
         	<a href="index.php">
-            	<img src="assets/images/banner" class="bannerImage" alt="œ—Ê”  ﬁÊÌÂ «œÌ" />
+            	<img src="assets/images/banner.png" class="bannerImage" alt="œ—Ê”  ﬁÊÌÂ «œÌ" />
             </a>
         </div>
         
@@ -30,6 +30,7 @@ session_start();
         	<a href="volunteer.php" class="nav">„ ÿÊ⁄Ì‰</a>
         	<a href="report.php" class="nav">„·«ÕŸ«  ‘Â—Ì…</a>
         	<a href="strategy.php" class="nav">Œÿÿ ‘Â—Ì…</a>
+            <a href="schedule.php" class="nav">«·Ãœ«Ê·</a>
         	<a href="getDay.php" class="nav">«·€Ì«»</a>
         </div>
         
@@ -58,6 +59,15 @@ session_start();
 					mysql_select_db($database, $conn);
 					
 					$deleteQuery = mysql_query("DELETE FROM `$database`.`student` 
+					WHERE student_id = '$studID' ",$conn);
+					
+					$deleteQuery1 = mysql_query("DELETE FROM `$database`.`studentReport` 
+					WHERE student_id = '$studID' ",$conn);
+					
+					$deleteQuery2 = mysql_query("DELETE FROM `$database`.`groupStudent` 
+					WHERE student_id = '$studID' ",$conn);
+					
+					$deleteQuery3 = mysql_query("DELETE FROM `$database`.`attend` 
 					WHERE student_id = '$studID' ",$conn);
 					
 					if($deleteQuery){

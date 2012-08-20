@@ -6,7 +6,7 @@ session_start();
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1256">
 <!-- InstanceBeginEditable name="doctitle" -->
-<title>Welcome to Resala</title>
+<title>دروس تقويه جمعية رسالة</title>
 <!-- InstanceEndEditable -->
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/navButton.css" />
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/main.css" />
@@ -41,36 +41,58 @@ session_start();
                 include 'assets/modules/unauthorized.php';
                 ?>
                 
-                <div class="back">
-                	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>  &nbsp;
-                	<a href="StrategyOption.php"><img src="assets/images/back.png" /></a>
-                </div>
-                
-                <hr />
-                
-                <div class="optionsDiv">
-                	<h4>أنشاء خطة شهرية جديدة</h4>
-                    <h4>: أخطار الشهر</h4>
-                    <form name="pickMonth" method="post" action="createStrategy1.php">
-                        <select name="month">
-                            <option>- أختار الشهر -</option>
-                            <option value="يناير">يناير</option>
-                            <option value="فبراير">فبراير</option>
-                            <option value="مارس">مارس</option>
-                            <option value="أبريل">أبريل</option>
-                            <option value="مايو">مايو</option>
-                            <option value="يونيو">يونيو</option>
-                            <option value="يوليو">يوليو</option>
-                            <option value="أغسطس">أغسطس</option>
-                            <option value="سبتمبر">سبتمبر</option>
-                            <option value="أكتوبر">أكتوبر</option>
-                            <option value="نوفمبر">نوفمبر</option>
-                            <option value="ديسمبر">ديسمبر</option>
-                        </select>
-                        <br />
-                        <input type="submit" value="أنشاء" />
-					</form>
-                </div>
+                <?php
+					$stuffID = $_POST['stuffID'];
+					$scheduleID = $_POST['scheduleID'];
+					$groupID = $_POST['groupID'];
+					
+					$server = "localhost";
+					$username = "root";
+					$password = "";
+					$database = "resala";
+					
+					$conn = mysql_connect($server, $username, $password);
+					if (!$conn) {die('Could not connect due to: ' . mysql_error());}
+					
+					mysql_query("SET NAMES cp1256");
+					mysql_query("set characer set cp1256");
+					
+					mysql_select_db($database, $conn);
+					
+					$getStudent = mysql_query("SELECT student_id FROM resala.groupStudent
+					WHERE group_id = '$groupID' ",$conn);
+					
+					while($row=mysql_fetch_array($getStudent) ){
+						
+						$myQuery = "INSERT INTO attend
+					(attend_id, schedule_id, group_id, stuff_id, student_id, percentage,currentClass)
+					VALUES
+					(NULL, '$scheduleID', '$groupID', '$stuffID', '".$row['student_id']."', '0', '0') ";
+						
+						mysql_query($myQuery, $conn);
+					 
+					}
+					
+					if($getStudent){
+						?>
+                        <script>
+							alert("تم أنشاء ورقة الغياب بنجاح");
+							window.location = "adminOptions.php";
+						</script>
+                        <?php	
+					}
+					
+					else{
+						?>
+                        <script>
+							alert("خطاً أعد المحاولة مره أخرى");
+							window.location = "adminOptions.php";
+						</script>
+                        <?php
+					}
+					mysql_error();
+					mysql_close();
+				?>
         	<!-- InstanceEndEditable -->
         	
         </div>

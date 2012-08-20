@@ -16,11 +16,11 @@ session_start();
 
 <body>
 
-	<div class="mainWrapper">
+  <div class="mainWrapper">
 		
         <div class="bannerDiv">
         	<a href="index.php">
-            	<img src="assets/images/banner" class="bannerImage" alt="œ—Ê”  ﬁÊÌÂ «œÌ" />
+            	<img src="assets/images/banner.png" class="bannerImage" alt="œ—Ê”  ﬁÊÌÂ «œÌ" />
             </a>
         </div>
         
@@ -30,6 +30,7 @@ session_start();
         	<a href="volunteer.php" class="nav">„ ÿÊ⁄Ì‰</a>
         	<a href="report.php" class="nav">„·«ÕŸ«  ‘Â—Ì…</a>
         	<a href="strategy.php" class="nav">Œÿÿ ‘Â—Ì…</a>
+            <a href="schedule.php" class="nav">«·Ãœ«Ê·</a>
         	<a href="getDay.php" class="nav">«·€Ì«»</a>
         </div>
         
@@ -41,13 +42,14 @@ session_start();
                 ?>
                     
                 <div class='optionsDiv'>
-                    <a class='adminsOptionA' href='studentOption.php'><h3>ÿ·«»</h3></a>
-                    <a class='adminsOptionA' href='volunteerOption.php'><h3>„ ÿÊ⁄Ì‰</h3></a>
-                    <a class='adminsOptionA' href='groupOption.php'><h3>„Ã„Ê⁄…</h3></a>
-                    <a class='adminsOptionA' href='scheduleOption.php'><h3>Ãœ«Ê·</h3></a>
-                    <a class='adminsOptionA' href='strategyOption.php'><h3>Œÿÿ ‘Â—Ì…</h3></a>
-                    <a class='adminsOptionA' href='reportOption.php'><h3>„·«ÕŸ«  ‘Â—Ì…</h3></a>
-                    <a class='adminsOptionA' href='otherOption.php'><h3>√‰‘ÿ… «·«Œ—Ï</h3></a>
+                    <a class='adminsOptionA' href='studentOption.php'><h3>«·ÿ·«»</h3></a>
+                    <a class='adminsOptionA' href='volunteerOption.php'><h3>«·„ ÿÊ⁄Ì‰</h3></a>
+                    <a class='adminsOptionA' href='groupOption.php'><h3>«·„Ã„Ê⁄« </h3></a>
+                    <a class='adminsOptionA' href='scheduleOption.php'><h3>«·Ãœ«Ê·</h3></a>
+                    <a class='adminsOptionA' href='attendOption.php'><h3>«·€Ì«»</h3></a>
+                    <a class='adminsOptionA' href='strategyOption.php'><h3>«·Œÿÿ «·‘Â—Ì…</h3></a>
+                    <a class='adminsOptionA' href='reportOption.php'><h3>«·„·«ÕŸ«  «·‘Â—Ì…</h3></a>
+                    <a class='adminsOptionA' href='otherOption.php'><h3>«·√‰‘ÿ… «·«Œ—Ï</h3></a>
 				</div>
 				
         	<!-- InstanceEndEditable -->

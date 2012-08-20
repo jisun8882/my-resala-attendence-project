@@ -23,11 +23,11 @@ if(isset($_SESSION['username']))
 
 <body>
 
-	<div class="mainWrapper">
+  <div class="mainWrapper">
 		
         <div class="bannerDiv">
         	<a href="index.php">
-            	<img src="assets/images/banner" class="bannerImage" alt="œ—Ê”  ﬁÊÌÂ «œÌ" />
+            	<img src="assets/images/banner.png" class="bannerImage" alt="œ—Ê”  ﬁÊÌÂ «œÌ" />
             </a>
         </div>
         
@@ -37,6 +37,7 @@ if(isset($_SESSION['username']))
         	<a href="volunteer.php" class="nav">„ ÿÊ⁄Ì‰</a>
         	<a href="report.php" class="nav">„·«ÕŸ«  ‘Â—Ì…</a>
         	<a href="strategy.php" class="nav">Œÿÿ ‘Â—Ì…</a>
+            <a href="schedule.php" class="nav">«·Ãœ«Ê·</a>
         	<a href="getDay.php" class="nav">«·€Ì«»</a>
         </div>
         
@@ -45,7 +46,7 @@ if(isset($_SESSION['username']))
             <!-- InstanceBeginEditable name="contentRegion" -->
         		<h2>«·€Ì«»</h2>
                 <?php
-					$_SESSION['theDay'] = $_GET['days'];
+					$_SESSION['theDay'] = $_POST['days'];
 					echo "<h2> ·ﬁœ √Œ —  ÌÊ„ <font style='color:#F00'>" . $_SESSION['theDay'] . "</font></h2>";	
 				?>
                 <h4>√Œ «— «· «—ÌŒ</h4>
@@ -66,10 +67,7 @@ if(isset($_SESSION['username']))
 							
                         ?>
                         
-                        
-                        <input type="button" name="button3" id="button3" value=" «ﬂÌœ «· «—ÌŒ" onClick="javascript:alert(this.form.date2.value);">
-    
-    					<input type="submit" name="submit" id="submit" value="⁄—÷ «·Õ’’" >
+    					<input type="submit" name="submit" id="submit" value="⁄—÷ «·Ãœ«Ê·" >
                     </form>
                    
 				</div>

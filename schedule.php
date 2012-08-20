@@ -1,5 +1,7 @@
 <?php
-session_start(); 
+session_start();
+if(isset($_SESSION['username']))
+  unset($_SESSION['username']);
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html><!-- InstanceBegin template="/Templates/Template.dwt.php" codeOutsideHTMLIsLocked="false" -->
@@ -37,55 +39,45 @@ session_start();
         <div class="contentDiv">
         	
             <!-- InstanceBeginEditable name="contentRegion" -->
-        		<?php
-                include 'assets/modules/unauthorized.php';
-                ?>
-				
-				<?php
-					$month = mysql_real_escape_string( $_POST['month'] );
-					$year = date('Y');
-				
-					$server = "localhost";
-					$username = "root";
-					$password = "";
-					$database = "resalastrategy";
-					
-					$conn = mysql_connect($server, $username, $password);
-					if (!$conn) {die('Could not connect due to: ' . mysql_error());}
-					
-					mysql_query("SET NAMES cp1256");
-					mysql_query("set characer set cp1256");
-					
-					mysql_select_db($database, $conn);
-					
-					$createQuery = mysql_query("CREATE TABLE `$database`.`$month$year` (
-						`status` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL ,
-						`date` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL ,
-						`day` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL ,
-						`body` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL ,
-						`strategy_id` INT( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY
-						) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_unicode_ci;",$conn);
-					
-					if($createQuery){
-						?>
-						<script>
-							alert(" „ √‰‘«¡ Œÿ… ‘Â—Ì… ÃœÌœ… ›«—€… »‰Ã«Õ ·‘Â— <?php echo $month. " ".$year ?>");
-							location.href = "otherOption.php";
-						</script>
-						<?php
-					}
-					else{
-						?>
-						<script>
-							alert("·ﬁœ √‰‘«¡  «·Œÿ… «·‘Â—Ì… ·‘Â— <?php echo $month." ".$year ?> „”»ﬁ«");
-							location.href = "otherOption.php";
-						</script>
-						<?php
-					
-					}
-					
-					mysql_close();
-				?>
+        		<div class="optionsDiv">
+                    <h3>√Œ «— „Ã„Ê⁄…</h3>
+                    
+                       <form action="schedule1.php" method="post" name="getGroup"> 
+                       
+                       <input type="submit" value="√Œ «—" />
+                        <select name="group">
+                            <option>- √Œ «— „Ã„Ê⁄… -</option>
+                            
+                            <?php
+								$server = "localhost";
+								$username = "root";
+								$password = "";
+								$database = "resala";
+								
+								$conn = mysql_connect($server, $username, $password);
+								if (!$conn) {die('Could not connect due to: ' . mysql_error());}
+								
+								mysql_query("SET NAMES cp1256");
+								mysql_query("set characer set cp1256");
+								
+								mysql_select_db($database, $conn);
+								
+								$getGroupQuery = mysql_query("SELECT * FROM `$database`.`group`",$conn);
+								while($row = mysql_fetch_array($getGroupQuery)  ){
+									
+									echo "<option value='".$row['group_id']."' >";
+									echo $row['name'];
+									//$_SESSION['groupID'] = $row['group_id'];
+									echo "</option>";
+									
+								};
+							
+							?>
+                        </select>
+                        
+					</form>
+                    
+				</div>
         	<!-- InstanceEndEditable -->
         	
         </div>

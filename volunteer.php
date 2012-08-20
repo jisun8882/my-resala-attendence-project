@@ -18,11 +18,11 @@ if(isset($_SESSION['username']))
 
 <body>
 
-	<div class="mainWrapper">
+  <div class="mainWrapper">
 		
         <div class="bannerDiv">
         	<a href="index.php">
-            	<img src="assets/images/banner" class="bannerImage" alt="œ—Ê”  ﬁÊÌÂ «œÌ" />
+            	<img src="assets/images/banner.png" class="bannerImage" alt="œ—Ê”  ﬁÊÌÂ «œÌ" />
             </a>
         </div>
         
@@ -32,6 +32,7 @@ if(isset($_SESSION['username']))
         	<a href="volunteer.php" class="nav">„ ÿÊ⁄Ì‰</a>
         	<a href="report.php" class="nav">„·«ÕŸ«  ‘Â—Ì…</a>
         	<a href="strategy.php" class="nav">Œÿÿ ‘Â—Ì…</a>
+            <a href="schedule.php" class="nav">«·Ãœ«Ê·</a>
         	<a href="getDay.php" class="nav">«·€Ì«»</a>
         </div>
         
@@ -54,12 +55,15 @@ if(isset($_SESSION['username']))
 					
 					mysql_select_db($database, $conn);
 					
-					$getVolquery = mysql_query("SELECT * FROM stuff WHERE work = '·«' ORDER BY subject ASC",$conn);
+					$getVolquery = mysql_query("SELECT * FROM `resala`.`stuff` 
+					WHERE slot1 = '·«' AND slot2 = '·«'
+					ORDER BY subject ASC",$conn);
 		
 					echo "<table border='1' class='volunteerTable'>";
 					echo "<tr>";
 					echo "<th>«·„⁄«œ «·À«‰Ï</th> <th>«·„⁄«œ «·«Ê·</th> <th>«·„Ê»Ì·</th> <th>«·«”„</th> <th>«·„«œ…</th>";
 					echo "</tr>";
+					
 					
 					while($row = mysql_fetch_array($getVolquery)  ){
 						

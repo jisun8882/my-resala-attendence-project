@@ -16,11 +16,11 @@ session_start();
 
 <body>
 
-	<div class="mainWrapper">
+  <div class="mainWrapper">
 		
         <div class="bannerDiv">
         	<a href="index.php">
-            	<img src="assets/images/banner" class="bannerImage" alt="œ—Ê”  ﬁÊÌÂ «œÌ" />
+            	<img src="assets/images/banner.png" class="bannerImage" alt="œ—Ê”  ﬁÊÌÂ «œÌ" />
             </a>
         </div>
         
@@ -30,6 +30,7 @@ session_start();
         	<a href="volunteer.php" class="nav">„ ÿÊ⁄Ì‰</a>
         	<a href="report.php" class="nav">„·«ÕŸ«  ‘Â—Ì…</a>
         	<a href="strategy.php" class="nav">Œÿÿ ‘Â—Ì…</a>
+            <a href="schedule.php" class="nav">«·Ãœ«Ê·</a>
         	<a href="getDay.php" class="nav">«·€Ì«»</a>
         </div>
         
@@ -54,7 +55,7 @@ session_start();
                     
                     mysql_select_db($database, $conn);
 					
-					$selectAllStuff = mysql_query("SELECT stuff_id FROM schedule",$conn);
+					$selectAllStuff = mysql_query("SELECT stuff_id FROM stuff",$conn);
 					while($row = mysql_fetch_array($selectAllStuff) ){
 							
 							$resetAllStuff = mysql_query("UPDATE `stuff`
@@ -69,6 +70,7 @@ session_start();
 								`stuff_id` INT( 5 ) NOT NULL ,
 								`group_id` INT( 5 ) NOT NULL , 
 								`day` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL ,
+								`dayOrder` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL ,
 								`date` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL ,
 								UNIQUE (`schedule_id`,`stuff_id`,`group_id`)
 								) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_unicode_ci;"

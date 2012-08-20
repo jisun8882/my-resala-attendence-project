@@ -1,12 +1,14 @@
 <?php
-session_start(); 
+session_start();
+if(isset($_SESSION['username']))
+  unset($_SESSION['username']); 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html><!-- InstanceBegin template="/Templates/Template.dwt.php" codeOutsideHTMLIsLocked="false" -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1256">
 <!-- InstanceBeginEditable name="doctitle" -->
-<title>Welcome to Resala</title>
+<title>دروس تقويه جمعية رسالة</title>
 <!-- InstanceEndEditable -->
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/navButton.css" />
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/main.css" />
@@ -38,17 +40,13 @@ session_start();
         	
             <!-- InstanceBeginEditable name="contentRegion" -->
         		<?php
-                include 'assets/modules/unauthorized.php';
-                ?>
-				
-				<?php
-					$month = mysql_real_escape_string( $_POST['month'] );
-					$year = date('Y');
-				
+					
+					$scheduleID = $_SESSION['currentSchedule'];
+					
 					$server = "localhost";
 					$username = "root";
 					$password = "";
-					$database = "resalastrategy";
+					$database = "resala";
 					
 					$conn = mysql_connect($server, $username, $password);
 					if (!$conn) {die('Could not connect due to: ' . mysql_error());}
@@ -58,32 +56,65 @@ session_start();
 					
 					mysql_select_db($database, $conn);
 					
-					$createQuery = mysql_query("CREATE TABLE `$database`.`$month$year` (
-						`status` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL ,
-						`date` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL ,
-						`day` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL ,
-						`body` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL ,
-						`strategy_id` INT( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY
-						) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_unicode_ci;",$conn);
+					$getClass = mysql_query("SELECT student_id,currentClass FROM attend
+							WHERE schedule_id = '$scheduleID' ", $conn);
+						while($rrow = mysql_fetch_array($getClass) ){
+							$rrow['currentClass']+=1;
+							mysql_query("UPDATE attend
+								SET currentClass = '".$rrow['currentClass']."'
+								WHERE schedule_id = '$scheduleID' ", $conn);	
+						}
 					
-					if($createQuery){
+					if (isset($_POST['sizes']))
+					{
+						$sizesArray = $_POST['sizes'];
+							foreach ($sizesArray as $key => $value)
+							{	
+						$getPercentClass = mysql_query("SELECT percentage FROM attend
+							WHERE student_id = '$value' AND schedule_id = '$scheduleID' ", $conn);
+						while($rr = mysql_fetch_array($getPercentClass) ){
+							$rr['percentage'] += 1;
+						$addAttendance = mysql_query("UPDATE `$database`.`attend` 
+							SET percentage = '".$rr['percentage']."'
+							WHERE student_id = '$value'
+							AND schedule_id = '$scheduleID' ",$conn);
+							}
+					}
+					
+					
+					if($addAttendance){
 						?>
-						<script>
-							alert("تم أنشاء خطة شهرية جديدة فارغة بنجاح لشهر <?php echo $month. " ".$year ?>");
-							location.href = "otherOption.php";
+                        <script>
+							alert("تم أدخال الغياب بنجاح");
+							window.location = "getDay.php";
 						</script>
-						<?php
+                        <?php
+					}
+					
+					else{
+						
+						?>
+                        <script>
+							alert("عفواً، حدث خطاً أعد المحاولة لاحقاً");
+							window.location = "getDay.php";
+						</script>
+                        <?php
+					}
+					
 					}
 					else{
+						$falseAttendance = mysql_query("UPDATE `$database`.`attend` 
+							SET currentClass = '$currentClass'
+							WHERE schedule_id = '$scheduleID' ",$conn);
 						?>
-						<script>
-							alert("لقد أنشاءت الخطة الشهرية لشهر <?php echo $month." ".$year ?> مسبقاً");
-							location.href = "otherOption.php";
+                        <script>
+							alert("تم حساب الحصة و لم يحضر أحد");
+							window.location = "getDay.php";
 						</script>
-						<?php
-					
+                        <?php
 					}
 					
+					mysql_error();
 					mysql_close();
 				?>
         	<!-- InstanceEndEditable -->

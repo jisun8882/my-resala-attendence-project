@@ -38,23 +38,20 @@ session_start();
         	
             <!-- InstanceBeginEditable name="contentRegion" -->
         		<?php
-                include 'assets/modules/unauthorized.php';
+                include 'assets/modules/unauthorized.php';				
                 ?>
-                
                 <div class="back">
                 	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>
                 	<a href="scheduleOption.php"><img src="assets/images/back.png" /></a>
                 </div>
                 
                 <hr />
-                
                 <?php
-					$groupID = $_SESSION['groupID'];
-					$groupName = $_SESSION['Gname'];
-					$_SESSION['subjectName'];
-					$date = $_POST['dateID'];
+                	$date = $_POST['dateID'];
 					$day = $_POST['dayID'];
 					$stuffID = $_POST['stuffID'];
+					
+					$scheduleID = $_SESSION['scheduleID'];
 					
 					$server = "localhost";
 					$username = "root";
@@ -68,6 +65,9 @@ session_start();
 					mysql_query("set characer set cp1256");
 					
 					mysql_select_db($database, $conn);
+					
+					$oldDate = $_SESSION['oldDate'];
+					$oldDay = $_SESSION['oldDay'];
 					
 					switch ($day)
 						{
@@ -95,17 +95,24 @@ session_start();
 						default:
 						  echo "error";
 						}
-						
-					$insertQuery = mysql_query("INSERT INTO `$database`.`schedule`
-					(schedule_id, stuff_id, group_id, day,dayOrder, date)
-					VALUES
-					(NULL, '$stuffID', '$groupID', '$day','$dayOrder' , '$date')",$conn);
+					
+					$resetOldStuff1 = mysql_query("UPDATE `$database`.`stuff`
+					SET slot1 = '·«' 
+					WHERE date1 = '$oldDate' AND day1 = '$oldDay' ",$conn);
+					
+					$resetOldStuff2 = mysql_query("UPDATE `$database`.`stuff`
+					SET slot2 = '·«' 
+					WHERE date2 = '$oldDate' AND day2 = '$oldDay' ",$conn);
+					
+					$insertQuery = mysql_query("UPDATE `$database`.`schedule`
+					SET stuff_id = '$stuffID', day = '$day', dayOrder='$dayOrder', date = '$date'
+					WHERE schedule_id = '$scheduleID' ",$conn);
 					
 					if($insertQuery){
 						?>
 						<script>
 							
-							alert(" „ √‰‘«¡ «·ÃœÊ· »‰Ã«Õ <?php echo $groupName ?>");
+							alert(" „  ⁄œÌ· «·ÃœÊ· »‰Ã«Õ");
 							location.href = "adminOptions.php";
 						</script>
 						<?php
@@ -133,7 +140,11 @@ session_start();
 					
 					$x = strcmp($currentDay2 ,$day);
 					$y = strcmp($currentDate2 ,$date);
-					if($x == '-5' and $y == '-5' ){
+					
+					echo $x;
+					echo "<br />";
+					echo $y;
+					if($x == '0' and $y == '0' ){
 						$updateStuffSlot2 = mysql_query("UPDATE `$database`.stuff
 							SET slot2 = '‰⁄„'
 							WHERE stuff_id = '$stuffID' ", $conn);
@@ -149,7 +160,6 @@ session_start();
 						echo mysql_error();
 					
 				?>
-                
         	<!-- InstanceEndEditable -->
         	
         </div>
