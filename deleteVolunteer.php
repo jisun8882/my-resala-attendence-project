@@ -69,7 +69,7 @@ session_start();
 		
 					echo "<table border='1' class='volunteerTable'>";
 					echo "<tr>";
-					echo "<th>Õ“›</th> <th>Ì⁄„·</th> <th>«·„⁄«œ «·À«‰Ï</th> <th>«·„⁄«œ «·«Ê·</th> <th>«·„Ê»Ì·</th> <th>«·«”„</th> <th>«·„«œ…</th>";
+					echo "<th>Õ“›</th> <th>Ì⁄„·</th> <th>«·„⁄«œ «·À«‰Ï</th> <th>Ì⁄„·</th> <th>«·„⁄«œ «·«Ê·</th> <th>«·„Ê»Ì·</th> <th>«·«”„</th> <th>«·„«œ…</th>";
 					echo "</tr>";
 					
 					while($row = mysql_fetch_array($getStudentquery)  ){
@@ -82,11 +82,15 @@ session_start();
 						echo "</td>";
 						
 						echo "<td>";
-						echo $row['work'];
+						echo $row['slot2'];
 						echo "</td>";
 						
 						echo "<td>";
 						echo $row['date2'] . " " . $row['day2'];
+						echo "</td>";
+						
+						echo "<td>";
+						echo $row['slot1'];
 						echo "</td>";
 						
 						echo "<td>";

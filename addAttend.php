@@ -103,9 +103,7 @@ if(isset($_SESSION['username']))
 					
 					}
 					else{
-						$falseAttendance = mysql_query("UPDATE `$database`.`attend` 
-							SET currentClass = '$currentClass'
-							WHERE schedule_id = '$scheduleID' ",$conn);
+						
 						?>
                         <script>
 							alert("╩у ═╙╟╚ ╟с═╒╔ ц су э═╓╤ ├═╧");

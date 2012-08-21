@@ -13,18 +13,6 @@ CREATE TABLE IF NOT EXISTS `resala`.`student` (
 `student_id` INT( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY
 ) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS  `resala`.`studentReport` (
-`sr_id` INT( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
-`student_id` INT( 5 ) NOT NULL ,
-`group_id` INT( 5 ) NOT NULL ,
-`schedule_id` INT( 5 ) NOT NULL ,
-`comment` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
-`1st_monthly` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
-`2nd_monthly` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
-`3rd_monthly` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
-`4th_monthly` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
-) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-
 CREATE TABLE IF NOT EXISTS `resala`.`stuff` (
 `slot2` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
 `date2` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
@@ -47,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `resala`.`stuffReport` (
 `report_id` INT( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY
 ) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
-CREATE TABLE  `resala`.`group` (
+CREATE TABLE IF NOT EXISTS `resala`.`group` (
 `name` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
 `group_id` INT( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY
 ) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_unicode_ci;
@@ -58,7 +46,7 @@ CREATE TABLE  `resala`.`groupStudent` (
 UNIQUE (`group_id` ,`student_id` )
 ) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
-CREATE TABLE  `resala`.`schedule` (
+CREATE TABLE IF NOT EXISTS `resala`.`schedule` (
 `schedule_id` INT( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 `stuff_id` INT( 5 ) NOT NULL ,
 `group_id` INT( 5 ) NOT NULL , 
@@ -68,7 +56,7 @@ CREATE TABLE  `resala`.`schedule` (
 UNIQUE (`schedule_id`, `stuff_id`,`group_id`)
 ) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
-CREATE TABLE  `resala`.`attend` (
+CREATE TABLE IF NOT EXISTS `resala`.`attend` (
 `attend_id` INT( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 `schedule_id` INT( 5 ) NOT NULL ,
 `group_id` INT( 5 ) NOT NULL ,
