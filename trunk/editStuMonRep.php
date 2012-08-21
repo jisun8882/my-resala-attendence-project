@@ -6,7 +6,7 @@ session_start();
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1256">
 <!-- InstanceBeginEditable name="doctitle" -->
-<title>Welcome to Resala</title>
+<title>دروس تقويه جمعية رسالة</title>
 <!-- InstanceEndEditable -->
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/navButton.css" />
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/main.css" />
@@ -43,15 +43,49 @@ session_start();
                 
                 <div class="back">
                 	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>
-                	<a href="reportOption.php"><img src="assets/images/back.png" /></a>
+                	<a href="studentReport.php"><img src="assets/images/back.png" /></a>
                 </div>
                 
                 <hr />
                 
                 <div class="optionsDiv">
-                    <a class="adminsOptionA" href="editStuMonRep.php"><h3>تعديل الملاحظات الشهرية</h3></a><br />
-                    <a class="adminsOptionA" href="deleteStuMonRep.php"><h3>حذف جميع الملاحظات الشهرية</h3></a>
-				</div>
+                    <h3>أختار مجموعة</h3>
+                    
+                       <form action="editStuMonRep1.php" method="post" name="getGroup"> 
+                       
+                       <input type="submit" value="أختار" />
+                        <select name="group">
+                            <option>- أختار مجموعة -</option>
+                            
+                            <?php
+								$server = "localhost";
+								$username = "root";
+								$password = "";
+								$database = "resala";
+								
+								$conn = mysql_connect($server, $username, $password);
+								if (!$conn) {die('Could not connect due to: ' . mysql_error());}
+								
+								mysql_query("SET NAMES cp1256");
+								mysql_query("set characer set cp1256");
+								
+								mysql_select_db($database, $conn);
+								
+								$getGroupQuery = mysql_query("SELECT * FROM `$database`.`group`",$conn);
+								while($row = mysql_fetch_array($getGroupQuery)  ){
+									
+									echo "<option value='".$row['group_id']."' >";
+									echo $row['name'];
+									echo "</option>";
+									
+								};
+							
+							?>
+                        </select>
+                        
+					</form>
+                    
+				</div>    
         	<!-- InstanceEndEditable -->
         	
         </div>

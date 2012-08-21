@@ -39,8 +39,44 @@ if(isset($_SESSION['username']))
         <div class="contentDiv">
         	
             <!-- InstanceBeginEditable name="contentRegion" -->
-        		Content goes here <br />
-            Sample content
+        		<div class="optionsDiv">
+                    <h3>√Œ «— „Ã„Ê⁄…</h3>
+                    
+                       <form action="StuMonRep.php" method="post" name="getGroup"> 
+                       
+                       <input type="submit" value="√Œ «—" />
+                        <select name="group">
+                            <option>- √Œ «— „Ã„Ê⁄… -</option>
+                            
+                            <?php
+								$server = "localhost";
+								$username = "root";
+								$password = "";
+								$database = "resala";
+								
+								$conn = mysql_connect($server, $username, $password);
+								if (!$conn) {die('Could not connect due to: ' . mysql_error());}
+								
+								mysql_query("SET NAMES cp1256");
+								mysql_query("set characer set cp1256");
+								
+								mysql_select_db($database, $conn);
+								
+								$getGroupQuery = mysql_query("SELECT * FROM `$database`.`group`",$conn);
+								while($row = mysql_fetch_array($getGroupQuery)  ){
+									
+									echo "<option value='".$row['group_id']."' >";
+									echo $row['name'];
+									echo "</option>";
+									
+								};
+							
+							?>
+                        </select>
+                        
+					</form>
+                    
+				</div>
         	<!-- InstanceEndEditable -->
         	
         </div>

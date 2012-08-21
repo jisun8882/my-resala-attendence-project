@@ -52,8 +52,9 @@ session_start();
 					$groupID = $_SESSION['groupID'];
 					$groupName = $_SESSION['Gname'];
 					$_SESSION['subjectName'];
-					$date = $_POST['dateID'];
-					$day = $_POST['dayID'];
+					echo $date = $_POST['dateID'];
+					echo $day = $_POST['dayID'];
+					echo "<br />";
 					$stuffID = $_POST['stuffID'];
 					
 					$server = "localhost";
@@ -101,12 +102,44 @@ session_start();
 					VALUES
 					(NULL, '$stuffID', '$groupID', '$day','$dayOrder' , '$date')",$conn);
 					
-					if($insertQuery){
+					$getTimes = mysql_query("SELECT * FROM stuff
+										WHERE stuff_id = '$stuffID'",$conn);
+					
+					while($row=mysql_fetch_array($getTimes) ){
+							$currentDay2 = $row['day2'];
+							$currentDate2 = $row['date2'];
+							
+							$currentDay1 = $row['day1'];
+							$currentDate1 = $row['date1'];
+					}
+					echo $currentDay2;
+					echo $currentDate2;
+					echo "<br />";
+					echo $x = strcmp($currentDay2 ,$day);
+					echo "<br />";
+					echo $y = strcmp($currentDate2 ,$date);
+					echo "<br />";
+					if($x == '0' and $y == '0' ){
+						$updateStuffSlot2 = mysql_query("UPDATE `$database`.stuff
+							SET slot2 = '‰⁄„'
+							WHERE stuff_id = '$stuffID' ", $conn);
+							if(!$updateStuffSlot2){echo mysql_error();}
+							echo "slot 2";
+					}
+					else{
+							$updateStuffSlot1 = mysql_query("UPDATE `$database`.stuff
+							SET slot1 = '‰⁄„'
+							WHERE stuff_id = '$stuffID' ", $conn);
+							if(!$updateStuffSlot1){echo mysql_error();}
+							echo "slot 1";
+						}
+						
+						if($insertQuery){
 						?>
 						<script>
 							
 							alert(" „ √‰‘«¡ «·ÃœÊ· »‰Ã«Õ <?php echo $groupName ?>");
-							location.href = "adminOptions.php";
+							location.href = "scheduleOption.php";
 						</script>
 						<?php
 					}
@@ -115,38 +148,14 @@ session_start();
 						?>
 						<script>
 							alert("Õ’· Œÿ√ «·—Ã«¡ √⁄œ «·⁄„·Ì…");
-							location.href = "adminOptions.php";
+							location.href = "scheduleOption.php";
 						</script>
 						<?php
 						
 					}
-					
-					$getFuck = mysql_query("SELECT * FROM stuff
-										WHERE stuff_id = '$stuffID'",$conn);
-					
-					while($row=mysql_fetch_array($getFuck) ){
-							$currentDay2 = $row['day2'];
-							$currentDay1 = $row['day1'];
-							$currentDate2 = $row['date2'];
-							$currentDate1 = $row['date1'];
-					}
-					
-					$x = strcmp($currentDay2 ,$day);
-					$y = strcmp($currentDate2 ,$date);
-					if($x == '-5' and $y == '-5' ){
-						$updateStuffSlot2 = mysql_query("UPDATE `$database`.stuff
-							SET slot2 = '‰⁄„'
-							WHERE stuff_id = '$stuffID' ", $conn);
-							if(!$updateStuffSlot2){echo mysql_error();}
-					}
-					else{
-							$updateStuffSlot1 = mysql_query("UPDATE `$database`.stuff
-							SET slot1 = '‰⁄„'
-							WHERE stuff_id = '$stuffID' ", $conn);
-							if(!$updateStuffSlot1){echo mysql_error();}
-						}
 						
 						echo mysql_error();
+						mysql_close();
 					
 				?>
                 

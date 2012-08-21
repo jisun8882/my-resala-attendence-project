@@ -6,7 +6,7 @@ session_start();
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1256">
 <!-- InstanceBeginEditable name="doctitle" -->
-<title>Welcome to Resala</title>
+<title>دروس تقويه جمعية رسالة</title>
 <!-- InstanceEndEditable -->
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/navButton.css" />
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/main.css" />
@@ -41,17 +41,49 @@ session_start();
                 include 'assets/modules/unauthorized.php';
                 ?>
                 
-                <div class="back">
-                	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>
-                	<a href="reportOption.php"><img src="assets/images/back.png" /></a>
-                </div>
-                
-                <hr />
-                
-                <div class="optionsDiv">
-                    <a class="adminsOptionA" href="editStuMonRep.php"><h3>تعديل الملاحظات الشهرية</h3></a><br />
-                    <a class="adminsOptionA" href="deleteStuMonRep.php"><h3>حذف جميع الملاحظات الشهرية</h3></a>
-				</div>
+                <?php
+					$server = "localhost";
+					$username = "root";
+					$password = "";
+					$database = "resala";
+					
+					$conn = mysql_connect($server, $username, $password);
+					if (!$conn) {die('Could not connect due to: ' . mysql_error());}
+					
+					mysql_query("SET NAMES cp1256");
+					mysql_query("set characer set cp1256");
+					
+					mysql_select_db($database, $conn);
+					
+					$deleteQuery = mysql_query("DROP TABLE attend", $conn);
+					$createQuery = mysql_query("CREATE TABLE IF NOT EXISTS `$database`.`attend` (
+						`attend_id` INT( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+						`schedule_id` INT( 5 ) NOT NULL ,
+						`group_id` INT( 5 ) NOT NULL ,
+						`stuff_id` INT( 5 ) NOT NULL ,
+						`student_id` INT( 5 ) NOT NULL ,
+						`percentage` INT( 5 ) NOT NULL ,
+						`currentClass` INT( 5 ) NOT NULL ,
+						UNIQUE (`schedule_id` , `group_id` , `stuff_id`, `student_id`)
+						) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_unicode_ci;", $conn);
+						
+					if($createQuery){
+						?>
+                        <script>
+							alert("تم حذف الملاحظات الشهرية");
+							window.location = "adminOptions.php";
+						</script>
+                        <?php
+					}
+					else{
+						?>
+                        <script>
+							alert("عفواً، حدث خطأ أعد المحاولة مرة آخرى");
+							window.location = "adminOptions.php";
+						</script>
+                        <?php
+					}
+				?>
         	<!-- InstanceEndEditable -->
         	
         </div>

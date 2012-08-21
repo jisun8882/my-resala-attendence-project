@@ -85,8 +85,13 @@ session_start();
 						}
 						
 					}
-				
+					
 				?>
+                
+                <script>
+					alert(" „ √÷«›… «·ÿ«·» ≈·Ï «·€Ì«»");
+					window.location = "adminOptions.php";
+				</script>
         	<!-- InstanceEndEditable -->
         	
         </div>

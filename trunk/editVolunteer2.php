@@ -43,7 +43,7 @@ session_start();
                 
                 <div class="back">
                 	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>  &nbsp;
-                	<a href="studentOption.php"><img src="assets/images/back.png" /></a>
+                	<a href="volunteerOption.php"><img src="assets/images/back.png" /></a>
                 </div>
                 
                 <hr />

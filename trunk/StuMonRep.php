@@ -1,12 +1,14 @@
 <?php
 session_start(); 
+if(isset($_SESSION['username']))
+  unset($_SESSION['username']);
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html><!-- InstanceBegin template="/Templates/Template.dwt.php" codeOutsideHTMLIsLocked="false" -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1256">
 <!-- InstanceBeginEditable name="doctitle" -->
-<title>Welcome to Resala</title>
+<title>دروس تقويه جمعية رسالة</title>
 <!-- InstanceEndEditable -->
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/navButton.css" />
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/main.css" />
@@ -37,27 +39,19 @@ session_start();
         <div class="contentDiv">
         	
             <!-- InstanceBeginEditable name="contentRegion" -->
-        		<?php
-                include 'assets/modules/unauthorized.php';
-                ?>
+        		
                 <div class="back">
-                	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>
-                	<a href="groupOption.php"><img src="assets/images/back.png" /></a>
+                	<a href="index.php"><img src="assets/images/home.png" /></a>
+                	<a href="report.php"><img src="assets/images/back.png" /></a>
                 </div>
                 
                 <hr />
-                <?php
-                	echo "<h2><u>"; 
-					echo $_SESSION['Gname'];
-					$_SESSION['groupID'];
-					$getIDint = intval($_SESSION['groupID']);
-					echo "</u></h2> <br />";
-				?>
                 
-                <div class="addStudentDataDiv">
-                	<h4>أضف طالب</h4>
-                    
-                    <?php
+                <div class="VoloptionsDiv">
+                	<?php
+                    $groupID = $_POST['group'];
+					$_SESSION['groupID'] = $groupID;
+					
 					$server = "localhost";
 					$username = "root";
 					$password = "";
@@ -71,65 +65,89 @@ session_start();
 					
 					mysql_select_db($database, $conn);
 					
-					if( $odd = $getIDint%2 )
-					{
-						// $odd == 1; the remainder of 25/2
-						$gender = "ولد";
-						//echo 'ODD Number!';
-					}
-					else
-					{
-						// $odd == 0; nothing remains if e.g. $number is 48 instead,
-						// as in 48 / 2
-						$gender = "بنت";
-						//echo 'EVEN Number!';
+					$getGroupName = mysql_query("SELECT name FROM `$database`.`group` 
+					WHERE group_id = '$groupID' ",$conn);
+					
+					while($row = mysql_fetch_array($getGroupName)  ){
+						echo "<h2><u>"; 
+						echo $row['name'];
+						echo "</u></h2> <br />";
+						$_SESSION['groupName'] = $row['name'];
 					}
 					
-					$getStudentquery = mysql_query("SELECT DISTINCT *
-						FROM student
-						WHERE gender = '$gender' AND (student_id) NOT IN
-						(SELECT student_id FROM groupStudent)",$conn);
-		
+					$getStudentGroupquery = mysql_query("SELECT * FROM groupStudent 
+					WHERE group_id = $groupID ",$conn);
+					
 					echo "<table border='1' class='volunteerTable'>";
-					echo "<tr>";
-					echo "<th>أضف</th><th>الموبيل</th> <th>الاسم</th>";
-					echo "</tr>";
 					
-					while($row = mysql_fetch_array($getStudentquery)  ){
+					while($row = mysql_fetch_array($getStudentGroupquery)  ){
+						
+						$getSchedule = mysql_query("SELECT ", $conn);
+						
+						$getStudentInfoQuery = mysql_query("SELECT * FROM student 
+						WHERE 
+						student_id = ".$row['student_id']." ",$conn);
+						
+						while($row = mysql_fetch_array($getStudentInfoQuery)  ){
+							
+						echo "<tr>";
+						echo "<th><font style= 'font-size:20pt'>الموبيل</font></th> <th><font style= 'font-size:20pt'>الاسم</font></th>";
+						echo "</tr>";
 						
 						echo "<tr>";
 						
+						/*
 						echo "<td>";
-						echo "<form action='addGroup2.php' method='post' name='submitStu2Grp'> ";
+						echo "<form action='editGroup2.php' method='post' name='submitStu2Grp'> ";
 						echo "<input name='studID' type='hidden' value='".$row['student_id']."' />
 						<input name='sizes[]' type='checkbox' value='".$row['student_id']."'>";
 						echo "</td>";
+						*/
 						
-						echo "<td>";
+						echo "<td><font style= 'font-size:20pt'>";
 						echo $row['mobile'];
-						echo "</td>";
+						echo "</font></td>";
 						
-						echo "<td>";
+						echo "<td><font style= 'font-size:20pt'>";
 						echo $row['f_name'] . " " . $row['m_name'] . " " .$row['l_name'];
-						echo "</td>";
+						echo "</font></td>";
 						
 						echo "</tr>";
 						
-					}
+						$getAttend = mysql_query("SELECT * FROM attend
+							LEFT JOIN stuff ON attend.stuff_id = stuff.stuff_id
+							WHERE student_id = '".$row['student_id']."' ", $conn);
+						
+						echo "<th>نسبه الحضور</th> <th>الماده</th>";
+						echo "</tr>";
+						
+						while($row2 = mysql_fetch_array($getAttend) ){
 					
-					echo"<tr>";
-					echo"<td>";
-					echo "<input type='submit' value='أضف'";
-					echo "</tr>";
-					echo "</tr>";
+							echo "<tr>";
+							
+							echo "<td>";
+							echo $row2['percentage']."/".$row2['currentClass'];
+							echo "</td>";
+							
+							echo "<td>";
+							echo $row2['subject'];
+							echo "</td>";
+							
+							echo "</tr>";
+						}
+						
+						echo "<tr><td colspan='2'> <hr /> </td></tr>";
+						
+						}
+					}
 					
 					echo "</form>";
 						
 					echo "</table>";
 					
 					mysql_close();
-				
-				?>
+					
+					?>
                 </div>
         	<!-- InstanceEndEditable -->
         	
