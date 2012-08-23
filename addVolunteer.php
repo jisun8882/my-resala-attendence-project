@@ -10,6 +10,9 @@ session_start();
 <!-- InstanceEndEditable -->
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/navButton.css" />
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/main.css" />
+<link href="assets/stylesheet/bootstrap.css" rel="stylesheet">
+
+<script language="javascript" src="assets/javascript/jquery.js" ></script>
 <!-- InstanceBeginEditable name="head" -->
 <!-- InstanceEndEditable -->
 </head>
@@ -25,13 +28,13 @@ session_start();
         </div>
         
         <div class="navDiv">
-        	<a href="admin.php" class="nav">«·œŒÊ·</a>
-        	<a href="other.php" class="nav">√‰‘ÿ… √Œ—Ï</a>
-        	<a href="volunteer.php" class="nav">„ ÿÊ⁄Ì‰</a>
-        	<a href="report.php" class="nav">„·«ÕŸ«  ‘Â—Ì…</a>
-        	<a href="strategy.php" class="nav">Œÿÿ ‘Â—Ì…</a>
-            <a href="schedule.php" class="nav">«·Ãœ«Ê·</a>
-        	<a href="getDay.php" class="nav">«·€Ì«»</a>
+        	<a href="admin.php" class="navButton">«·œŒÊ·</a>
+        	<a href="other.php" class="navButton">√‰‘ÿ… √Œ—Ï</a>
+        	<a href="volunteer.php" class="navButton">„ ÿÊ⁄Ì‰</a>
+        	<a href="report.php" class="navButton">„·«ÕŸ«  ‘Â—Ì…</a>
+        	<a href="strategy.php" class="navButton">Œÿÿ ‘Â—Ì…</a>
+            <a href="schedule.php" class="navButton">«·Ãœ«Ê·</a>
+        	<a href="getDay.php" class="navButton">«·€Ì«»</a>
         </div>
         
         <div class="contentDiv">
@@ -48,120 +51,107 @@ session_start();
                 
                 <hr />
                 
-                <div class="VoloptionsDiv">
+                <div class="optionsDiv">
                 	<h4>≈÷«›… „ ÿÊ⁄ ÃœÌœ</h4>
                     <h5>⁄·«„… (*)  ⁄‰Ï »Ì«‰«  „ÿ·Ê»… Ê „Â„Â</h5>
                         
 					<hr />
-                    <p>
+                    
                         
-                        <form action="addVolunteerSuccess.php" method="post">
-                            <table width="750px" border="0">
-                                <tr>
-                                	<td> </td>
-                                    <td>(*)<input name="l_name" type="text" size="20" autocomplete="off">: «·«”„ «·«ŒÌ—</td>
-                                    <td><input name="m_name" type="text" size="20" autocomplete="off">: «·«”„ «·«Ê”ÿ</td>
-                                    <td></td>
-                                    <td>(*)<input name="f_name" type="text" size="20" autocomplete="off">: «·«”„ «·«Ê·</td>
-                                    
-                                </tr>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                	<td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>(*)<select name="subject">
-                                    <option value="-·„  œŒ· „«œÂ">- √Œ «— «·„«œ… „‰ «·ﬁ«∆„… -</option>
-                                    <option value="≈‰Ã·Ì“Ï">≈‰Ã·Ì“Ï</option>
-                                    <option value="⁄—»Ï">⁄—»Ï</option>
-                                    <option value="œ—«”« ">- œ—«”«  -</option>
-                                    <option value=" «—ÌŒ"> «—ÌŒ</option>
-                                    <option value="Ã€—«›Ì«">Ã€—«›Ì«</option>
-                                    <option value="⁄·Ê„">- ⁄·Ê„ -</option>
-                                    <option value="ﬂÌ„Ì«¡">ﬂÌ„Ì«¡</option>
-                                    <option value="›Ì“Ì«¡">›Ì“Ì«¡</option>
-                                    <option value="√ÕÌ«¡">√ÕÌ«¡</option>
-                                    <option value="—Ì«÷Ì« ">- —Ì«÷Ì«  -</option>
-                                    <option value="Ã»—">Ã»—</option>
-                                    <option value="Â‰œ”Â">Â‰œ”Â</option>
-                                    </select>: «·„«œÂ
-                                    </td>
-                                    <td>&nbsp;</td>
-                                    <td>(*)<input name="mobile" type="text" size="15" autocomplete="off">: «·„Ê»Ì·</td>
-                                    
-                                </tr>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>«·„Ê«⁄Ìœ «·„ «Õ…</td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                    <td>„À«· 3 - 1</td>
-                                    <td>(*)<input name="date1" type="text" size="15" autocomplete="off">: «·”«⁄…</td>
-                                    <td>&nbsp;</td>
-                                     <td>(*)
-                                    <select name="day1">
-                                    	<option>- √Œ «— «·ÌÊ„ -</option>
-                                        <option value="«·”» ">«·”» </option>
-                                        <option value="«·«Õœ">«·«Õœ</option>
-                                        <option value="«·«À‰Ì‰">«·«À‰Ì‰</option>
-                                        <option value="«·À·«À«¡">«·À·«À«¡</option>
-                                        <option value="«·«—»⁄«¡">«·«—»⁄«¡</option>
-                                        <option value="«·Œ„Ì”">«·Œ„Ì”</option>
-                                        <option value="«·Ã„⁄…">«·Ã„⁄…</option>
-                                    </select>: «·ÌÊ„</td>
-                                </tr>
-                                <tr>
-                                	<td>&nbsp;</td>
-                                    <td>„À«· 3 - 1</td>
-                                    <td>(*)<input name="date2" type="text" size="15" autocomplete="off">: «·”«⁄…</td>
-                                    <td>&nbsp;</td>
-                                    <td>(*)
-                                    <select name="day2">
-                                    	<option>- √Œ «— «·ÌÊ„ -</option>
-                                        <option value="«·”» ">«·”» </option>
-                                        <option value="«·«Õœ">«·«Õœ</option>
-                                        <option value="«·«À‰Ì‰">«·«À‰Ì‰</option>
-                                        <option value="«·À·«À«¡">«·À·«À«¡</option>
-                                        <option value="«·«—»⁄«¡">«·«—»⁄«¡</option>
-                                        <option value="«·Œ„Ì”">«·Œ„Ì”</option>
-                                        <option value="«·Ã„⁄…">«·Ã„⁄…</option>
-                                    </select>: «·ÌÊ„</td>
-                                    
-                                </tr>
-                                <tr>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                	<td><input name="submit" type="submit" value="√œŒ·"></td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                </table>
-                        </form>
-					</p>
-                   
+<form action="addVolunteerSuccess.php" method="post">
+    <table width="auto" border="0">
+        <tr>
+            <td>(*)<input name="f_name" type="text" size="20" autocomplete="off" 
+            class="input-small search-query" placeholder="... «·«”„ «·«Ê·" style="text-align:right" /></td>
+        </tr>
+        
+        <tr>
+            <td><input name="m_name" type="text" size="20" autocomplete="off"
+            class="input-small search-query" placeholder="... «·«”„ «·«Ê”ÿ" style="text-align:right" /></td>
+        </tr>
+        <tr>    
+            <td>(*)<input name="l_name" type="text" size="20" autocomplete="off"
+            class="input-small search-query" placeholder="... «·«”„ «·«ŒÌ—" style="text-align:right" /></td>
+        </tr>
+        <tr>
+            <td>(*)<select name="subject" class="input-medium" >
+            <option value="-·„  œŒ· „«œÂ">- √Œ «— «·„«œ… „‰ «·ﬁ«∆„… -</option>
+            <option value="≈‰Ã·Ì“Ï">≈‰Ã·Ì“Ï</option>
+            <option value="⁄—»Ï">⁄—»Ï</option>
+            <option value="œ—«”« ">- œ—«”«  -</option>
+            <option value=" «—ÌŒ"> «—ÌŒ</option>
+            <option value="Ã€—«›Ì«">Ã€—«›Ì«</option>
+            <option value="⁄·Ê„">- ⁄·Ê„ -</option>
+            <option value="ﬂÌ„Ì«¡">ﬂÌ„Ì«¡</option>
+            <option value="›Ì“Ì«¡">›Ì“Ì«¡</option>
+            <option value="√ÕÌ«¡">√ÕÌ«¡</option>
+            <option value="—Ì«÷Ì« ">- —Ì«÷Ì«  -</option>
+            <option value="Ã»—">Ã»—</option>
+            <option value="Â‰œ”Â">Â‰œ”Â</option>
+            </select>
+            </td>
+         </tr>
+           
+         <tr>
+            <td>(*)<input name="mobile" type="text" size="15" autocomplete="off"
+            class="input-small search-query" placeholder="... «·„Ê»Ì·" style="text-align:right" /></td>
+
+        </tr>
+        
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+        
+        <tr>
+            <td>«·„Ê«⁄Ìœ «·„ «Õ…</td>
+        </tr>
+        <tr>
+            <td>(„À«· 3 - 1*)<input name="date1" type="text" size="15" autocomplete="off"
+            class="input-mini search-query" placeholder="... «·”«⁄…" style="text-align:right" /></td>
+        </tr>
+        <tr>
+             <td>(*)
+            <select name="day1" class="input-small" >
+                <option>- √Œ «— «·ÌÊ„ -</option>
+                <option value="«·”» ">«·”» </option>
+                <option value="«·«Õœ">«·«Õœ</option>
+                <option value="«·«À‰Ì‰">«·«À‰Ì‰</option>
+                <option value="«·À·«À«¡">«·À·«À«¡</option>
+                <option value="«·«—»⁄«¡">«·«—»⁄«¡</option>
+                <option value="«·Œ„Ì”">«·Œ„Ì”</option>
+                <option value="«·Ã„⁄…">«·Ã„⁄…</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td>(„À«· 3 - 1*)<input name="date2" type="text" size="15" autocomplete="off"
+            class="input-mini search-query" placeholder="... «·”«⁄…" style="text-align:right" /></td>
+        </tr>
+        
+        <tr>
+            <td>(*)
+            <select name="day2" class="input-small" >
+                <option>- √Œ «— «·ÌÊ„ -</option>
+                <option value="«·”» ">«·”» </option>
+                <option value="«·«Õœ">«·«Õœ</option>
+                <option value="«·«À‰Ì‰">«·«À‰Ì‰</option>
+                <option value="«·À·«À«¡">«·À·«À«¡</option>
+                <option value="«·«—»⁄«¡">«·«—»⁄«¡</option>
+                <option value="«·Œ„Ì”">«·Œ„Ì”</option>
+                <option value="«·Ã„⁄…">«·Ã„⁄…</option>
+            </select></td>
+            
+        </tr>
+        <tr>
+            
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td><input name="submit" class="btn btn-primary span2" type="submit" value="√œŒ·"></td>
+            
+        </tr>
+        </table>
+</form>
+
                 </div>
                 
         	<!-- InstanceEndEditable -->

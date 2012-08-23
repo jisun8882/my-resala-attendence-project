@@ -12,6 +12,9 @@ if(isset($_SESSION['username']))
 <!-- InstanceEndEditable -->
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/navButton.css" />
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/main.css" />
+<link href="assets/stylesheet/bootstrap.css" rel="stylesheet">
+
+<script language="javascript" src="assets/javascript/jquery.js" ></script>
 <!-- InstanceBeginEditable name="head" -->
 <!-- InstanceEndEditable -->
 </head>
@@ -27,13 +30,13 @@ if(isset($_SESSION['username']))
         </div>
         
         <div class="navDiv">
-        	<a href="admin.php" class="nav">«·œŒÊ·</a>
-        	<a href="other.php" class="nav">√‰‘ÿ… √Œ—Ï</a>
-        	<a href="volunteer.php" class="nav">„ ÿÊ⁄Ì‰</a>
-        	<a href="report.php" class="nav">„·«ÕŸ«  ‘Â—Ì…</a>
-        	<a href="strategy.php" class="nav">Œÿÿ ‘Â—Ì…</a>
-            <a href="schedule.php" class="nav">«·Ãœ«Ê·</a>
-        	<a href="getDay.php" class="nav">«·€Ì«»</a>
+        	<a href="admin.php" class="navButton">«·œŒÊ·</a>
+        	<a href="other.php" class="navButton">√‰‘ÿ… √Œ—Ï</a>
+        	<a href="volunteer.php" class="navButton">„ ÿÊ⁄Ì‰</a>
+        	<a href="report.php" class="navButton">„·«ÕŸ«  ‘Â—Ì…</a>
+        	<a href="strategy.php" class="navButton">Œÿÿ ‘Â—Ì…</a>
+            <a href="schedule.php" class="navButton">«·Ãœ«Ê·</a>
+        	<a href="getDay.php" class="navButton">«·€Ì«»</a>
         </div>
         
         <div class="contentDiv">
@@ -42,26 +45,16 @@ if(isset($_SESSION['username']))
         		<h2>«·€Ì«»</h2>
 				<h3>√Œ «— «·ÌÊ„</h3>
                 <form action="getSched.php" method="post" name="day">
-               	  <p class="getDayP">
+               	  
                 	  <label>«·”»  <input type="radio" name="days" value="«·”» " id="days_0"></label>
-                	  <br>
                 	  <label>  «·«Õœ <input type="radio" name="days" value="«·«Õœ" id="days_1"></label>
-                	  <br>
                       <label>«·«À‰Ì‰ <input type="radio" name="days" value="«·«À‰Ì‰" id="days_2"></label>
-                	  <br>
                 	  <label>«·À·«À«¡ <input type="radio" name="days" value="«·À·«À«¡" id="days_3"></label>
-                	  <br>
                       <label>«·«—»⁄«¡ <input type="radio" name="days" value="«·«—»⁄«¡" id="days_4"></label>
-                	  <br>
                 	  <label>«·Œ„Ì” <input type="radio" name="days" value="«·Œ„Ì”" id="days_5"></label>
-                	  <br>
                       <label>«·Ã„⁄… <input type="radio" name="days" value="«·Ã„⁄…" id="days_6"></label>
-                	  <br />
-                      <P> 
-                      </P>
-                      
-                      <input type="submit" value="√Œ «—" />
-              	  </p>
+                      <input type="submit" class='btn btn-inverse' value="√Œ «—" />
+              	  
                 </form>
        	  <!-- InstanceEndEditable -->
         	

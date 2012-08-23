@@ -29,9 +29,9 @@ CREATE TABLE IF NOT EXISTS `resala`.`stuff` (
 ) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS `resala`.`stuffReport` (
-`comment` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL ,
-`month` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL ,
-`stuff_id` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL ,
+`schedule_id` INT( 5 ) NOT NULL ,
+`group_id` INT( 5 ) NOT NULL ,
+`stuff_id` INT( 5 ) NOT NULL ,
 `report_id` INT( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY
 ) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
@@ -53,6 +53,7 @@ CREATE TABLE IF NOT EXISTS `resala`.`schedule` (
 `day` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL ,
 `dayOrder` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL ,
 `date` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL ,
+`hasAttend` INT( 5 ) NOT NULL ,
 UNIQUE (`schedule_id`, `stuff_id`,`group_id`)
 ) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
@@ -65,4 +66,13 @@ CREATE TABLE IF NOT EXISTS `resala`.`attend` (
 `percentage` INT( 5 ) NOT NULL ,
 `currentClass` INT( 5 ) NOT NULL ,
 UNIQUE (`schedule_id` , `group_id` , `stuff_id`, `student_id`)
+) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+CREATE TABLE  `resala`.`studentComments` (
+`comment_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`student_id` INT NOT NULL ,
+`group_id` INT NOT NULL ,
+`schedule_id` INT NOT NULL ,
+`stuff_id` INT NOT NULL ,
+`comment` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_unicode_ci;

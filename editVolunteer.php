@@ -10,6 +10,9 @@ session_start();
 <!-- InstanceEndEditable -->
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/navButton.css" />
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/main.css" />
+<link href="assets/stylesheet/bootstrap.css" rel="stylesheet">
+
+<script language="javascript" src="assets/javascript/jquery.js" ></script>
 <!-- InstanceBeginEditable name="head" -->
 <!-- InstanceEndEditable -->
 </head>
@@ -25,13 +28,13 @@ session_start();
         </div>
         
         <div class="navDiv">
-        	<a href="admin.php" class="nav">ÇבÏÎזב</a>
-        	<a href="other.php" class="nav">ÃהÔØÉ ÃÎÑל</a>
-        	<a href="volunteer.php" class="nav">דÊØזÚםה</a>
-        	<a href="report.php" class="nav">דבÇÍÙÇÊ ÔוÑםÉ</a>
-        	<a href="strategy.php" class="nav">ÎØØ ÔוÑםÉ</a>
-            <a href="schedule.php" class="nav">ÇבÌÏÇזב</a>
-        	<a href="getDay.php" class="nav">ÇבÛםÇÈ</a>
+        	<a href="admin.php" class="navButton">ÇבÏÎזב</a>
+        	<a href="other.php" class="navButton">ÃהÔØÉ ÃÎÑל</a>
+        	<a href="volunteer.php" class="navButton">דÊØזÚםה</a>
+        	<a href="report.php" class="navButton">דבÇÍÙÇÊ ÔוÑםÉ</a>
+        	<a href="strategy.php" class="navButton">ÎØØ ÔוÑםÉ</a>
+            <a href="schedule.php" class="navButton">ÇבÌÏÇזב</a>
+        	<a href="getDay.php" class="navButton">ÇבÛםÇÈ</a>
         </div>
         
         <div class="contentDiv">
@@ -48,7 +51,7 @@ session_start();
                 
                 <hr />
                 
-                <div class="VoloptionsDivS">
+                <div class="VoloptionsDiv">
                 	<h4>ÅÈÍË Úה דÊØזÚ</h4>
                     
                     <?php
@@ -67,7 +70,7 @@ session_start();
 					
 					$getStudentquery = mysql_query("SELECT * FROM stuff ORDER BY subject ASC",$conn);
 		
-					echo "<table border='1' class='volunteerTable'>";
+					echo "<table class='table table table-hover  table-condensed' >";
 					echo "<tr>";
 					echo "<th>ÊÚÏםב</th> <th>ÇבדÚÇÏ ÇבËÇהל</th> <th>ÇבדÚÇÏ ÇבÇזב</th> <th>ÇבדזÈםב</th> <th>ÇבÇÓד</th> <th>ÇבדÇÏÉ</th>";
 					echo "</tr>";
@@ -78,7 +81,8 @@ session_start();
 						
 						echo "<td>";
 						echo "<form action='editVolunteer2.php' method='post' name='submitStudID'> ";
-						echo "<input name='stuffID' type='hidden' value='".$row['stuff_id']."' /><input type='submit' value='ÚÏב' />";
+						echo "<input name='stuffID' type='hidden' value='".$row['stuff_id']."' />
+						<input type='submit' class='btn' value='ÚÏב' />";
 						echo "</td>";
 						
 						echo "<td>";

@@ -52,9 +52,15 @@ session_start();
                 <hr />
                 
                 <div class="VoloptionsDiv">
-                	<?php
-                    $groupID = $_POST['group'];
-					$_SESSION['groupID'] = $groupID;
+                	<h3>«·„·ÕÊŸ…</h3>
+                <?php
+					$getSub = $_POST['getSubject'];
+					$stuffScheduleID =  (explode(" ",$getSub));
+					
+					$scheduleID = $stuffScheduleID[1];
+					$groupID = $stuffScheduleID[2];
+					$stuffID = $stuffScheduleID[0];
+					$studID = $_SESSION['studID'];
 					
 					$server = "localhost";
 					$username = "root";
@@ -69,103 +75,70 @@ session_start();
 					
 					mysql_select_db($database, $conn);
 					
-					$getGroupName = mysql_query("SELECT name FROM `$database`.`group` 
-					WHERE group_id = '$groupID' ",$conn);
-					
-					while($row = mysql_fetch_array($getGroupName)  ){
-						echo "<h2><u>"; 
-						echo $row['name'];
-						echo "</u></h2> <br />";
-						$_SESSION['groupName'] = $row['name'];
-					}
-					
-					$getStudentGroupquery = mysql_query("SELECT * FROM groupStudent 
-					WHERE group_id = $groupID ",$conn);
-					
-					echo "<table class='table table-hover table-condensed' >";
-					
-					while($row = mysql_fetch_array($getStudentGroupquery)  ){
+					$getInfo = mysql_query("SELECT * FROM attend
+						WHERE student_id = '$studID'
+						AND schedule_id = '$scheduleID'
+						AND stuff_id = '$stuffID'
+						AND group_id = '$groupID' ", $conn);
 						
-						$getStudentInfoQuery = mysql_query("SELECT * FROM student 
-						WHERE 
-						student_id = ".$row['student_id']." ",$conn);
+					echo "<form name='commentData' method='post' action='addComment2.php' >";
+					while($row = mysql_fetch_array($getInfo) ){
 						
-						while($row = mysql_fetch_array($getStudentInfoQuery)  ){
-							
-						echo "<tr>";
-						echo "<th>√÷› „·ÕÊŸ…</th> <th><font style= 'font-size:20pt'>«·„Ê»Ì·</font></th> <th><font style= 'font-size:20pt'>«·«”„</font></th>";
-						echo "</tr>";
-						
-						echo "<tr>";
-						
-						echo "<td>";
-						echo "<form name='addDetail' method='post' action='addComment.php' >";
-						echo "<input type='hidden' name ='studID' value='".$row['student_id']."' />";
-						echo "<input type='submit' class='btn' value='√÷›' />";
-						echo "</form>";
-						echo "</td>";
-						
-						echo "<td><font style= 'font-size:20pt'>";
-						echo $row['mobile'];
-						echo "</font></td>";
-						
-						echo "<td><font style= 'font-size:20pt'>";
-						echo $row['f_name'] . " " . $row['m_name'] . " " .$row['l_name'];
-						echo "</font></td>";
-						
-						echo "</tr>";
-						
-						$getAttend = mysql_query("SELECT * FROM attend
-							LEFT JOIN stuff ON attend.stuff_id = stuff.stuff_id
+						$getStudentName = mysql_query("SELECT * FROM student
 							WHERE student_id = '".$row['student_id']."' ", $conn);
-						
-						echo "<th>«·„·«ÕŸ« </th> <th>‰”»Â «·Õ÷Ê—</th> <th>«·„«œÂ</th>";
-						echo "</tr>";
-						
-						while($row2 = mysql_fetch_array($getAttend) ){
-					
-							echo "<tr>";
-							
-							$getComments = mysql_query("SELECT * FROM studentComments
-							WHERE student_id  = '".$row['student_id']."' 
-							AND schedule_id = '".$row2['schedule_id']."'
-							AND stuff_id = '".$row2['stuff_id']."' ", $conn);
-							
-							echo "<td> </td>";
-							
-							
-							echo "<td>";
-							echo $row2['percentage']."/".$row2['currentClass'];
-							echo "</td>";
-							
-							echo "<td>";
-							echo $row2['subject'];
-							echo "</td>";
-							
-							while($row3 = mysql_fetch_array($getComments) ){
-							
-							echo "<tr>";
-							echo "<td>";
-							echo $row3['comment'];
-							echo "</td>";
-							echo "</tr>";
-							
-							}
-							
-							echo "</tr>";
+						while($row2 = mysql_fetch_array($getStudentName) ){
+							echo "<input type='hidden' name='finalStudID'
+							value='".$row['student_id']."' />";
+							echo "<input type='text' name='studentID' 
+							value='".$row2['f_name']." ".$row2['m_name']." ".$row2['l_name']."'
+							disabled style='text-align:right' /> ";
+							echo ": «·«”„";
+							echo "<br />";
 						}
-						echo "<tr><td colspan='4'> <hr /> </td></tr>";
 						
+						$getStudentGroup = mysql_query("SELECT * FROM `$database`.group
+							WHERE group_id = '".$row['group_id']."' ", $conn);
+						while($row3 = mysql_fetch_array($getStudentGroup) ){
+							echo "<input type='hidden' name='finalGroupID'
+							value='".$row['group_id']."' />";
+							echo "<input type='text' name='groupID' 
+							value='".$row3['name']."' disabled style='text-align:right' /> ";
+							echo ": «·’›";
+							echo "<br />";
 						}
+						
+						$getStudentStuff = mysql_query("SELECT * FROM `$database`.stuff
+							WHERE stuff_id = '".$row['stuff_id']."' ", $conn);
+						while($row4 = mysql_fetch_array($getStudentStuff) ){
+							echo "<input type='hidden' name='finalStuffID'
+							value='".$row['stuff_id']."' />";
+							echo "<input type='hidden' name='finalScheduleID'
+							value='$scheduleID' />";
+							
+							echo "<input type='text' name='stuffID' 
+							value='".$row4['f_name']." ".$row4['m_name']." ".$row4['l_name']."'
+							disabled style='text-align:right' /> ";
+							echo ": «·„ ÿÊ⁄";
+							echo "<br />";
+							
+							echo "<input type='text' value='".$row4['subject']."'
+							disabled style='text-align:right' /> ";
+							echo ": «·„«œÂ";
+							echo "<br />";
+						}
+						
 					}
+					echo ": √ﬂ » «·„·ÕÊŸ…";
+					echo "<br />";
+					echo "<textarea name='comment' cols='30' rows='10' style='resize: none'></textarea>";
+					echo "<br />";
+					echo "<input type='submit' class='btn btn-primary span3' value='√÷›' />";
 					
 					echo "</form>";
-						
-					echo "</table>";
 					
 					mysql_close();
-					
-					?>
+				?>
+                
                 </div>
         	<!-- InstanceEndEditable -->
         	

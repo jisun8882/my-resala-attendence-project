@@ -10,6 +10,9 @@ session_start();
 <!-- InstanceEndEditable -->
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/navButton.css" />
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/main.css" />
+<link href="assets/stylesheet/bootstrap.css" rel="stylesheet">
+
+<script language="javascript" src="assets/javascript/jquery.js" ></script>
 <!-- InstanceBeginEditable name="head" -->
 <!-- InstanceEndEditable -->
 </head>
@@ -25,13 +28,13 @@ session_start();
         </div>
         
         <div class="navDiv">
-        	<a href="admin.php" class="nav">«·œŒÊ·</a>
-        	<a href="other.php" class="nav">√‰‘ÿ… √Œ—Ï</a>
-        	<a href="volunteer.php" class="nav">„ ÿÊ⁄Ì‰</a>
-        	<a href="report.php" class="nav">„·«ÕŸ«  ‘Â—Ì…</a>
-        	<a href="strategy.php" class="nav">Œÿÿ ‘Â—Ì…</a>
-            <a href="schedule.php" class="nav">«·Ãœ«Ê·</a>
-        	<a href="getDay.php" class="nav">«·€Ì«»</a>
+        	<a href="admin.php" class="navButton">«·œŒÊ·</a>
+        	<a href="other.php" class="navButton">√‰‘ÿ… √Œ—Ï</a>
+        	<a href="volunteer.php" class="navButton">„ ÿÊ⁄Ì‰</a>
+        	<a href="report.php" class="navButton">„·«ÕŸ«  ‘Â—Ì…</a>
+        	<a href="strategy.php" class="navButton">Œÿÿ ‘Â—Ì…</a>
+            <a href="schedule.php" class="navButton">«·Ãœ«Ê·</a>
+        	<a href="getDay.php" class="navButton">«·€Ì«»</a>
         </div>
         
         <div class="contentDiv">
@@ -72,6 +75,7 @@ session_start();
 								`day` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL ,
 								`dayOrder` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL ,
 								`date` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL ,
+								`hasAttend` INT( 5 ) NOT NULL ,
 								UNIQUE (`schedule_id`,`stuff_id`,`group_id`)
 								) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_unicode_ci;"
 								,$conn);

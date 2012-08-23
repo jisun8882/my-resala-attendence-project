@@ -10,6 +10,9 @@ session_start();
 <!-- InstanceEndEditable -->
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/navButton.css" />
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/main.css" />
+<link href="assets/stylesheet/bootstrap.css" rel="stylesheet">
+
+<script language="javascript" src="assets/javascript/jquery.js" ></script>
 <!-- InstanceBeginEditable name="head" -->
 <!-- InstanceEndEditable -->
 </head>
@@ -25,13 +28,13 @@ session_start();
         </div>
         
         <div class="navDiv">
-        	<a href="admin.php" class="nav">«·œŒÊ·</a>
-        	<a href="other.php" class="nav">√‰‘ÿ… √Œ—Ï</a>
-        	<a href="volunteer.php" class="nav">„ ÿÊ⁄Ì‰</a>
-        	<a href="report.php" class="nav">„·«ÕŸ«  ‘Â—Ì…</a>
-        	<a href="strategy.php" class="nav">Œÿÿ ‘Â—Ì…</a>
-            <a href="schedule.php" class="nav">«·Ãœ«Ê·</a>
-        	<a href="getDay.php" class="nav">«·€Ì«»</a>
+        	<a href="admin.php" class="navButton">«·œŒÊ·</a>
+        	<a href="other.php" class="navButton">√‰‘ÿ… √Œ—Ï</a>
+        	<a href="volunteer.php" class="navButton">„ ÿÊ⁄Ì‰</a>
+        	<a href="report.php" class="navButton">„·«ÕŸ«  ‘Â—Ì…</a>
+        	<a href="strategy.php" class="navButton">Œÿÿ ‘Â—Ì…</a>
+            <a href="schedule.php" class="navButton">«·Ãœ«Ê·</a>
+        	<a href="getDay.php" class="navButton">«·€Ì«»</a>
         </div>
         
         <div class="contentDiv">
@@ -48,7 +51,7 @@ session_start();
                 
                 <hr />
                 
-                <div class="VoloptionsDivS">
+                <div class="VoloptionsDiv">
                 <h4> ⁄œÌ· »Ì«‰« </h4>
                 
                 <h3><a href="addOtherItem.php" class='adminsOptionA'>&laquo; ≈÷«›… ‰‘«ÿ ÃœÌœ</a></h3>
@@ -71,7 +74,7 @@ session_start();
 					
 					$getOtherQuery = mysql_query("SELECT * FROM $tableName ORDER BY date ASC",$conn);
 
-					echo "<table width='auto' border='1'>";
+					echo "<table class='table table-hover table-condensed' >";
 					echo "<tr>";
 					echo "<th>Õ–›</th> <th> ⁄œÌ·</th> <th> «—ÌŒ</th> <th>ÌÊ„</th> <th>«·√‰‘ÿ…</th>";
 					echo "</tr>";
@@ -81,7 +84,7 @@ session_start();
 						
 						echo "<td>";
 						echo "<form name='deleteForm' method='post' action='deleteOtherItem.php' >";
-						echo "<input name='submit' type='submit' value='Õ–›'> ";
+						echo "<input name='submit' type='submit' class='btn btn-danger' value='Õ–›'> ";
 						echo "<input name='otherID' type='hidden' value='".$row['other_id']."' />";
 						echo "</form>";
 						echo "</td>";
@@ -89,7 +92,7 @@ session_start();
 						echo "<td>";
 						echo "<form name='editForm' method='POST' action='editOtherItem.php' >";
 						echo "<input name='otherID' type='hidden' value='".$row['other_id']."' />";
-						echo "<input name='submit' type='submit' value='⁄œ·'> ";
+						echo "<input name='submit' type='submit' class='btn' value='⁄œ·'> ";
 						echo "</form>";
 						echo "</td>";
 						

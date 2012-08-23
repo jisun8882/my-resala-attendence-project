@@ -15,6 +15,9 @@ if(isset($_SESSION['username']))
 <!-- InstanceEndEditable -->
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/navButton.css" />
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/main.css" />
+<link href="assets/stylesheet/bootstrap.css" rel="stylesheet">
+
+<script language="javascript" src="assets/javascript/jquery.js" ></script>
 <!-- InstanceBeginEditable name="head" -->
 <!-- InstanceEndEditable -->
 </head>
@@ -30,40 +33,42 @@ if(isset($_SESSION['username']))
         </div>
         
         <div class="navDiv">
-        	<a href="admin.php" class="nav">«·œŒÊ·</a>
-        	<a href="other.php" class="nav">√‰‘ÿ… √Œ—Ï</a>
-        	<a href="volunteer.php" class="nav">„ ÿÊ⁄Ì‰</a>
-        	<a href="report.php" class="nav">„·«ÕŸ«  ‘Â—Ì…</a>
-        	<a href="strategy.php" class="nav">Œÿÿ ‘Â—Ì…</a>
-            <a href="schedule.php" class="nav">«·Ãœ«Ê·</a>
-        	<a href="getDay.php" class="nav">«·€Ì«»</a>
+        	<a href="admin.php" class="navButton">«·œŒÊ·</a>
+        	<a href="other.php" class="navButton">√‰‘ÿ… √Œ—Ï</a>
+        	<a href="volunteer.php" class="navButton">„ ÿÊ⁄Ì‰</a>
+        	<a href="report.php" class="navButton">„·«ÕŸ«  ‘Â—Ì…</a>
+        	<a href="strategy.php" class="navButton">Œÿÿ ‘Â—Ì…</a>
+            <a href="schedule.php" class="navButton">«·Ãœ«Ê·</a>
+        	<a href="getDay.php" class="navButton">«·€Ì«»</a>
         </div>
         
         <div class="contentDiv">
         	
             <!-- InstanceBeginEditable name="contentRegion" -->
 				<div id="formDiv" class="formDiv">   
-                    <form action="checkLogins.php" method="post" name="login" id="login">
+                    <form action="checkLogins.php" method="post" name="login" class="form-search">
                         <table width="auto" border="0">
                           <tr>
-                            <td colspan="2"><h2>√œŒ· «·√”„ Ê ﬂ·„… «·”—</h2></td>
+                            <td colspan="2"><h2>√œŒ· «·√”„ Ê ﬂ·„… «·„—Ê—</h2></td>
                           </tr>
                           <tr>
-                            <td><input type="text" name="username" id="username" autocomplete="off" autofocus="autofocus"/></td>
+                            <td><input type="text" name="username" class="input-small search-query" placeholder="...«·«”„" autocomplete="off" autofocus="autofocus" style="text-align:right"/></td>
                             <td>: «·«”„</td>
                           </tr>
+                          <tr><td colspan='2'>&nbsp;</td></tr>
                           <tr>
-                            <td><input type="password" name="password" id="password" autocomplete="off"/></td>
-                            <td>: ﬂ·„Â «·”—</td>
+                            <td><input type="password" name="password" class="input-small search-query" placeholder="...ﬂ·„Â «·„—Ê—" autocomplete="off" style="text-align:right"/></td>
+                            <td>: ﬂ·„Â «·„—Ê—</td>
                           </tr>
+                          <tr><td colspan='2'>&nbsp;</td></tr>
                           <tr>
-                          <td align="left"><input type='submit' class='btn' id="btn" value="œŒÊ·" /></td>
+                          <td align="right"><input type='submit' class='btn span2 btn-primary' value="œŒÊ·" /></td>
                           <td>&nbsp;</td>
                           </tr>
                         </table>
                     </form>
 				</div> 
-                 
+                
         	<!-- InstanceEndEditable -->
         	
         </div>

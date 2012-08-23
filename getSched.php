@@ -12,6 +12,9 @@ if(isset($_SESSION['username']))
 <!-- InstanceEndEditable -->
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/navButton.css" />
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/main.css" />
+<link href="assets/stylesheet/bootstrap.css" rel="stylesheet">
+
+<script language="javascript" src="assets/javascript/jquery.js" ></script>
 <!-- InstanceBeginEditable name="head" -->
 <!-- InstanceEndEditable -->
 </head>
@@ -27,13 +30,13 @@ if(isset($_SESSION['username']))
         </div>
         
         <div class="navDiv">
-        	<a href="admin.php" class="nav">«·œŒÊ·</a>
-        	<a href="other.php" class="nav">√‰‘ÿ… √Œ—Ï</a>
-        	<a href="volunteer.php" class="nav">„ ÿÊ⁄Ì‰</a>
-        	<a href="report.php" class="nav">„·«ÕŸ«  ‘Â—Ì…</a>
-        	<a href="strategy.php" class="nav">Œÿÿ ‘Â—Ì…</a>
-            <a href="schedule.php" class="nav">«·Ãœ«Ê·</a>
-        	<a href="getDay.php" class="nav">«·€Ì«»</a>
+        	<a href="admin.php" class="navButton">«·œŒÊ·</a>
+        	<a href="other.php" class="navButton">√‰‘ÿ… √Œ—Ï</a>
+        	<a href="volunteer.php" class="navButton">„ ÿÊ⁄Ì‰</a>
+        	<a href="report.php" class="navButton">„·«ÕŸ«  ‘Â—Ì…</a>
+        	<a href="strategy.php" class="navButton">Œÿÿ ‘Â—Ì…</a>
+            <a href="schedule.php" class="navButton">«·Ãœ«Ê·</a>
+        	<a href="getDay.php" class="navButton">«·€Ì«»</a>
         </div>
         
         <div class="contentDiv">
@@ -68,7 +71,7 @@ if(isset($_SESSION['username']))
 					WHERE day = '$day' 
 					ORDER BY date ASC",$conn);
 
-					echo "<table border='1'>";
+					echo "<table class='table table-hover tabel-condensed' >";
 					
 					echo "<tr>";
 					echo "<th>√› Õ «·€Ì«»</th> <th>«·„⁄«œ</th> <th>«·„ ÿÊ⁄</th> <th>«·’›</th> <th>«·„«œ…</th>";
@@ -82,7 +85,7 @@ if(isset($_SESSION['username']))
 						echo "<input name='stuffID' type='hidden' value='".$row['stuff_id']."' />
 							<input name='groupID' type='hidden' value='".$row['group_id']."' />
 							<input name='scheduleID' type='hidden' value='".$row['schedule_id']."' />
-							<input type='submit' value='√› Õ' />";
+							<input type='submit' class='btn btn-inverse' value='√› Õ' />";
 						echo "</form>";
 						echo "</td>";
 						

@@ -6,7 +6,7 @@ session_start();
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1256">
 <!-- InstanceBeginEditable name="doctitle" -->
-<title>Welcome to Resala</title>
+<title>دروس تقويه جمعية رسالة</title>
 <!-- InstanceEndEditable -->
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/navButton.css" />
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/main.css" />
@@ -40,30 +40,20 @@ session_start();
         <div class="contentDiv">
         	
             <!-- InstanceBeginEditable name="contentRegion" -->
-				
-				<?php
+        		<?php
                 include 'assets/modules/unauthorized.php';
                 ?>
                 
-                <div class="back">
-                	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>
-                	<a href="strategyOption.php"><img src="assets/images/back.png" /></a>
-                </div>
-                
-                <hr />
-                
-                <div class="VoloptionsDiv">
-                <h4>تعديل بيانات</h4>
-                <hr />
-                <h3><a href="addStrategyItem.php" class='adminsOptionA'>&laquo; إضافة صف جديد</a></h3>
-				
 				<?php
-					$tableName = $_POST['getTableName'];
-					$_SESSION['tableName'] = $tableName;
+					
+					echo $stuffID = $_POST['stuffID'];
+					echo $scheduleID = $_POST['scheduleID'];
+					echo $groupID = $_POST['groupID'];
+					
 					$server = "localhost";
 					$username = "root";
 					$password = "";
-					$database = "resalastrategy";
+					$database = "resala";
 					
 					$conn = mysql_connect($server, $username, $password);
 					if (!$conn) {die('Could not connect due to: ' . mysql_error());}
@@ -73,56 +63,31 @@ session_start();
 					
 					mysql_select_db($database, $conn);
 					
-					$getOtherQuery = mysql_query("SELECT * FROM $tableName ORDER BY date ASC",$conn);
-
-					echo "<table class='table table-hover table-condensed' >";
-					echo "<tr>";
-					echo "<th>حذف</th> <th>تعديل</th> <th>الحالة</th> <th>تاريخ</th> <th>يوم</th> 
-								<th align='center' >الأنشطة</th>";
-					echo "</tr>";
+					$insertAttend = mysql_query("INSERT INTO stuffReport
+					(schedule_id, group_id, stuff_id, report_id)
+					VALUES
+					('$scheduleID', '$groupID', '$stuffID', NULL)", $conn);
 					
-					while($row = mysql_fetch_array($getOtherQuery)  ){
-						echo "<tr>";
-						
-						echo "<td>";
-						echo "<form name='deleteForm' method='post' action='deleteStrategyItem.php' >";
-						echo "<input name='submit' type='submit' class='btn btn-danger' value='حذف'> ";
-						echo "<input name='strategyID' type='hidden' value='".$row['strategy_id']."' />";
-						echo "</form>";
-						echo "</td>";
-						
-						echo "<td>";
-						echo "<form name='editForm' method='POST' action='editStrategyItem.php' >";
-						echo "<input name='strategyID' type='hidden' value='".$row['strategy_id']."' />";
-						echo "<input name='submit' type='submit' class='btn' value='عدل'> ";
-						echo "</form>";
-						echo "</td>";
-						
-						echo "<td>";
-						echo $row['status'];
-						echo "</td>";
-						
-						echo "<td>";
-						echo $row['date'];
-						echo "</td>";
-						
-						echo "<td>";
-						echo $row['day'];
-						echo "</td>";
-						
-						echo "<td>";
-						echo $row['body'];
-						echo "</td>";
-
-						echo "</tr>";
-						
-						$counter++;
+					if($insertAttend){
+						?>
+                        <script>
+						alert("تم أخذ الغياب");
+						window.location = "adminOptions.php";
+						</script>
+                        <?php
 					}
-					echo "</table";
-					mysql_close($conn);
+					else{
+						?>
+                        <script>
+						alert("عفواً خطأ أعد مره أخرى");
+						window.location = "adminOptions.php";
+						</script>
+                        <?php
+					}
+					
+					echo mysql_error();
+					mysql_close();
 				?>
-
-                </div>
         	<!-- InstanceEndEditable -->
         	
         </div>

@@ -6,7 +6,7 @@ session_start();
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1256">
 <!-- InstanceBeginEditable name="doctitle" -->
-<title>Welcome to Resala</title>
+<title>دروس تقويه جمعية رسالة</title>
 <!-- InstanceEndEditable -->
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/navButton.css" />
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/main.css" />
@@ -40,30 +40,23 @@ session_start();
         <div class="contentDiv">
         	
             <!-- InstanceBeginEditable name="contentRegion" -->
-				
-				<?php
+        		<?php
                 include 'assets/modules/unauthorized.php';
                 ?>
                 
                 <div class="back">
                 	<a href="adminOptions.php"><img src="assets/images/home.png" /></a>
-                	<a href="strategyOption.php"><img src="assets/images/back.png" /></a>
+                	<a href="volunteerReport.php"><img src="assets/images/back.png" /></a>
                 </div>
                 
                 <hr />
                 
-                <div class="VoloptionsDiv">
-                <h4>تعديل بيانات</h4>
-                <hr />
-                <h3><a href="addStrategyItem.php" class='adminsOptionA'>&laquo; إضافة صف جديد</a></h3>
-				
-				<?php
-					$tableName = $_POST['getTableName'];
-					$_SESSION['tableName'] = $tableName;
+                <div class="VoloptionsDivS">
+                <?php
 					$server = "localhost";
 					$username = "root";
 					$password = "";
-					$database = "resalastrategy";
+					$database = "resala";
 					
 					$conn = mysql_connect($server, $username, $password);
 					if (!$conn) {die('Could not connect due to: ' . mysql_error());}
@@ -73,33 +66,37 @@ session_start();
 					
 					mysql_select_db($database, $conn);
 					
-					$getOtherQuery = mysql_query("SELECT * FROM $tableName ORDER BY date ASC",$conn);
-
-					echo "<table class='table table-hover table-condensed' >";
-					echo "<tr>";
-					echo "<th>حذف</th> <th>تعديل</th> <th>الحالة</th> <th>تاريخ</th> <th>يوم</th> 
-								<th align='center' >الأنشطة</th>";
-					echo "</tr>";
+					$getAllStuff = mysql_query("SELECT * FROM `$database`.`schedule`
+						LEFT JOIN stuff ON schedule.stuff_id = stuff.stuff_id
+						LEFT JOIN `$database`.`group` ON schedule.group_id = group.group_id
+						ORDER BY dayOrder ASC", $conn);
 					
-					while($row = mysql_fetch_array($getOtherQuery)  ){
+					echo "<table class='table table-hover table-condensed' ";
+					echo "tr>";
+					echo "<th>حضور</th> <th>عدد الحضور</th> <th>المعاد</th> <th>اليوم</th> <th>المادة</th>
+										 <th>الصف</th> <th>المتطوع</th>";
+					echo "</tr>";
+					while($row = mysql_fetch_array($getAllStuff) ){
+						
 						echo "<tr>";
 						
 						echo "<td>";
-						echo "<form name='deleteForm' method='post' action='deleteStrategyItem.php' >";
-						echo "<input name='submit' type='submit' class='btn btn-danger' value='حذف'> ";
-						echo "<input name='strategyID' type='hidden' value='".$row['strategy_id']."' />";
-						echo "</form>";
+						echo "<form action='attendVol.php' method='post' name='submitVolAttend'> ";
+						echo "<input type='hidden' name ='stuffID' value='".$row['stuff_id']."' />
+							<input type='hidden' name ='scheduleID' value='".$row['schedule_id']."' />
+							<input type='hidden' name ='groupID' value='".$row['group_id']."' />
+							<button type='submit' class='btn' >حضور</button>
+							</form>";
 						echo "</td>";
 						
 						echo "<td>";
-						echo "<form name='editForm' method='POST' action='editStrategyItem.php' >";
-						echo "<input name='strategyID' type='hidden' value='".$row['strategy_id']."' />";
-						echo "<input name='submit' type='submit' class='btn' value='عدل'> ";
-						echo "</form>";
-						echo "</td>";
-						
-						echo "<td>";
-						echo $row['status'];
+						$getAttend = mysql_query("SELECT count(stuff_id) FROM stuffReport
+							WHERE stuff_id = '".$row['stuff_id']."'
+							AND schedule_id = '".$row['schedule_id']."'
+							AND group_id = '".$row['group_id']."' ", $conn);
+						while($row2 = mysql_fetch_array($getAttend) ){
+							echo $row2[0];
+						}
 						echo "</td>";
 						
 						echo "<td>";
@@ -111,18 +108,26 @@ session_start();
 						echo "</td>";
 						
 						echo "<td>";
-						echo $row['body'];
+						echo $row['subject'];
 						echo "</td>";
-
+						
+						echo "<td>";
+						echo $row['name'];
+						echo "</td>";
+						
+						echo "<td>";
+						echo $row['f_name']." ".$row['m_name']." ".$row['l_name'];
+						echo "</td>";
+						
+						
 						echo "</tr>";
 						
-						$counter++;
 					}
-					echo "</table";
-					mysql_close($conn);
-				?>
-
-                </div>
+					echo "</table>";
+					echo mysql_error();
+					mysql_close();
+                ?>
+				</div>
         	<!-- InstanceEndEditable -->
         	
         </div>

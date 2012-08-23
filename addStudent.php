@@ -10,6 +10,9 @@ session_start();
 <!-- InstanceEndEditable -->
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/navButton.css" />
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/main.css" />
+<link href="assets/stylesheet/bootstrap.css" rel="stylesheet">
+
+<script language="javascript" src="assets/javascript/jquery.js" ></script>
 <!-- InstanceBeginEditable name="head" -->
 <!-- InstanceEndEditable -->
 </head>
@@ -25,13 +28,13 @@ session_start();
         </div>
         
         <div class="navDiv">
-        	<a href="admin.php" class="nav">«·œŒÊ·</a>
-        	<a href="other.php" class="nav">√‰‘ÿ… √Œ—Ï</a>
-        	<a href="volunteer.php" class="nav">„ ÿÊ⁄Ì‰</a>
-        	<a href="report.php" class="nav">„·«ÕŸ«  ‘Â—Ì…</a>
-        	<a href="strategy.php" class="nav">Œÿÿ ‘Â—Ì…</a>
-            <a href="schedule.php" class="nav">«·Ãœ«Ê·</a>
-        	<a href="getDay.php" class="nav">«·€Ì«»</a>
+        	<a href="admin.php" class="navButton">«·œŒÊ·</a>
+        	<a href="other.php" class="navButton">√‰‘ÿ… √Œ—Ï</a>
+        	<a href="volunteer.php" class="navButton">„ ÿÊ⁄Ì‰</a>
+        	<a href="report.php" class="navButton">„·«ÕŸ«  ‘Â—Ì…</a>
+        	<a href="strategy.php" class="navButton">Œÿÿ ‘Â—Ì…</a>
+            <a href="schedule.php" class="navButton">«·Ãœ«Ê·</a>
+        	<a href="getDay.php" class="navButton">«·€Ì«»</a>
         </div>
         
         <div class="contentDiv">
@@ -47,7 +50,7 @@ session_start();
                 
                 <hr />
                 
-                <div class="addStudentDataDiv">
+                <div class="optionsDiv">
                 	<h4>≈÷«›… ÿ«·» ÃœÌœ</h4>
                     <h5>⁄·«„… (*)  ⁄‰Ï »Ì«‰«  „ÿ·Ê»… Ê „Â„Â</h5>
                         
@@ -57,46 +60,43 @@ session_start();
                         <form action="addStudentSuccess.php" method="post">
                             <table width="auto" border="0">
                                 <tr>
-                                    <td>(*)<input name="f_name" type="text" size="20" autocomplete="off">: «·«”„ «·«Ê·</td>
+                                    <td>(*)<input name="f_name" type="text" size="20" autocomplete="off" class="input-small search-query" placeholder="... «·«”„ «·«Ê·" style="text-align:right" /></td>
                                 </tr>
                                 <tr>
                                     <td>&nbsp;</td>
                                 </tr>
                                 <tr>
-                                    <td><input name="m_name" type="text" size="20" autocomplete="off">: «·«”„ «·«Ê”ÿ</td>
+                                    <td><input name="m_name" type="text" size="20" autocomplete="off" class="input-small search-query" placeholder="... «·«”„ «·«Ê”ÿ" style="text-align:right" /></td>
                                 </tr>
                                 <tr>
                                     <td>&nbsp;</td>
                                 </tr>
                                 <tr>
-                                    <td>(*)<input name="l_name" type="text" size="20" autocomplete="off">: «·«”„ «·«ŒÌ—</td>
+                                    <td>(*)<input name="l_name" type="text" size="20" autocomplete="off" class="input-small search-query" placeholder="... «·«”„ «·«ŒÌ—" style="text-align:right" /></td>
                                 </tr>
                                 <tr>
                                     <td>&nbsp;</td>
                                 </tr>
                                 <tr>
-                                    <td>(*)<input name="mobile" type="text" size="25" autocomplete="off">: «·„Ê»Ì·</td>
+                                    <td>(*)<input name="mobile" type="text" size="25" autocomplete="off" class="input-small search-query" placeholder="...  «·„Ê»Ì·" style="text-align:right" /></td>
                                 </tr>
                                 
                                 <tr>
                                     <td>&nbsp;</td>
                                 </tr>
                                 <tr>
-                                    <td>(*)<select name="gender">
+                                    <td>(*)<select name="gender" class="input-medium" >
                                     		<option>- √Œ «— «·‰Ê⁄ -</option>
                                             <option value="»‰ ">»‰ </option>
                                             <option value="Ê·œ">Ê·œ</option>
-                                    		</select>: «·‰Ê⁄</td>
+                                    		</select></td>
                                 </tr>
                                 
                                 <tr>
                                     <td>&nbsp;</td>
                                 </tr>
                                 <tr>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                    <td><input name="submit" type="submit" value="√œŒ·"></td>
+                                    <td><input name="submit" class="btn btn-primary" type="submit" value="√œŒ·"></td>
                                 </tr>
                                 </table>
                         </form>

@@ -10,6 +10,9 @@ session_start();
 <!-- InstanceEndEditable -->
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/navButton.css" />
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/main.css" />
+<link href="assets/stylesheet/bootstrap.css" rel="stylesheet">
+
+<script language="javascript" src="assets/javascript/jquery.js" ></script>
 <!-- InstanceBeginEditable name="head" -->
 <!-- InstanceEndEditable -->
 </head>
@@ -25,13 +28,13 @@ session_start();
         </div>
         
         <div class="navDiv">
-        	<a href="admin.php" class="nav">«·œŒÊ·</a>
-        	<a href="other.php" class="nav">√‰‘ÿ… √Œ—Ï</a>
-        	<a href="volunteer.php" class="nav">„ ÿÊ⁄Ì‰</a>
-        	<a href="report.php" class="nav">„·«ÕŸ«  ‘Â—Ì…</a>
-        	<a href="strategy.php" class="nav">Œÿÿ ‘Â—Ì…</a>
-            <a href="schedule.php" class="nav">«·Ãœ«Ê·</a>
-        	<a href="getDay.php" class="nav">«·€Ì«»</a>
+        	<a href="admin.php" class="navButton">«·œŒÊ·</a>
+        	<a href="other.php" class="navButton">√‰‘ÿ… √Œ—Ï</a>
+        	<a href="volunteer.php" class="navButton">„ ÿÊ⁄Ì‰</a>
+        	<a href="report.php" class="navButton">„·«ÕŸ«  ‘Â—Ì…</a>
+        	<a href="strategy.php" class="navButton">Œÿÿ ‘Â—Ì…</a>
+            <a href="schedule.php" class="navButton">«·Ãœ«Ê·</a>
+        	<a href="getDay.php" class="navButton">«·€Ì«»</a>
         </div>
         
         <div class="contentDiv">
@@ -80,10 +83,10 @@ session_start();
                 <div class="optionsDiv">
                     <h3>√Œ «— «·„«œÂ</h3>
                     
-                       <form action="createSch2.php" method="post" name="getGroup"> 
-                       
-                       <input type="submit" value="√Œ «—" />
-                        <select name="subject">
+                       <form action="createSch2.php" method="post" name="getGroup" class="form-search"> 
+                       <div class="input-prepend">
+                       <input type="submit" value="√Œ «—" class="btn"/>
+                        <select name="subject" class="btn input-medium search-query">
                             <option>- √Œ «— „«œÂ -</option>
                             <option value='≈‰Ã·Ì“Ï'>≈‰Ã·Ì“Ï</option>
                             <option value='⁄—»Ï'>⁄—»Ï</option>
@@ -98,7 +101,7 @@ session_start();
                             <option value='Ã»—'>Ã»—</option>
                             <option value='Â‰œ”Â'>Â‰œ”Â</option>
                         </select>
-                        
+                        </div>
 					</form>
                     
 				</div>

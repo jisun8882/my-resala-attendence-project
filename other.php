@@ -12,6 +12,9 @@ if(isset($_SESSION['username']))
 <!-- InstanceEndEditable -->
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/navButton.css" />
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/main.css" />
+<link href="assets/stylesheet/bootstrap.css" rel="stylesheet">
+
+<script language="javascript" src="assets/javascript/jquery.js" ></script>
 <!-- InstanceBeginEditable name="head" -->
 <!-- InstanceEndEditable -->
 </head>
@@ -27,19 +30,21 @@ if(isset($_SESSION['username']))
         </div>
         
         <div class="navDiv">
-        	<a href="admin.php" class="nav">«·œŒÊ·</a>
-        	<a href="other.php" class="nav">√‰‘ÿ… √Œ—Ï</a>
-        	<a href="volunteer.php" class="nav">„ ÿÊ⁄Ì‰</a>
-        	<a href="report.php" class="nav">„·«ÕŸ«  ‘Â—Ì…</a>
-        	<a href="strategy.php" class="nav">Œÿÿ ‘Â—Ì…</a>
-            <a href="schedule.php" class="nav">«·Ãœ«Ê·</a>
-        	<a href="getDay.php" class="nav">«·€Ì«»</a>
+        	<a href="admin.php" class="navButton">«·œŒÊ·</a>
+        	<a href="other.php" class="navButton">√‰‘ÿ… √Œ—Ï</a>
+        	<a href="volunteer.php" class="navButton">„ ÿÊ⁄Ì‰</a>
+        	<a href="report.php" class="navButton">„·«ÕŸ«  ‘Â—Ì…</a>
+        	<a href="strategy.php" class="navButton">Œÿÿ ‘Â—Ì…</a>
+            <a href="schedule.php" class="navButton">«·Ãœ«Ê·</a>
+        	<a href="getDay.php" class="navButton">«·€Ì«»</a>
         </div>
         
         <div class="contentDiv">
         	
             <!-- InstanceBeginEditable name="contentRegion" -->
-        		<h3>ﬁ«∆„… «·√‰‘ÿ… ·Â–Â «·‘Â—</h3>
+        		<div class="VoloptionsDivS">
+                
+                <h3>ﬁ«∆„… «·√‰‘ÿ… ·Â–Â «·‘Â—</h3>
                 <?php
 					$server = "localhost";
 					$username = "root";
@@ -116,7 +121,7 @@ if(isset($_SESSION['username']))
 					
 					$getVolquery = mysql_query("SELECT * FROM `$database`.`$TableName`",$conn);
 					if(!$getVolquery){echo mysql_error();}
-					echo "<table border='1' class='volunteerTable'>";
+					echo "<table class='table table-hover table-condensed'>";
 					echo "<tr>";
 					echo "<th>«· «—ÌŒ</th> <th>«·ÌÊ„</th> <th>«·‰‘«ÿ</th>";
 					echo "</tr>";
@@ -144,6 +149,7 @@ if(isset($_SESSION['username']))
 					mysql_close();
 				
 				?>
+                </div>
         	<!-- InstanceEndEditable -->
         	
         </div>
