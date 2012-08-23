@@ -10,6 +10,9 @@ session_start();
 <!-- InstanceEndEditable -->
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/navButton.css" />
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/main.css" />
+<link href="assets/stylesheet/bootstrap.css" rel="stylesheet">
+
+<script language="javascript" src="assets/javascript/jquery.js" ></script>
 <!-- InstanceBeginEditable name="head" -->
 <!-- InstanceEndEditable -->
 </head>
@@ -25,13 +28,13 @@ session_start();
         </div>
         
         <div class="navDiv">
-        	<a href="admin.php" class="nav">ÇáÏÎæá</a>
-        	<a href="other.php" class="nav">ÃäÔØÉ ÃÎÑì</a>
-        	<a href="volunteer.php" class="nav">ãÊØæÚíä</a>
-        	<a href="report.php" class="nav">ãáÇÍÙÇÊ ÔåÑíÉ</a>
-        	<a href="strategy.php" class="nav">ÎØØ ÔåÑíÉ</a>
-            <a href="schedule.php" class="nav">ÇáÌÏÇæá</a>
-        	<a href="getDay.php" class="nav">ÇáÛíÇÈ</a>
+        	<a href="admin.php" class="navButton">ÇáÏÎæá</a>
+        	<a href="other.php" class="navButton">ÃäÔØÉ ÃÎÑì</a>
+        	<a href="volunteer.php" class="navButton">ãÊØæÚíä</a>
+        	<a href="report.php" class="navButton">ãáÇÍÙÇÊ ÔåÑíÉ</a>
+        	<a href="strategy.php" class="navButton">ÎØØ ÔåÑíÉ</a>
+            <a href="schedule.php" class="navButton">ÇáÌÏÇæá</a>
+        	<a href="getDay.php" class="navButton">ÇáÛíÇÈ</a>
         </div>
         
         <div class="contentDiv">
@@ -58,6 +61,10 @@ session_start();
 					mysql_query("set characer set cp1256");
 					
 					mysql_select_db($database, $conn);
+					
+					$updateTable = mysql_query("UPDATE schedule
+					SET hasAttend = '1' 
+					WHERE schedule_id = '$scheduleID'", $conn);
 					
 					$getStudent = mysql_query("SELECT student_id FROM resala.groupStudent
 					WHERE group_id = '$groupID' ",$conn);

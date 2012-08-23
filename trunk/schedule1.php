@@ -16,6 +16,9 @@ if(isset($_SESSION['username']))
 <!-- InstanceEndEditable -->
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/navButton.css" />
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/main.css" />
+<link href="assets/stylesheet/bootstrap.css" rel="stylesheet">
+
+<script language="javascript" src="assets/javascript/jquery.js" ></script>
 <!-- InstanceBeginEditable name="head" -->
 <!-- InstanceEndEditable -->
 </head>
@@ -31,13 +34,13 @@ if(isset($_SESSION['username']))
         </div>
         
         <div class="navDiv">
-        	<a href="admin.php" class="nav">«·œŒÊ·</a>
-        	<a href="other.php" class="nav">√‰‘ÿ… √Œ—Ï</a>
-        	<a href="volunteer.php" class="nav">„ ÿÊ⁄Ì‰</a>
-        	<a href="report.php" class="nav">„·«ÕŸ«  ‘Â—Ì…</a>
-        	<a href="strategy.php" class="nav">Œÿÿ ‘Â—Ì…</a>
-            <a href="schedule.php" class="nav">«·Ãœ«Ê·</a>
-        	<a href="getDay.php" class="nav">«·€Ì«»</a>
+        	<a href="admin.php" class="navButton">«·œŒÊ·</a>
+        	<a href="other.php" class="navButton">√‰‘ÿ… √Œ—Ï</a>
+        	<a href="volunteer.php" class="navButton">„ ÿÊ⁄Ì‰</a>
+        	<a href="report.php" class="navButton">„·«ÕŸ«  ‘Â—Ì…</a>
+        	<a href="strategy.php" class="navButton">Œÿÿ ‘Â—Ì…</a>
+            <a href="schedule.php" class="navButton">«·Ãœ«Ê·</a>
+        	<a href="getDay.php" class="navButton">«·€Ì«»</a>
         </div>
         
         <div class="contentDiv">
@@ -76,7 +79,7 @@ if(isset($_SESSION['username']))
 							ORDER BY dayOrder,date ASC",$conn);
 					
 					echo "<p> </p>";
-					echo "<table border='1' class='volunteerTable'>";
+					echo "<table border='1' class='table table-condensed' >";
 					echo "<tr>";
 					echo " <th>«·„œ—” „” —/„”</th> <th>«·„⁄«œ</th> <th>«·ÌÊ„</th> <th>«·„«œ…</th>";
 					echo "</tr>";
@@ -116,7 +119,7 @@ if(isset($_SESSION['username']))
                 </div>
                 
                 <p>
-                	<input type="button" value="√ÿ»⁄ «·ÃœÊ·" class="PrintSch"/>
+                	<input type="button" class="btn btn-inverse PrintSch" value="√ÿ»⁄ «·ÃœÊ·" />
                 </p>
                 
         	<!-- InstanceEndEditable -->

@@ -12,6 +12,9 @@ if(isset($_SESSION['username']))
 <!-- InstanceEndEditable -->
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/navButton.css" />
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/main.css" />
+<link href="assets/stylesheet/bootstrap.css" rel="stylesheet">
+
+<script language="javascript" src="assets/javascript/jquery.js" ></script>
 <!-- InstanceBeginEditable name="head" -->
 <!-- InstanceEndEditable -->
 </head>
@@ -27,19 +30,20 @@ if(isset($_SESSION['username']))
         </div>
         
         <div class="navDiv">
-        	<a href="admin.php" class="nav">гАонФА</a>
-        	<a href="other.php" class="nav">цДтьи цняЛ</a>
-        	<a href="volunteer.php" class="nav">ЦйьФзМД</a>
-        	<a href="report.php" class="nav">ЦАгмыгй тЕяМи</a>
-        	<a href="strategy.php" class="nav">ньь тЕяМи</a>
-            <a href="schedule.php" class="nav">гАлогФА</a>
-        	<a href="getDay.php" class="nav">гАшМгх</a>
+        	<a href="admin.php" class="navButton">гАонФА</a>
+        	<a href="other.php" class="navButton">цДтьи цняЛ</a>
+        	<a href="volunteer.php" class="navButton">ЦйьФзМД</a>
+        	<a href="report.php" class="navButton">ЦАгмыгй тЕяМи</a>
+        	<a href="strategy.php" class="navButton">ньь тЕяМи</a>
+            <a href="schedule.php" class="navButton">гАлогФА</a>
+        	<a href="getDay.php" class="navButton">гАшМгх</a>
         </div>
         
         <div class="contentDiv">
         	
             <!-- InstanceBeginEditable name="contentRegion" -->
-        		<?php
+                <img src="assets/images/meme.jpg" />
+				<?php
                 echo "гАялга гАышь зАЛ гАонФА Ф ъйгхи гАгсЦ Ф ъАЦЕ гАся";
 				?>
                 

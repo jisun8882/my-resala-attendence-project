@@ -12,6 +12,9 @@ if(isset($_SESSION['username']))
 <!-- InstanceEndEditable -->
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/navButton.css" />
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/main.css" />
+<link href="assets/stylesheet/bootstrap.css" rel="stylesheet">
+
+<script language="javascript" src="assets/javascript/jquery.js" ></script>
 <!-- InstanceBeginEditable name="head" -->
 <!-- InstanceEndEditable -->
 </head>
@@ -27,19 +30,21 @@ if(isset($_SESSION['username']))
         </div>
         
         <div class="navDiv">
-        	<a href="admin.php" class="nav">ÇבÏÎזב</a>
-        	<a href="other.php" class="nav">ÃהÔØÉ ÃÎÑל</a>
-        	<a href="volunteer.php" class="nav">דÊØזÚםה</a>
-        	<a href="report.php" class="nav">דבÇÍÙÇÊ ÔוÑםÉ</a>
-        	<a href="strategy.php" class="nav">ÎØØ ÔוÑםÉ</a>
-            <a href="schedule.php" class="nav">ÇבÌÏÇזב</a>
-        	<a href="getDay.php" class="nav">ÇבÛםÇÈ</a>
+        	<a href="admin.php" class="navButton">ÇבÏÎזב</a>
+        	<a href="other.php" class="navButton">ÃהÔØÉ ÃÎÑל</a>
+        	<a href="volunteer.php" class="navButton">דÊØזÚםה</a>
+        	<a href="report.php" class="navButton">דבÇÍÙÇÊ ÔוÑםÉ</a>
+        	<a href="strategy.php" class="navButton">ÎØØ ÔוÑםÉ</a>
+            <a href="schedule.php" class="navButton">ÇבÌÏÇזב</a>
+        	<a href="getDay.php" class="navButton">ÇבÛםÇÈ</a>
         </div>
         
         <div class="contentDiv">
         	
             <!-- InstanceBeginEditable name="contentRegion" -->
-        		<h3>ÞÇÆדÉ ÇבדØזÚםה ÇבÌÏÏ</h3>
+        		<div class="VoloptionsDivS">
+                
+                <h3>ÞÇÆדÉ ÇבדØזÚםה ÇבÌÏÏ</h3>
                 
                 <?php
 					$server = "localhost";
@@ -59,7 +64,7 @@ if(isset($_SESSION['username']))
 					WHERE slot1 = 'בÇ' AND slot2 = 'בÇ'
 					ORDER BY subject ASC",$conn);
 		
-					echo "<table border='1' class='volunteerTable'>";
+					echo "<table class='table table-hover table-condensed'>";
 					echo "<tr>";
 					echo "<th>ÇבדÚÇÏ ÇבËÇהל</th> <th>ÇבדÚÇÏ ÇבÇזב</th> <th>ÇבדזÈםב</th> <th>ÇבÇÓד</th> <th>ÇבדÇÏÉ</th>";
 					echo "</tr>";
@@ -96,6 +101,7 @@ if(isset($_SESSION['username']))
 					mysql_close();
 				
 				?>
+                </div>
         	<!-- InstanceEndEditable -->
         	
         </div>

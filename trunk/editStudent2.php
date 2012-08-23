@@ -10,6 +10,9 @@ session_start();
 <!-- InstanceEndEditable -->
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/navButton.css" />
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/main.css" />
+<link href="assets/stylesheet/bootstrap.css" rel="stylesheet">
+
+<script language="javascript" src="assets/javascript/jquery.js" ></script>
 <!-- InstanceBeginEditable name="head" -->
 <!-- InstanceEndEditable -->
 </head>
@@ -25,13 +28,13 @@ session_start();
         </div>
         
         <div class="navDiv">
-        	<a href="admin.php" class="nav">«·œŒÊ·</a>
-        	<a href="other.php" class="nav">√‰‘ÿ… √Œ—Ï</a>
-        	<a href="volunteer.php" class="nav">„ ÿÊ⁄Ì‰</a>
-        	<a href="report.php" class="nav">„·«ÕŸ«  ‘Â—Ì…</a>
-        	<a href="strategy.php" class="nav">Œÿÿ ‘Â—Ì…</a>
-            <a href="schedule.php" class="nav">«·Ãœ«Ê·</a>
-        	<a href="getDay.php" class="nav">«·€Ì«»</a>
+        	<a href="admin.php" class="navButton">«·œŒÊ·</a>
+        	<a href="other.php" class="navButton">√‰‘ÿ… √Œ—Ï</a>
+        	<a href="volunteer.php" class="navButton">„ ÿÊ⁄Ì‰</a>
+        	<a href="report.php" class="navButton">„·«ÕŸ«  ‘Â—Ì…</a>
+        	<a href="strategy.php" class="navButton">Œÿÿ ‘Â—Ì…</a>
+            <a href="schedule.php" class="navButton">«·Ãœ«Ê·</a>
+        	<a href="getDay.php" class="navButton">«·€Ì«»</a>
         </div>
         
         <div class="contentDiv">
@@ -78,8 +81,8 @@ session_start();
 			
 						echo "<tr>";
 						echo "<td>";
-						echo "<input name='f_name' type='text' size='10' style='text-align:right' autocomplete='off' value='".$row['f_name']."' />";
-						echo ": «·«”„ «·«Ê·</td>";
+						echo "<input name='f_name' type='text' size='10' style='text-align:right' autocomplete='off' class='input-small search-query' value='".$row['f_name']."' />";
+						echo " : «·«”„ «·«Ê·</td>";
 						echo "</tr>";
 						
 						echo "<tr>";
@@ -88,8 +91,8 @@ session_start();
 						
 						echo "<tr>";
 						echo "<td>";
-						echo "<input name='m_name' type='text' size='10' style='text-align:right' autocomplete='off' value='".$row['m_name']."' />";
-						echo ": «·«”„ «·«Ê”ÿ</td>";
+						echo "<input name='m_name' type='text' size='10' style='text-align:right' autocomplete='off' class='input-small search-query' value='".$row['m_name']."' />";
+						echo " : «·«”„ «·«Ê”ÿ</td>";
 						echo "</tr>";
 						
 						echo "<tr>";
@@ -98,8 +101,8 @@ session_start();
 						
 						echo "<tr>";
 						echo "<td>";
-						echo "<input name='l_name' type='text' size='10' style='text-align:right' autocomplete='off' value='".$row['l_name']."' />";
-						echo ": «·«”„ «·«ŒÌ—</td>";
+						echo "<input name='l_name' type='text' size='10' style='text-align:right' autocomplete='off' class='input-small search-query' value='".$row['l_name']."' />";
+						echo " : «·«”„ «·«ŒÌ—</td>";
 						echo "</tr>";
 						
 						echo "<tr>";
@@ -108,19 +111,23 @@ session_start();
 						
 						echo "<tr>";
 						echo "<td>";
-						echo "<input name='mobile' type='text' size='15' style='text-align:right' autocomplete='off' value='".$row['mobile']."' /> ";
-						echo ": «·„Ê»Ì·</td>";
+						echo "<input name='mobile' type='text' size='15' style='text-align:right' autocomplete='off' class='input-small search-query' value='".$row['mobile']."' /> ";
+						echo " : «·„Ê»Ì·</td>";
+						echo "</tr>";
+						
+						echo "<tr>";
+						echo "<td>&nbsp;</td>";
 						echo "</tr>";
 						
 						echo "<tr>";
 						echo "<td>";
-						echo "<select name='gender'>
+						echo "<select name='gender' class='input-medium'>
 								<option value='".$row['gender']."'>".$row['gender']."</option>
 								<option>----------------</option>
 								<option>- √Œ «— «·‰Ê⁄ -</option>
 								<option value='»‰ '>»‰ </option>
 								<option value='Ê·œ'>Ê·œ</option>
-								</select>: «·‰Ê⁄";
+								</select> : «·‰Ê⁄";
 						echo "</td>";
 						echo "</tr>";
 						
@@ -129,12 +136,8 @@ session_start();
 						echo "</tr>";
 						
 						echo "<tr>";
-						echo "<td>&nbsp;</td>";
-						echo "</tr>";
-						
-						echo "<tr>";
 						echo "<td>";
-						echo "<input name='submit' type='submit' value='⁄œ·' />";
+						echo "<input name='submit' class='span2 btn btn-primary' type='submit' value='⁄œ·' />";
 						echo "</td>";
 						echo "</tr>";
 						

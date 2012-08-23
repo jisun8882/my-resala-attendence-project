@@ -10,6 +10,9 @@ session_start();
 <!-- InstanceEndEditable -->
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/navButton.css" />
 <link rel="stylesheet" type="text/css" href="assets/stylesheet/main.css" />
+<link href="assets/stylesheet/bootstrap.css" rel="stylesheet">
+
+<script language="javascript" src="assets/javascript/jquery.js" ></script>
 <!-- InstanceBeginEditable name="head" -->
 <!-- InstanceEndEditable -->
 </head>
@@ -25,13 +28,13 @@ session_start();
         </div>
         
         <div class="navDiv">
-        	<a href="admin.php" class="nav">гАонФА</a>
-        	<a href="other.php" class="nav">цДтьи цняЛ</a>
-        	<a href="volunteer.php" class="nav">ЦйьФзМД</a>
-        	<a href="report.php" class="nav">ЦАгмыгй тЕяМи</a>
-        	<a href="strategy.php" class="nav">ньь тЕяМи</a>
-            <a href="schedule.php" class="nav">гАлогФА</a>
-        	<a href="getDay.php" class="nav">гАшМгх</a>
+        	<a href="admin.php" class="navButton">гАонФА</a>
+        	<a href="other.php" class="navButton">цДтьи цняЛ</a>
+        	<a href="volunteer.php" class="navButton">ЦйьФзМД</a>
+        	<a href="report.php" class="navButton">ЦАгмыгй тЕяМи</a>
+        	<a href="strategy.php" class="navButton">ньь тЕяМи</a>
+            <a href="schedule.php" class="navButton">гАлогФА</a>
+        	<a href="getDay.php" class="navButton">гАшМгх</a>
         </div>
         
         <div class="contentDiv">
@@ -68,6 +71,7 @@ session_start();
 					
 					$oldDate = $_SESSION['oldDate'];
 					$oldDay = $_SESSION['oldDay'];
+					$oldStuffID = $_SESSION['oldStuffIID'];
 					
 					switch ($day)
 						{
@@ -98,34 +102,33 @@ session_start();
 					
 					$resetOldStuff1 = mysql_query("UPDATE `$database`.`stuff`
 					SET slot1 = 'Аг' 
-					WHERE date1 = '$oldDate' AND day1 = '$oldDay' ",$conn);
+					WHERE date1 = '$oldDate' AND day1 = '$oldDay'
+					AND stuff_id = '$oldStuffID' ",$conn);
 					
 					$resetOldStuff2 = mysql_query("UPDATE `$database`.`stuff`
 					SET slot2 = 'Аг' 
-					WHERE date2 = '$oldDate' AND day2 = '$oldDay' ",$conn);
+					WHERE date2 = '$oldDate' AND day2 = '$oldDay'
+					AND stuff_id = '$oldStuffID' ",$conn);
 					
 					$insertQuery = mysql_query("UPDATE `$database`.`schedule`
 					SET stuff_id = '$stuffID', day = '$day', dayOrder='$dayOrder', date = '$date'
 					WHERE schedule_id = '$scheduleID' ",$conn);
 					
-					if($insertQuery){
-						?>
-						<script>
-							
-							alert("йЦ йзоМА гАлоФА хДлгм");
-							location.href = "adminOptions.php";
-						</script>
-						<?php
+					$selectAttendStuff = mysql_query("SELECT * FROM attend
+					WHERE stuff_id = '$oldStuffID' ", $conn);
+					while($row = mysql_fetch_array($selectAttendStuff) ){
+					$updateAttendQuery = mysql_query("UPDATE `$database`.`attend`
+					SET stuff_id = '$stuffID'
+					WHERE schedule_id = '$scheduleID' ",$conn);
 					}
-					else{
-						echo mysql_error();
-						?>
-						<script>
-							alert("муА ньц гАялга цзо гАзЦАМи");
-							location.href = "adminOptions.php";
-						</script>
-						<?php
-						
+					
+					$selectAttendStuff = mysql_query("SELECT * FROM studentComments
+					WHERE stuff_id = '$oldStuffID' ", $conn);
+					
+					while($row = mysql_fetch_array($selectAttendStuff) ){
+					$updateCommentQuery = mysql_query("UPDATE `$database`.`studentComments`
+					SET stuff_id = '$stuffID'
+					WHERE schedule_id = '$scheduleID' ",$conn);
 					}
 					
 					$getFuck = mysql_query("SELECT * FROM stuff
@@ -141,9 +144,6 @@ session_start();
 					$x = strcmp($currentDay2 ,$day);
 					$y = strcmp($currentDate2 ,$date);
 					
-					echo $x;
-					echo "<br />";
-					echo $y;
 					if($x == '0' and $y == '0' ){
 						$updateStuffSlot2 = mysql_query("UPDATE `$database`.stuff
 							SET slot2 = 'ДзЦ'
@@ -157,8 +157,27 @@ session_start();
 							if(!$updateStuffSlot1){echo mysql_error();}
 						}
 						
+					if($updateCommentQuery){
+						?>
+						<script>
+							
+							alert("йЦ йзоМА гАлоФА хДлгм");
+							//location.href = "adminOptions.php";
+						</script>
+						<?php
+					}
+					else{
 						echo mysql_error();
-					
+						?>
+						<script>
+							//location.href = "adminOptions.php";
+						</script>
+						<?php
+						
+					}
+						
+					echo mysql_error();
+					mysql_close();
 				?>
         	<!-- InstanceEndEditable -->
         	
