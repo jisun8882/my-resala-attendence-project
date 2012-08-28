@@ -50,8 +50,8 @@ session_start();
                     <a class='adminsOptionA' href='groupOption.php'><h3>«·„Ã„Ê⁄« </h3></a>
                     <a class='adminsOptionA' href='scheduleOption.php'><h3>«·Ãœ«Ê·</h3></a>
                     <a class='adminsOptionA' href='attendOption.php'><h3>«·€Ì«»</h3></a>
-                    <a class='adminsOptionA' href='strategyOption.php'><h3>«·Œÿÿ «·‘Â—Ì…</h3></a>
                     <a class='adminsOptionA' href='reportOption.php'><h3>«·„·«ÕŸ«  «·‘Â—Ì…</h3></a>
+                    <a class='adminsOptionA' href='strategyOption.php'><h3>«·Œÿÿ «·‘Â—Ì…</h3></a>
                     <a class='adminsOptionA' href='otherOption.php'><h3>«·√‰‘ÿ… «·«Œ—Ï</h3></a>
 				</div>
              	

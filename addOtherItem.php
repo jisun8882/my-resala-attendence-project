@@ -93,7 +93,7 @@ session_start();
                             <td>&nbsp;</td>
                         </tr>
                         <tr>
-                            <td><input type="submit" name="submit" value="ÃÖÇÝÉ" /></td>
+                            <td><input type="submit" class="btn" name="submit" value="ÃÖÇÝÉ" /></td>
                             <td>&nbsp;</td>
                         </tr>
                         </table>
