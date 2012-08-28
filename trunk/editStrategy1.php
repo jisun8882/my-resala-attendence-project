@@ -52,7 +52,7 @@ session_start();
                 
                 <hr />
                 
-                <div class="VoloptionsDiv">
+                <div class="VoloptionsDivS">
                 <h4>йзоМА хМгДгй</h4>
                 <hr />
                 <h3><a href="addStrategyItem.php" class='adminsOptionA'>&laquo; ежгщи ущ лоМо</a></h3>

@@ -40,6 +40,42 @@ CREATE TABLE IF NOT EXISTS `resala`.`group` (
 `group_id` INT( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY
 ) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
+INSERT INTO `resala`.`group` (`name`, `group_id`) VALUES ('أولى أبتدائى أ', NULL);
+INSERT INTO `resala`.`group` (`name`, `group_id`) VALUES ('أولى أبتدائى ب', NULL);
+
+INSERT INTO `resala`.`group` (`name`, `group_id`) VALUES ('تانية أبتدائى أ', NULL);
+INSERT INTO `resala`.`group` (`name`, `group_id`) VALUES ('تانية أبتدائى ب', NULL);
+
+INSERT INTO `resala`.`group` (`name`, `group_id`) VALUES ('ثالثة أبتدائى أ', NULL);
+INSERT INTO `resala`.`group` (`name`, `group_id`) VALUES ('ثالثة أبتدائى ب', NULL);
+
+INSERT INTO `resala`.`group` (`name`, `group_id`) VALUES ('رابعة أبتدائى أ', NULL);
+INSERT INTO `resala`.`group` (`name`, `group_id`) VALUES ('رابعة أبتدائى ب', NULL);
+
+INSERT INTO `resala`.`group` (`name`, `group_id`) VALUES ('خامسة أبتدائى أ', NULL);
+INSERT INTO `resala`.`group` (`name`, `group_id`) VALUES ('خامسة أبتدائى ب', NULL);
+
+INSERT INTO `resala`.`group` (`name`, `group_id`) VALUES ('سادسة أبتدائى أ', NULL);
+INSERT INTO `resala`.`group` (`name`, `group_id`) VALUES ('سادسة أبتدائى ب', NULL);
+
+INSERT INTO `resala`.`group` (`name`, `group_id`) VALUES ('أولى أعدادى أ', NULL);
+INSERT INTO `resala`.`group` (`name`, `group_id`) VALUES ('أولى أعدادى ب', NULL);
+
+INSERT INTO `resala`.`group` (`name`, `group_id`) VALUES ('تانية أعدادى أ', NULL);
+INSERT INTO `resala`.`group` (`name`, `group_id`) VALUES ('تانية أعدادى ب', NULL);
+
+INSERT INTO `resala`.`group` (`name`, `group_id`) VALUES ('ثالثة أعدادى أ', NULL);
+INSERT INTO `resala`.`group` (`name`, `group_id`) VALUES ('ثالثة أعدادى ب', NULL);
+
+INSERT INTO `resala`.`group` (`name`, `group_id`) VALUES ('أولى ثانوى أ', NULL);
+INSERT INTO `resala`.`group` (`name`, `group_id`) VALUES ('أولى ثانوى ب', NULL);
+
+INSERT INTO `resala`.`group` (`name`, `group_id`) VALUES ('تانية ثانوى أ', NULL);
+INSERT INTO `resala`.`group` (`name`, `group_id`) VALUES ('تانية ثانوى ب', NULL);
+
+INSERT INTO `resala`.`group` (`name`, `group_id`) VALUES ('ثالثة ثانوى أ', NULL);
+INSERT INTO `resala`.`group` (`name`, `group_id`) VALUES ('ثالثة ثانوىب', NULL);
+
 CREATE TABLE  `resala`.`groupStudent` (
 `group_id` INT NOT NULL ,
 `student_id` INT NOT NULL ,

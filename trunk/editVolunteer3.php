@@ -61,6 +61,10 @@ session_start();
 					$date2 = mysql_real_escape_string( $_POST['date2'] );
 					$day2 = mysql_real_escape_string( $_POST['day2'] );
 					
+					$slot2 = mysql_real_escape_string( $_POST['slot2'] );
+					$slot1 = mysql_real_escape_string( $_POST['slot1'] );
+					
+					
 					$server = "localhost";
 					$username = "root";
 					$password = "";
@@ -75,7 +79,7 @@ session_start();
 					mysql_select_db($database, $conn);
 					
 					$editQuery = mysql_query("UPDATE `$database`.`stuff` 
-					SET date2= '".$date2."', day2= '".$day2."', date1= '".$date1."', day1= '".$day1."', mobile = '".$mobile."', l_name = '".$l_name."', m_name = '".$m_name."', f_name = '".$f_name."', subject= '".$subject."' 
+					SET slot2= '".$slot2."', slot1='".$slot1."', date2= '".$date2."', day2= '".$day2."', date1= '".$date1."', day1= '".$day1."', mobile = '".$mobile."', l_name = '".$l_name."', m_name = '".$m_name."', f_name = '".$f_name."', subject= '".$subject."' 
 					WHERE stuff_id = '$stuffID' ",$conn);
 					
 					if($editQuery){

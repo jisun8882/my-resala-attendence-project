@@ -74,20 +74,23 @@ session_start();
 					
 					$getStudQuery = mysql_query("SELECT * FROM stuff WHERE stuff_id = '$stuffID' ",$conn);
 					
-					echo "<form name='stuffData' action='editVolunteer3.php' method='POST'>";
+					echo "<form name='stuffData' action='editVolunteer3.php' method='POST' class='form-search'>";
 					echo "<table width='700px' border='0'>";
 					
 					while($row = mysql_fetch_array($getStudQuery)  ){
 			
 					echo "<tr>";
 					echo "<td> </td>";
-					echo "<td><input name='l_name' type='text' size='20' style='text-align:right' autocomplete='off' value='".$row['l_name']."' />";
+					echo "<td><input name='l_name' class='input-small search-query' 
+							type='text' size='20' style='text-align:right' autocomplete='off' value='".$row['l_name']."' />";
 					echo ": «·«”„ «·«ŒÌ—</td>";
 					
-					echo "<td><input name='m_name' type='text' size='20' style='text-align:right' autocomplete='off' value='".$row['m_name']."' />";
+					echo "<td><input name='m_name' class='input-small search-query'
+							type='text' size='20' style='text-align:right' autocomplete='off' value='".$row['m_name']."' />";
 					echo ": «·«”„ «·«Ê”ÿ</td>";
 					echo "<td> </td>";
-					echo "<td><input name='f_name' type='text' size='20' style='text-align:right' autocomplete='off' value='".$row['f_name']."' />";
+					echo "<td><input name='f_name' class='input-small search-query'
+							type='text' size='20' style='text-align:right' autocomplete='off' value='".$row['f_name']."' />";
 					echo ": «·«”„ «·«Ê·</td>";
 					echo "</tr>";
 					
@@ -102,7 +105,7 @@ session_start();
 					echo "<tr>";
 					echo "<td>&nbsp;</td>";
 					echo "<td>&nbsp;</td>";
-					echo "<td><select name='subject'>
+					echo "<td><select name='subject' class='input-small search-query'>
 									<option value='".$row['subject']."'>".$row['subject']."</option>
                                     <option value='-·„  œŒ· „«œÂ'>- √Œ «— «·„«œ… „‰ «·ﬁ«∆„… -</option>
                                     <option value='≈‰Ã·Ì“Ï'>≈‰Ã·Ì“Ï</option>
@@ -119,7 +122,8 @@ session_start();
                                     <option value='Â‰œ”Â'>Â‰œ”Â</option>
                                     </select>: «·„«œÂ</td>";
 					echo "<td>&nbsp;</td>";
-					echo "<td><input name='mobile' type='text' size='20' style='text-align:right' autocomplete='off' value='".$row['mobile']."' />";
+					echo "<td><input name='mobile' class='input-small search-query'
+							type='text' size='20' style='text-align:right' autocomplete='off' value='".$row['mobile']."' />";
 					echo ": «·„Ê»Ì·</td>";
 					echo "</tr>";
 					
@@ -142,12 +146,20 @@ session_start();
 					echo "<tr>";
 					echo "<td>&nbsp;</td>";
 					echo "<td>„À«· 3 - 1</td>";
-					echo "<td><input name='date1' type='text' size='15' style='text-align:right' autocomplete='off' value='".$row['date1']."' />";
+					echo "<td><input name='date1' class='input-small search-query'
+						type='text' size='15' style='text-align:right' autocomplete='off' value='".$row['date1']."' />";
 					echo ": «·”«⁄…</td>";
-					echo "<td>&nbsp;</td>";
+					echo "<td><select name='slot1' class='input-small search-query'>";
+					echo "<option value='".$row['slot1']."'>".$row['slot1']."</option>";
+					echo "<option>--------</option>";
+					echo "<option value='‰⁄„'>‰⁄„</option>";
+					echo "<option value='·«'>·«</option>";
+					echo "</select>";
+					echo "Ì⁄„·";
+					echo "</td>";
 					echo "<td>";
 					
-					echo "<select name='day1'>";
+					echo "<select name='day1' class='input-small search-query'>";
 					echo "<option value='".$row['day1']."'>";
 					echo $row['day1'];
 					echo "</option>";
@@ -179,12 +191,20 @@ session_start();
 					echo "<tr>";
 					echo "<td>&nbsp;</td>";
 					echo "<td>„À«· 3 - 1</td>";
-					echo "<td><input name='date2' type='text' size='15' style='text-align:right' autocomplete='off' value='".$row['date2']."' />";
+					echo "<td><input name='date2' type='text' size='15' class='input-small search-query'
+						style='text-align:right' autocomplete='off' value='".$row['date2']."' />";
 					echo ": «·”«⁄…</td>";
-					echo "<td>&nbsp;</td>";
+					echo "<td><select name='slot2' class='input-small search-query'>";
+					echo "<option value='".$row['slot2']."'>".$row['slot2']."</option>";
+					echo "<option>--------</option>";
+					echo "<option value='‰⁄„'>‰⁄„</option>";
+					echo "<option value='·«'>·«</option>";
+					echo "</select>";
+					echo "Ì⁄„·";
+					echo "</td>";
 					echo "<td>";
 					
-					echo "<select name='day2'>";
+					echo "<select name='day2' class='input-small search-query'>";
 					echo "<option value='".$row['day2']."'>";
 					echo $row['day2'];
 					echo "</option>";
@@ -224,7 +244,7 @@ session_start();
 					echo "<tr>";
 					echo "<td>&nbsp;</td>";
 					echo "<td>";
-					echo "<input name='submit' type='submit' value='⁄œ·' />";
+					echo "<input name='submit' class='btn btn-primary' type='submit' value='⁄œ·' />";
 					echo "</td>";
 					echo "<td>&nbsp;</td>";
 					echo "<td>&nbsp;</td>";

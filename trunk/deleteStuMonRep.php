@@ -71,12 +71,14 @@ session_start();
 						) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_unicode_ci;", $conn);
 						
 					$deleteQuery1 = mysql_query("DROP TABLE studentComments", $conn);
-					$createQuery1 = mysql_query("CREATE TABLE IF NOT EXISTS `resala`.`stuffReport` (
-						`schedule_id` INT( 5 ) NOT NULL ,
-						`group_id` INT( 5 ) NOT NULL ,
-						`stuff_id` INT( 5 ) NOT NULL ,
-						`report_id` INT( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY
-						) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_unicode_ci;", $conn);
+					$createQuery1 = mysql_query("CREATE TABLE  `resala`.`studentComments` (
+							`comment_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+							`student_id` INT NOT NULL ,
+							`group_id` INT NOT NULL ,
+							`schedule_id` INT NOT NULL ,
+							`stuff_id` INT NOT NULL ,
+							`comment` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+							) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_unicode_ci;", $conn);
 						
 					$updateSche = mysql_query("UPDATE schedule
 							SET hasAttend = '0'", $conn);

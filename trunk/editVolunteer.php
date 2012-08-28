@@ -72,7 +72,7 @@ session_start();
 		
 					echo "<table class='table table table-hover  table-condensed' >";
 					echo "<tr>";
-					echo "<th>ÊÚÏםב</th> <th>ÇבדÚÇÏ ÇבËÇהל</th> <th>ÇבדÚÇÏ ÇבÇזב</th> <th>ÇבדזÈםב</th> <th>ÇבÇÓד</th> <th>ÇבדÇÏÉ</th>";
+					echo "<th>ÊÚÏםב</th> <th>םÚדב</th> <th>ÇבדÚÇÏ ÇבËÇהל</th> <th>םÚדב</th> <th>ÇבדÚÇÏ ÇבÇזב</th> <th>ÇבדזÈםב</th> <th>ÇבÇÓד</th> <th>ÇבדÇÏÉ</th>";
 					echo "</tr>";
 					
 					while($row = mysql_fetch_array($getStudentquery)  ){
@@ -86,7 +86,15 @@ session_start();
 						echo "</td>";
 						
 						echo "<td>";
+						echo $row['slot2'];
+						echo "</td>";
+						
+						echo "<td>";
 						echo $row['date2'] . " " . $row['day2'];
+						echo "</td>";
+						
+						echo "<td>";
+						echo $row['slot1'];
 						echo "</td>";
 						
 						echo "<td>";

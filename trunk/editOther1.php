@@ -51,7 +51,7 @@ session_start();
                 
                 <hr />
                 
-                <div class="VoloptionsDiv">
+                <div class="VoloptionsDivS">
                 <h4>йзоМА хМгДгй</h4>
                 
                 <h3><a href="addOtherItem.php" class='adminsOptionA'>&laquo; ежгщи Дтгь лоМо</a></h3>

@@ -73,7 +73,7 @@ session_start();
 						?>
 						<script>
 							alert(" „ √‰‘«¡ Œÿ… ‘Â—Ì… ÃœÌœ… ›«—€… »‰Ã«Õ ·‘Â— <?php echo $month. " ".$year ?>");
-							location.href = "otherOption.php";
+							location.href = "adminOptions.php";
 						</script>
 						<?php
 					}
@@ -81,7 +81,7 @@ session_start();
 						?>
 						<script>
 							alert("·ﬁœ √‰‘«¡  «·Œÿ… «·‘Â—Ì… ·‘Â— <?php echo $month." ".$year ?> „”»ﬁ«");
-							location.href = "otherOption.php";
+							location.href = "adminOptions.php";
 						</script>
 						<?php
 					

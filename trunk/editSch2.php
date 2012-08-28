@@ -162,7 +162,7 @@ session_start();
 						<script>
 							
 							alert(" „  ⁄œÌ· «·ÃœÊ· »‰Ã«Õ");
-							//location.href = "adminOptions.php";
+							location.href = "adminOptions.php";
 						</script>
 						<?php
 					}
@@ -170,7 +170,7 @@ session_start();
 						echo mysql_error();
 						?>
 						<script>
-							//location.href = "adminOptions.php";
+							location.href = "adminOptions.php";
 						</script>
 						<?php
 						
