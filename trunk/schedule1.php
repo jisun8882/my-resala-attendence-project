@@ -9,6 +9,7 @@ if(isset($_SESSION['username']))
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1256">
 <!-- InstanceBeginEditable name="doctitle" -->
 <title>Welcome to Resala</title>
+
 <script type="text/javascript" src="assets/javascript/jquery.js"></script>
 <script type="text/javascript" src="assets/javascript/jquery.print.js"></script>
 <script type="text/javascript" src="assets/javascript/printSnippt.js"></script>
@@ -46,7 +47,7 @@ if(isset($_SESSION['username']))
         <div class="contentDiv">
         	
             <!-- InstanceBeginEditable name="contentRegion" -->
-        		<div class="VoloptionsDiv">
+        		<div class="VoloptionsDiv" id="VoloptionsDiv">
                     <h2>عرض الجدول</h2>
                     <br />
                     
@@ -119,7 +120,9 @@ if(isset($_SESSION['username']))
                 </div>
                 
                 <p>
-                	<input type="button" class="btn btn-inverse PrintSch" value="أطبع الجدول" />
+                	<input type="button"  onclick="printContent('VoloptionsDiv')" 
+                    			class="btn btn-inverse" value="أطبع الجدول" />
+                    
                 </p>
                 
         	<!-- InstanceEndEditable -->

@@ -58,7 +58,7 @@ session_start();
                        <div class="input-prepend">
                        
                        <input type="submit" value="√Œ «—" class="btn" />
-                        <select name="group" class="btn input-medium search-query">
+                        <select name="group" class="input-medium search-query">
                             <option>- √Œ «— „Ã„Ê⁄… -</option>
                             
                             <?php
