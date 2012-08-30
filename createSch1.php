@@ -86,7 +86,7 @@ session_start();
                        <form action="createSch2.php" method="post" name="getGroup" class="form-search"> 
                        <div class="input-prepend">
                        <input type="submit" value="√Œ «—" class="btn"/>
-                        <select name="subject" class="btn input-medium search-query">
+                        <select name="subject" class="input-medium search-query">
                             <option>- √Œ «— „«œÂ -</option>
                             <option value='≈‰Ã·Ì“Ï'>≈‰Ã·Ì“Ï</option>
                             <option value='⁄—»Ï'>⁄—»Ï</option>

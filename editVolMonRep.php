@@ -70,7 +70,7 @@ session_start();
 						LEFT JOIN stuff ON schedule.stuff_id = stuff.stuff_id
 						LEFT JOIN `$database`.`group` ON schedule.group_id = group.group_id
 						ORDER BY dayOrder ASC", $conn);
-					
+						
 					echo "<table class='table table-hover table-condensed' ";
 					echo "tr>";
 					echo "<th>ÍÖæÑ</th> <th>ÚÏÏ ÇáÍÖæÑ</th> <th>ÇáãÚÇÏ</th> <th>Çáíæã</th> <th>ÇáãÇÏÉ</th>

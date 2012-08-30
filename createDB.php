@@ -74,7 +74,7 @@ INSERT INTO `resala`.`group` (`name`, `group_id`) VALUES ('تانية ثانوى
 INSERT INTO `resala`.`group` (`name`, `group_id`) VALUES ('تانية ثانوى ب', NULL);
 
 INSERT INTO `resala`.`group` (`name`, `group_id`) VALUES ('ثالثة ثانوى أ', NULL);
-INSERT INTO `resala`.`group` (`name`, `group_id`) VALUES ('ثالثة ثانوىب', NULL);
+INSERT INTO `resala`.`group` (`name`, `group_id`) VALUES ('ثالثة ثانوى ب', NULL);
 
 CREATE TABLE  `resala`.`groupStudent` (
 `group_id` INT NOT NULL ,
